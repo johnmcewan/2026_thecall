@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monday Nite Footballers — Kansas City</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">MNF <span>KC</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="members.html">Members</a>
+      <a href="map.html">Social Map</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-text">MONDAY NITE</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kansas City's Brotherhood</p>
+    <h1>Monday Nite<br><em>Footballers</em></h1>
+    <p class="hero-sub">A group of Kansas City men bound by football, friendship, and a deep love for this city. Every Monday, they gather — and every year, their roots go deeper.</p>
+    <div class="hero-cta">
+      <a href="members.html" class="btn-primary">Meet the Crew</a>
+      <a href="map.html" class="btn-ghost">Explore the Map</a>
+    </div>
+  </div>
+  <div class="hero-stripe"></div>
+</section>
+
+<section class="origin">
+  <div class="container">
+    <div class="origin-grid">
+      <div class="origin-label">Est. in KC</div>
+      <div class="origin-text">
+        <h2>More Than a Game</h2>
+        <p>It started with a couch, a TV, and a few good men who refused to watch football alone. Over the years, the Monday Nite Footballers grew from a casual watch party into one of Kansas City's most tightly-knit communities — cutting across neighborhoods, professions, and generations.</p>
+        <p>From the Crossroads to Westport, Brookside to the Troost Corridor, the MNF crew represents the full breadth of Kansas City life. They are artists, chefs, pastors, data nerds, entrepreneurs — united by the game and connected to this city in ways that run far deeper than any box score.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="member-preview">
+  <div class="container">
+    <div class="section-header">
+      <h2>The Roster</h2>
+      <a href="members.html" class="see-all">See all members →</a>
+    </div>
+    <div class="preview-grid" id="previewGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<section class="map-tease">
+  <div class="container">
+    <div class="tease-inner">
+      <div class="tease-text">
+        <h2>Woven Into<br>Kansas City</h2>
+        <p>From the Chiefs Kingdom to the Crossroads arts scene, from corner BBQ joints to startup incubators — the MNF network stretches across every layer of KC culture. Explore how the crew is connected.</p>
+        <a href="map.html" class="btn-primary">View the Social Map</a>
+      </div>
+      <div class="tease-visual" id="teaseNetwork">
+        <!-- mini network drawn by JS/SVG -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-logo">MNF <span>KC</span></p>
+    <p class="footer-sub">Monday Nite Footballers · Kansas City, Missouri</p>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="members.html">Members</a>
+      <a href="map.html">Social Map</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  const grid = document.getElementById('previewGrid');
+  MNF_DATA.slice(0, 4).forEach(m => {
+    grid.innerHTML += `
+      <a href="members.html#member-${m.id}" class="preview-card">
+        <div class="preview-avatar color-${m.color}">${initials(m.name)}</div>
+        <div class="preview-info">
+          <h3>${m.name}</h3>
+          <p class="preview-role">${m.role}</p>
+          <p class="preview-hood">${m.neighborhood}</p>
+        </div>
+      </a>`;
+  });
+
+  const svg = document.getElementById('teaseNetwork');
+  svg.innerHTML = buildMiniNetwork();
+
+  function initials(name) {
+    return name.split(' ').map(w => w[0]).join('');
+  }
+
+  function buildMiniNetwork() {
+    const cx = 200, cy = 150, r = 100;
+    const nodes = MNF_DATA.slice(0, 6);
+    const colors = { coral:'#D85A30', purple:'#7F77DD', teal:'#1D9E75', amber:'#EF9F27', blue:'#378ADD', green:'#639922' };
+    let out = `<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">`;
+    out += `<circle cx="${cx}" cy="${cy}" r="22" fill="#C8102E"/>`;
+    out += `<text x="${cx}" y="${cy+5}" text-anchor="middle" fill="white" font-size="9" font-weight="700" font-family="Barlow Condensed">KC</text>`;
+    nodes.forEach((m, i) => {
+      const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * r;
+      const y = cy + Math.sin(angle) * r;
+      const col = colors[m.color] || '#888';
+      out += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#ddd" stroke-width="1.5"/>`;
+      out += `<circle cx="${x}" cy="${y}" r="16" fill="${col}" opacity="0.85"/>`;
+      out += `<text x="${x}" y="${y+4}" text-anchor="middle" fill="white" font-size="7" font-weight="700" font-family="Barlow Condensed">${initials(m.name)}</text>`;
+    });
+    out += `</svg>`;
+    return out;
+  }
+</script>
+</body>
+</html>

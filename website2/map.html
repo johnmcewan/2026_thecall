@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Map — Monday Nite Footballers KC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">MNF <span>KC</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="members.html">Members</a>
+      <a href="map.html" class="active">Social Map</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">The Network</p>
+    <h1>The Social<br><em>Map</em></h1>
+    <p class="page-hero-sub">How the Monday Nite Footballers are woven into the communities of Kansas City.</p>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="container">
+    <div class="map-layout">
+
+      <div class="map-controls">
+        <h4>Filter by community</h4>
+        <div class="filter-pills" id="filterPills">
+          <button class="pill active" data-cat="all">All</button>
+          <button class="pill" data-cat="Sports">Sports</button>
+          <button class="pill" data-cat="Arts">Arts & Culture</button>
+          <button class="pill" data-cat="Business">Business</button>
+          <button class="pill" data-cat="Neighborhood">Neighborhood</button>
+          <button class="pill" data-cat="Education">Education</button>
+          <button class="pill" data-cat="Community">Community Org</button>
+        </div>
+        <div class="map-legend">
+          <h4>Legend</h4>
+          <div class="legend-item"><div class="legend-dot" style="background:#C8102E;"></div><span>Kansas City (hub)</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#7F77DD;"></div><span>MNF Member</span></div>
+          <div class="legend-item"><div class="legend-dot legend-sm" style="background:#1D9E75;"></div><span>KC Community</span></div>
+        </div>
+      </div>
+
+      <div class="map-canvas-wrap">
+        <svg id="networkSVG" class="network-svg" viewBox="0 0 800 600"></svg>
+      </div>
+
+      <div class="map-panel" id="mapPanel">
+        <p class="panel-hint">Click any node to explore connections</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-logo">MNF <span>KC</span></p>
+    <p class="footer-sub">Monday Nite Footballers · Kansas City, Missouri</p>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="members.html">Members</a>
+      <a href="map.html">Social Map</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+const W = 800, H = 600;
+const svg = document.getElementById('networkSVG');
+const panel = document.getElementById('mapPanel');
+
+const COMMUNITY_CATEGORIES = {
+  'Chiefs Kingdom': 'Sports',
+  'KC BBQ Society': 'Arts',
+  'UMKC Alumni Network': 'Education',
+  'Brookside Merchants Association': 'Business',
+  'KC Parks & Rec': 'Community',
+  'Crossroads Arts District Collective': 'Arts',
+  'KC Art Institute': 'Arts',
+  'First Fridays KC': 'Arts',
+  'KC Restaurant Association': 'Business',
+  'Plaza Merchants': 'Business',
+  'Hispanic Chamber of Commerce KC': 'Business',
+  'Troost Community Alliance': 'Neighborhood',
+  'KC Urban Youth Foundation': 'Community',
+  'Black Chamber of Commerce KC': 'Business',
+  'Waldo Area Business Association': 'Business',
+  'KC Data Science Meetup': 'Education',
+  'Chiefs Analytics Community': 'Sports',
+  'Midtown KC Community Board': 'Neighborhood',
+  'KC Interfaith Council': 'Community',
+  'Historic Vine District Advocates': 'Neighborhood',
+  'KC Startup Village': 'Business',
+  'River Market Community Association': 'Neighborhood',
+  'Digital Sandbox KC': 'Business',
+  'Westport Neighborhood Association': 'Neighborhood',
+};
+
+const CAT_COLORS = {
+  Sports: '#D85A30',
+  Arts: '#7F77DD',
+  Business: '#EF9F27',
+  Neighborhood: '#1D9E75',
+  Education: '#378ADD',
+  Community: '#D4537E',
+};
+
+const MEMBER_COLORS = {
+  coral:'#D85A30', purple:'#7F77DD', teal:'#1D9E75',
+  amber:'#EF9F27', blue:'#378ADD', green:'#639922'
+};
+
+function initials(name) { return name.split(' ').map(w=>w[0]).join(''); }
+
+function buildGraph(filterCat) {
+  const allCommunities = {};
+  MNF_DATA.forEach(m => {
+    m.communities.split(',').forEach(c => {
+      const name = c.trim();
+      const cat = COMMUNITY_CATEGORIES[name] || 'Community';
+      if (filterCat === 'all' || cat === filterCat) allCommunities[name] = cat;
+    });
+  });
+
+  const nodes = [];
+  const links = [];
+
+  nodes.push({ id: 'kc', label: 'Kansas City', type: 'hub', x: W/2, y: H/2, r: 28, color: '#C8102E' });
+
+  const memberCount = MNF_DATA.length;
+  MNF_DATA.forEach((m, i) => {
+    const angle = (i / memberCount) * Math.PI * 2 - Math.PI / 2;
+    const dist = 160;
+    nodes.push({
+      id: `m${m.id}`, label: m.name, initials: initials(m.name), type: 'member',
+      x: W/2 + Math.cos(angle) * dist, y: H/2 + Math.sin(angle) * dist,
+      r: 22, color: MEMBER_COLORS[m.color] || '#888', data: m
+    });
+    links.push({ source: 'kc', target: `m${m.id}`, strength: 1 });
+  });
+
+  const communityKeys = Object.keys(allCommunities);
+  communityKeys.forEach((name, i) => {
+    const cat = allCommunities[name];
+    const angle = (i / communityKeys.length) * Math.PI * 2;
+    const dist = 260 + (i % 3) * 30;
+    nodes.push({
+      id: `c_${name}`, label: name, type: 'community',
+      x: W/2 + Math.cos(angle) * dist, y: H/2 + Math.sin(angle) * dist,
+      r: 10, color: CAT_COLORS[cat] || '#888', cat
+    });
+    MNF_DATA.forEach(m => {
+      const comms = m.communities.split(',').map(x => x.trim());
+      if (comms.includes(name)) links.push({ source: `m${m.id}`, target: `c_${name}`, strength: 0.5 });
+    });
+  });
+
+  return { nodes, links };
+}
+
+function render(filterCat = 'all') {
+  const { nodes, links } = buildGraph(filterCat);
+  svg.innerHTML = '';
+
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  defs.innerHTML = `<marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#ccc"/></marker>`;
+  svg.appendChild(defs);
+
+  const nodeMap = {};
+  nodes.forEach(n => nodeMap[n.id] = n);
+
+  links.forEach(l => {
+    const s = nodeMap[l.source], t = nodeMap[l.target];
+    if (!s || !t) return;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', s.x); line.setAttribute('y1', s.y);
+    line.setAttribute('x2', t.x); line.setAttribute('y2', t.y);
+    line.setAttribute('stroke', l.strength === 1 ? '#ddd' : '#eee');
+    line.setAttribute('stroke-width', l.strength === 1 ? '1.5' : '1');
+    line.setAttribute('class', `link link-${l.source} link-${l.target}`);
+    svg.appendChild(line);
+  });
+
+  nodes.forEach(n => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', `node node-${n.id}`);
+    g.setAttribute('transform', `translate(${n.x},${n.y})`);
+    g.style.cursor = 'pointer';
+
+    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circle.setAttribute('r', n.r);
+    circle.setAttribute('fill', n.color);
+    circle.setAttribute('opacity', n.type === 'community' ? '0.75' : '1');
+    circle.setAttribute('stroke', 'white');
+    circle.setAttribute('stroke-width', n.type === 'hub' ? '3' : '2');
+    g.appendChild(circle);
+
+    if (n.type !== 'community') {
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dy', '4');
+      text.setAttribute('fill', 'white');
+      text.setAttribute('font-size', n.type === 'hub' ? '10' : '8');
+      text.setAttribute('font-weight', '700');
+      text.setAttribute('font-family', 'Barlow Condensed');
+      text.textContent = n.type === 'hub' ? 'KC' : n.initials;
+      g.appendChild(text);
+    }
+
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('dy', n.r + 13);
+    label.setAttribute('fill', '#555');
+    label.setAttribute('font-size', n.type === 'member' ? '9' : '7.5');
+    label.setAttribute('font-family', 'Barlow Condensed');
+    label.setAttribute('font-weight', '600');
+    label.textContent = n.type === 'member' ? n.label.split(' ')[0] : (n.label.length > 20 ? n.label.substring(0,18)+'…' : n.label);
+    g.appendChild(label);
+
+    g.addEventListener('click', () => selectNode(n, nodeMap, links));
+    svg.appendChild(g);
+  });
+}
+
+function selectNode(n, nodeMap, links) {
+  document.querySelectorAll('.node circle').forEach(c => c.setAttribute('opacity', '0.25'));
+  document.querySelectorAll('.link').forEach(l => { l.setAttribute('stroke', '#f0f0f0'); l.setAttribute('stroke-width','0.5'); });
+
+  const connected = new Set([n.id]);
+  links.forEach(l => {
+    if (l.source === n.id) connected.add(l.target);
+    if (l.target === n.id) connected.add(l.source);
+  });
+
+  connected.forEach(id => {
+    const el = document.querySelector(`.node-${CSS.escape(id)} circle`);
+    if (el) el.setAttribute('opacity', '1');
+  });
+
+  links.forEach(l => {
+    if (l.source === n.id || l.target === n.id) {
+      const els = document.querySelectorAll(`.link-${CSS.escape(l.source)}.link-${CSS.escape(l.target)}, .link-${CSS.escape(l.target)}.link-${CSS.escape(l.source)}`);
+      els.forEach(el => { el.setAttribute('stroke', '#aaa'); el.setAttribute('stroke-width','1.5'); });
+    }
+  });
+
+  if (n.type === 'member') {
+    const m = n.data;
+    const comms = m.communities.split(',').map(c => c.trim());
+    panel.innerHTML = `
+      <div class="panel-avatar color-${m.color}">${initials(m.name)}</div>
+      <h3>${m.name}</h3>
+      <p class="panel-role">${m.role}</p>
+      <p class="panel-hood">📍 ${m.neighborhood}</p>
+      <p class="panel-bio">${m.bio.substring(0,120)}…</p>
+      <div class="panel-tags">${comms.map(c=>`<span class="tag" style="background:${CAT_COLORS[COMMUNITY_CATEGORIES[c]]||'#eee'}20;border-color:${CAT_COLORS[COMMUNITY_CATEGORIES[c]]||'#ccc'}40;color:${CAT_COLORS[COMMUNITY_CATEGORIES[c]]||'#555'}">${c}</span>`).join('')}</div>
+      <a href="members.html#member-${m.id}" class="btn-primary" style="display:inline-block;margin-top:12px;">Full Profile →</a>`;
+  } else if (n.type === 'community') {
+    const members = MNF_DATA.filter(m => m.communities.split(',').map(c=>c.trim()).includes(n.label));
+    panel.innerHTML = `
+      <h3>${n.label}</h3>
+      <span class="tag" style="background:${n.color}20;color:${n.color};border-color:${n.color}40;margin-bottom:12px;display:inline-block;">${n.cat}</span>
+      <p style="font-size:13px;color:#666;margin-bottom:10px;">MNF Members connected:</p>
+      ${members.map(m=>`<div class="panel-member-row"><div class="panel-mini-av color-${m.color}">${initials(m.name)}</div><span>${m.name}</span></div>`).join('')}`;
+  } else {
+    panel.innerHTML = `
+      <h3>Kansas City</h3>
+      <p style="font-size:13px;color:#666;margin-top:8px;">The heart of the Monday Nite Footballers network. All ${MNF_DATA.length} members are connected through this city and its communities.</p>`;
+  }
+}
+
+document.querySelectorAll('.pill').forEach(btn => {
+  btn.onclick = function() {
+    document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    render(this.dataset.cat);
+    panel.innerHTML = '<p class="panel-hint">Click any node to explore connections</p>';
+  };
+});
+
+render('all');
+
+const hash = window.location.hash;
+if (hash && hash.startsWith('#node-')) {
+  const id = hash.replace('#node-', '');
+  setTimeout(() => {
+    const { nodes, links } = buildGraph('all');
+    const nodeMap = {};
+    nodes.forEach(n => nodeMap[n.id] = n);
+    const target = nodes.find(n => n.id === `m${id}`);
+    if (target) selectNode(target, nodeMap, links);
+  }, 300);
+}
+</script>
+</body>
+</html>

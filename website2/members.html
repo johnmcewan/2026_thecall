@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members — Monday Nite Footballers KC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">MNF <span>KC</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="members.html" class="active">Members</a>
+      <a href="map.html">Social Map</a>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="hero-eyebrow">The Crew</p>
+    <h1>Meet the Monday<br><em>Nite Footballers</em></h1>
+    <p class="page-hero-sub">Eight Kansas City men. Dozens of communities. One Monday night tradition.</p>
+  </div>
+</section>
+
+<section class="members-section">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Members</button>
+      <button class="filter-btn" data-filter="founding">Founding Members</button>
+    </div>
+    <div class="members-grid" id="membersGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- Member Detail Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="memberModal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-logo">MNF <span>KC</span></p>
+    <p class="footer-sub">Monday Nite Footballers · Kansas City, Missouri</p>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="members.html">Members</a>
+      <a href="map.html">Social Map</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  const grid = document.getElementById('membersGrid');
+  const overlay = document.getElementById('modalOverlay');
+  const modalBody = document.getElementById('modalBody');
+  const FOUNDING_THRESHOLD = 9;
+
+  function initials(name) {
+    return name.split(' ').map(w => w[0]).join('');
+  }
+
+  function renderCards(data) {
+    grid.innerHTML = '';
+    data.forEach((m, i) => {
+      const card = document.createElement('div');
+      card.className = `member-card color-border-${m.color}`;
+      card.style.animationDelay = `${i * 0.07}s`;
+      card.id = `member-${m.id}`;
+      card.innerHTML = `
+        <div class="card-avatar color-${m.color}">${initials(m.name)}</div>
+        <div class="card-body">
+          <h3>${m.name}</h3>
+          <p class="card-role">${m.role}</p>
+          <p class="card-hood">📍 ${m.neighborhood} · ${m.years_active} yrs</p>
+          <p class="card-bio">${m.bio.substring(0, 110)}…</p>
+          <div class="card-tags">
+            ${m.communities.split(',').slice(0,2).map(c => `<span class="tag">${c.trim()}</span>`).join('')}
+          </div>
+          <button class="card-btn" onclick="openModal(${m.id})">Full Profile →</button>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  function openModal(id) {
+    const m = MNF_DATA.find(x => x.id == id);
+    if (!m) return;
+    modalBody.innerHTML = `
+      <div class="modal-header">
+        <div class="modal-avatar color-${m.color}">${initials(m.name)}</div>
+        <div>
+          <h2>${m.name}</h2>
+          <p class="modal-role">${m.role}</p>
+          <p class="modal-hood">${m.neighborhood} · ${m.years_active} years with MNF</p>
+        </div>
+      </div>
+      <p class="modal-bio">${m.bio}</p>
+      <div class="modal-section">
+        <h4>KC Communities</h4>
+        <div class="modal-tags">
+          ${m.communities.split(',').map(c => `<span class="tag tag-lg">${c.trim()}</span>`).join('')}
+        </div>
+      </div>
+      <div class="modal-section fun-fact">
+        <h4>Fun Fact</h4>
+        <p><em>${m.fun_fact}</em></p>
+      </div>
+      <a href="map.html#node-${m.id}" class="btn-primary">See on Social Map →</a>`;
+    overlay.classList.add('active');
+  }
+
+  document.getElementById('modalClose').onclick = () => overlay.classList.remove('active');
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.classList.remove('active'); };
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const f = this.dataset.filter;
+      renderCards(f === 'founding' ? MNF_DATA.filter(m => m.years_active >= FOUNDING_THRESHOLD) : MNF_DATA);
+    };
+  });
+
+  renderCards(MNF_DATA);
+
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
+    if (target) { setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300); }
+  }
+</script>
+</body>
+</html>
