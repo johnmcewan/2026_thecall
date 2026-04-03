@@ -1,0 +1,329 @@
+2026-04-02 20:42:07,764  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-02 20:46:39,353  INFO      Total: 75293 | To Process: 75293
+2026-04-02 20:46:49,400  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:46:57,447  WARNING   FAIL: Classified.indd - Output file missing
+2026-04-02 20:46:57,452  WARNING   FAIL: CALL SIZES.indd - Output file missing
+2026-04-02 20:46:57,457  WARNING   FAIL: Tribune (Classified).indd - Output file missing
+2026-04-02 20:46:57,457  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:47:13,553  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:47:21,597  WARNING   FAIL: C0118-591-0049.indd - Output file missing
+2026-04-02 20:47:21,599  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:47:37,580  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:47:45,596  WARNING   FAIL: InMems Obits.indd - Output file missing
+2026-04-02 20:47:45,596  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:48:01,666  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:48:09,692  WARNING   FAIL: 3 col bringing in the year.indd - Output file missing
+2026-04-02 20:48:09,693  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:48:24,136  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:48:32,146  WARNING   FAIL: AP - Black Super Bowl Ref.indd - Output file missing
+2026-04-02 20:48:32,146  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:48:46,266  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:48:54,491  WARNING   FAIL: AP - Black World War II.indd - Output file missing
+2026-04-02 20:48:54,492  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:49:10,486  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:49:18,568  WARNING   FAIL: AP - Chicago Mayor.indd - Output file missing
+2026-04-02 20:49:18,569  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:49:33,609  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:49:41,616  WARNING   FAIL: AP - Ignoring Racist.indd - Output file missing
+2026-04-02 20:49:41,620  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 20:49:57,807  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 20:50:17,433  INFO      Launched new instance: InDesign.Application
+2026-04-02 21:07:36,468  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-02 21:13:35,671  INFO      Total: 75293 | To Process: 75293
+2026-04-02 21:13:43,471  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 21:13:53,940  WARNING   FAIL: Classified.indd - JSON Corrupt: Invalid control character at: line 1 column 1455 (char 1454)
+2026-04-02 21:13:54,197  WARNING   FAIL: CALL SIZES.indd - JSON Corrupt: Invalid control character at: line 1 column 1928 (char 1927)
+2026-04-02 21:13:54,612  WARNING   FAIL: C0118-591-0049.indd - JSON Corrupt: Invalid control character at: line 1 column 761 (char 760)
+2026-04-02 21:13:57,657  WARNING   FAIL: InMems Obits.indd - JSON Corrupt: Invalid control character at: line 1 column 2157 (char 2156)
+2026-04-02 21:14:00,233  WARNING   FAIL: AP - Black Super Bowl Ref.indd - JSON Corrupt: Invalid control character at: line 1 column 472 (char 471)
+2026-04-02 21:14:00,537  WARNING   FAIL: AP - Black World War II.indd - JSON Corrupt: Invalid control character at: line 1 column 5346 (char 5345)
+2026-04-02 21:14:00,803  WARNING   FAIL: AP - Chicago Mayor.indd - JSON Corrupt: Invalid control character at: line 1 column 480 (char 479)
+2026-04-02 21:14:00,803  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 21:14:21,258  INFO      Launched new instance: InDesign.Application.2025
+2026-04-02 21:14:30,441  WARNING   FAIL: AP - Ignoring Racist.indd - JSON Corrupt: Invalid control character at: line 1 column 5469 (char 5468)
+2026-04-02 21:14:30,441  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:09:20,465  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-02 22:14:56,146  INFO      Total: 75293 | To Process: 75291
+2026-04-02 22:15:09,524  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:16:19,970  WARNING   FAIL: Long, Kiana L.indd - Output file missing
+2026-04-02 22:22:11,455  WARNING   FAIL: ._C0201-Youth Worker.indd - Output file missing
+2026-04-02 22:22:11,487  WARNING   FAIL: C0201-Youth Worker.indd - Output file missing
+2026-04-02 22:22:11,634  WARNING   FAIL: ._M0215-Academic Tutor.indd - Output file missing
+2026-04-02 22:22:11,635  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:22:27,331  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:22:35,512  WARNING   FAIL: M0215-Academic Tutor.indd - Output file missing
+2026-04-02 22:22:35,512  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:22:51,181  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:23:00,145  WARNING   FAIL: C0222-Custodian.indd - Output file missing
+2026-04-02 22:23:01,495  WARNING   FAIL: C0222-Management Specialist.indd - Output file missing
+2026-04-02 22:23:02,727  WARNING   FAIL: C0222-Principal.indd - Output file missing
+2026-04-02 22:23:03,509  WARNING   FAIL: C0222-Recreation Director.indd - Output file missing
+2026-04-02 22:23:03,541  WARNING   FAIL: M0222-Senior Recreation.indd - Output file missing
+2026-04-02 22:23:03,677  WARNING   FAIL: M0222-Editor.indd - Output file missing
+2026-04-02 22:23:03,678  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:23:19,339  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:23:28,007  WARNING   FAIL: C0125-756-0558.indd - Output file missing
+2026-04-02 22:23:28,075  WARNING   FAIL: C0125-861-2200.indd - Output file missing
+2026-04-02 22:23:28,123  WARNING   FAIL: C0208-221-7004.indd - Output file missing
+2026-04-02 22:23:28,124  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:23:43,924  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:23:52,001  WARNING   FAIL: C0215-523-6207.indd - Output file missing
+2026-04-02 22:23:52,002  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:24:07,822  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:24:15,873  WARNING   FAIL: C0222-389-1220.indd - Output file missing
+2026-04-02 22:24:15,874  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:24:31,640  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:24:39,696  WARNING   FAIL: C0222-474-1700.indd - Output file missing
+2026-04-02 22:24:39,697  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:24:55,563  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:25:03,623  WARNING   FAIL: C1208-333-0979.indd - Output file missing
+2026-04-02 22:25:03,626  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:25:19,700  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:25:27,739  WARNING   FAIL: C0201-645-5053.indd - Output file missing
+2026-04-02 22:25:27,739  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:25:44,006  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:25:52,052  WARNING   FAIL: C0222-682-4228.indd - Output file missing
+2026-04-02 22:25:52,053  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:26:08,184  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:26:16,244  WARNING   FAIL: C0125-474-6884.indd - Output file missing
+2026-04-02 22:26:16,245  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-02 22:26:32,177  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:26:40,211  ERROR     Too many consecutive failures. Aborting.
+2026-04-02 22:26:40,215  INFO      Process complete.
+2026-04-02 22:44:15,270  INFO      No cache found. Scanning E:\Callproject\assembled (this may take a few minutes)...
+2026-04-02 22:50:09,523  INFO      Scan complete. Saving 74249 paths to cache.
+2026-04-02 22:50:10,021  INFO      Total Files: 74249 | Remaining to Process: 73195
+2026-04-02 22:50:10,022  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-02 22:50:10,041  INFO      Total: 74249 | To Process: 73195
+2026-04-02 22:50:18,994  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:50:27,111  WARNING   FAIL: Long, Kiana L.indd - Output file missing
+2026-04-02 22:55:30,273  INFO      Loading file list from cache: D:\development\2026_python\2026_thecall\cdwork\extract_indd_gemini\file_list_cache.txt
+2026-04-02 22:55:30,678  INFO      Total Files: 74249 | Remaining to Process: 72614
+2026-04-02 22:55:30,679  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-02 22:55:30,695  INFO      Total: 74249 | To Process: 72614
+2026-04-02 22:55:37,559  INFO      Launched new instance: InDesign.Application.2026
+2026-04-02 22:55:45,831  WARNING   FAIL: Long, Kiana L.indd - Output file missing
+2026-04-02 23:07:15,467  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-02 23:08:56,963  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-02 23:10:55,657  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-02 23:17:17,980  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-02 23:50:37,025  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 00:53:09,343  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 00:53:13,753  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 00:53:13,819  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 00:53:22,297  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 00:53:23,198  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 00:53:34,723  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 00:53:35,150  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 00:54:45,770  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 00:54:50,402  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 00:54:50,481  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 00:55:00,433  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 00:55:01,730  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 00:55:08,318  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 00:55:09,747  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 00:57:43,609  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 00:57:50,265  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 00:57:50,335  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 00:58:01,233  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 00:58:02,588  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 00:58:08,251  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 00:59:37,169  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 00:59:42,821  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 00:59:43,082  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 00:59:53,962  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 00:59:55,277  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:00:10,954  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:02:04,648  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 01:02:09,354  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 01:02:09,565  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 01:02:20,806  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 01:02:21,950  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:02:29,982  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:02:32,512  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 01:04:08,698  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 01:04:10,530  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 01:04:10,612  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 01:04:21,020  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 01:04:22,310  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:04:31,510  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:04:32,833  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 01:06:51,072  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 01:06:53,032  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 01:06:53,233  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 01:07:04,321  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 01:07:05,484  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:07:13,837  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:07:15,079  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 01:09:46,720  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 01:09:51,386  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 01:09:51,750  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 01:10:02,912  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 01:10:04,218  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:10:10,442  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:10:11,849  WARNING   FAIL: _M0215-Unity Chapel.indd - Output file missing
+2026-04-03 01:12:13,210  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 01:15:14,248  WARNING   FAIL: C0717-523-1990.indd - Output file missing
+2026-04-03 01:15:14,706  WARNING   FAIL: C0717-Day Care Equipment.indd - Output file missing
+2026-04-03 01:15:17,291  WARNING   FAIL: _K0125-Lindesay Tree.indd - Output file missing
+2026-04-03 01:15:22,164  WARNING   FAIL: _First Baptist Church Quindaro.indd - Output file missing
+2026-04-03 01:15:22,216  WARNING   FAIL: _Olivet Inst.indd - Output file missing
+2026-04-03 01:15:33,302  WARNING   FAIL: _Second Metro B C.indd - Output file missing
+2026-04-03 01:15:34,593  WARNING   FAIL: _St. Peter Christian.indd - Output file missing
+2026-04-03 01:15:50,547  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:17:31,695  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:19:22,567  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:21:22,425  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:23:27,024  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:25:30,286  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:27:30,026  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:29:39,961  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:31:42,566  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:33:41,509  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:35:55,294  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:37:56,233  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:40:06,548  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:42:03,225  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:44:05,031  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:45:53,754  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:47:55,217  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:50:06,804  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:51:58,586  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:53:24,570  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:54:41,742  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:56:02,694  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:57:34,841  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 01:58:52,345  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:00:00,813  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:01:02,769  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:02:20,084  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:03:41,871  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:04:57,976  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:06:16,770  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:07:47,477  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:09:18,560  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:10:41,896  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:12:10,932  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:13:38,102  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:15:10,271  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:16:36,153  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:17:54,160  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:19:29,494  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:25:02,172  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:27:30,346  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:28:53,437  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:30:24,912  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:32:14,384  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:33:27,818  WARNING   FAIL: _-religious log.indd - Output file missing
+2026-04-03 02:34:24,074  WARNING   FAIL: C0618-Dipatcher.indd - Output file missing
+2026-04-03 02:34:24,210  WARNING   FAIL: C0618-Drivers.indd - Output file missing
+2026-04-03 02:34:24,242  WARNING   FAIL: C0618-Maintenance Person.indd - Output file missing
+2026-04-03 02:34:24,273  WARNING   FAIL: C0618-Paramedic.indd - Output file missing
+2026-04-03 02:34:24,326  WARNING   FAIL: C0618-Police & Reserve Officer.indd - Output file missing
+2026-04-03 02:34:24,359  WARNING   FAIL: C0618-Property Manager.indd - Output file missing
+2026-04-03 02:34:24,575  WARNING   FAIL: C0618-Television Engineer.indd - Output file missing
+2026-04-03 02:34:24,633  WARNING   FAIL: 333-1000.indd - Output file missing
+2026-04-03 02:34:24,783  WARNING   FAIL: C0618-561-2236.indd - Output file missing
+2026-04-03 02:34:24,846  WARNING   FAIL: C0618-587-7707.indd - Output file missing
+2026-04-03 02:34:24,917  WARNING   FAIL: C0618-454-1434.indd - Output file missing
+2026-04-03 02:34:24,980  WARNING   FAIL: C0514-582-8893.indd - Output file missing
+2026-04-03 02:34:25,043  WARNING   FAIL: C0618-444-3949.indd - Output file missing
+2026-04-03 02:34:25,095  WARNING   FAIL: C0618-478-3680.indd - Output file missing
+2026-04-03 02:34:25,158  WARNING   FAIL: C0618-952-0444.indd - Output file missing
+2026-04-03 02:34:25,210  WARNING   FAIL: C0219-Tree Cutting 924-5839.indd - Output file missing
+2026-04-03 02:34:25,242  WARNING   FAIL: C0423-278-1278.indd - Output file missing
+2026-04-03 02:34:25,269  WARNING   FAIL: C0423-Mr Remodeler 278-1278.indd - Output file missing
+2026-04-03 02:34:25,330  WARNING   FAIL: C0604-Carpet Cleaning.indd - Output file missing
+2026-04-03 02:34:25,397  WARNING   FAIL: C0604-Roofing 394-1800.indd - Output file missing
+2026-04-03 02:34:25,401  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-03 02:34:42,989  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 02:34:56,998  WARNING   FAIL: C0618-Electrical Repair.indd - Output file missing
+2026-04-03 02:34:57,063  WARNING   FAIL: Master Plumber.indd - Output file missing
+2026-04-03 02:34:57,095  WARNING   FAIL: M0618-Trinity AME.indd - Output file missing
+2026-04-03 02:34:57,128  WARNING   FAIL: K0000-Bow Down Carpet.indd - Output file missing
+2026-04-03 02:34:57,158  WARNING   FAIL: K0618-Greater Faith MBC.indd - Output file missing
+2026-04-03 02:34:57,188  WARNING   FAIL: K0618-June Neal.indd - Output file missing
+2026-04-03 02:34:57,214  WARNING   FAIL: K0618-Juneteenth Youth Rally.indd - Output file missing
+2026-04-03 02:34:57,245  WARNING   FAIL: K0618-KCK Branch NAACP.indd - Output file missing
+2026-04-03 02:34:57,277  WARNING   FAIL: K0618-Landmark International.indd - Output file missing
+2026-04-03 02:34:57,302  WARNING   FAIL: K0000-Lindesay Tree.indd - Output file missing
+2026-04-03 02:34:57,336  WARNING   FAIL: K0618-Mt Zion BC.indd - Output file missing
+2026-04-03 02:34:57,368  WARNING   FAIL: K0618-Mt. Zion BC.indd - Output file missing
+2026-04-03 02:34:57,397  WARNING   FAIL: K0618-Timothy BC.indd - Output file missing
+2026-04-03 02:34:57,427  WARNING   FAIL: Bible Temple BC.indd - Output file missing
+2026-04-03 02:34:57,452  WARNING   FAIL: Calvary Missionary.indd - Output file missing
+2026-04-03 02:34:57,480  WARNING   FAIL: Evangelist Temple.indd - Output file missing
+2026-04-03 02:34:57,512  WARNING   FAIL: First Baptist Church of Quindaro.indd - Output file missing
+2026-04-03 02:34:57,546  WARNING   FAIL: First Baptist Church.indd - Output file missing
+2026-04-03 02:34:57,577  WARNING   FAIL: Grace Temple BC.indd - Output file missing
+2026-04-03 02:34:57,606  WARNING   FAIL: Greater Faith MBC.indd - Output file missing
+2026-04-03 02:34:57,607  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-03 02:35:14,211  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 02:35:22,245  WARNING   FAIL: Metropolitan B T.indd - Output file missing
+2026-04-03 02:35:22,266  WARNING   FAIL: Mt. Zion B C.indd - Output file missing
+2026-04-03 02:35:22,286  WARNING   FAIL: Mt. Calvary AD.indd - Output file missing
+2026-04-03 02:35:22,307  WARNING   FAIL: New Light Missionary Bapt.indd - Output file missing
+2026-04-03 02:35:22,328  WARNING   FAIL: Oak Ridge BC.indd - Output file missing
+2026-04-03 02:35:22,349  WARNING   FAIL: Olivet Inst BC.indd - Output file missing
+2026-04-03 02:35:22,370  WARNING   FAIL: Rosewell Church of God.indd - Output file missing
+2026-04-03 02:35:22,391  WARNING   FAIL: Second Baptist Olathe.indd - Output file missing
+2026-04-03 02:35:22,412  WARNING   FAIL: Second Metro B C.indd - Output file missing
+2026-04-03 02:35:22,431  WARNING   FAIL: St. Paul AME KC.indd - Output file missing
+2026-04-03 02:35:22,452  WARNING   FAIL: St. Peter Christian.indd - Output file missing
+2026-04-03 02:35:22,474  WARNING   FAIL: Strangers Rest.indd - Output file missing
+2026-04-03 02:35:22,495  WARNING   FAIL: Timothy Baptist.indd - Output file missing
+2026-04-03 02:35:22,517  WARNING   FAIL: Union Hill MBC.indd - Output file missing
+2026-04-03 02:35:22,539  WARNING   FAIL: M0618-#6683.indd - Output file missing
+2026-04-03 02:35:22,561  WARNING   FAIL: M0618-JE Dunn.indd - Output file missing
+2026-04-03 02:35:22,582  WARNING   FAIL: M0618-JE Dunn Construction.indd - Output file missing
+2026-04-03 02:35:22,603  WARNING   FAIL: M0618-KCMO Plan.indd - Output file missing
+2026-04-03 02:35:22,625  WARNING   FAIL: M0618-Kraus-Anderson Construction.indd - Output file missing
+2026-04-03 02:35:22,646  WARNING   FAIL: M0618-MARC.indd - Output file missing
+2026-04-03 02:35:22,647  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-03 02:35:38,671  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 02:35:46,798  WARNING   FAIL: M0618-MU Research Reactor.indd - Output file missing
+2026-04-03 02:35:46,859  WARNING   FAIL: M0618-Walton Construction.indd - Output file missing
+2026-04-03 02:35:46,901  WARNING   FAIL: RELIGIOUS LOG (9-11).indd - Output file missing
+2026-04-03 02:35:46,959  WARNING   FAIL: -religious log.indd - Output file missing
+2026-04-03 02:35:46,990  WARNING   FAIL: M0618-A Deeper Life.indd - Output file missing
+2026-04-03 02:35:47,044  WARNING   FAIL: M0618-Healing House.indd - Output file missing
+2026-04-03 02:35:47,092  WARNING   FAIL: M0618-Holbert Chapel.indd - Output file missing
+2026-04-03 02:35:47,147  WARNING   FAIL: M0618-New Horizon Missionary.indd - Output file missing
+2026-04-03 02:35:47,199  WARNING   FAIL: M0618-Victorious Life.indd - Output file missing
+2026-04-03 02:35:47,234  WARNING   FAIL: M0618-2010 Census.indd - Output file missing
+2026-04-03 02:35:47,269  WARNING   FAIL: M0618-Afrikan Centered.indd - Output file missing
+2026-04-03 02:35:47,328  WARNING   FAIL: M0618-Christina M Thomas.indd - Output file missing
+2026-04-03 02:35:47,371  WARNING   FAIL: M0618-Donna J. Wright.indd - Output file missing
+2026-04-03 02:35:47,411  WARNING   FAIL: M0618-FDIC.indd - Output file missing
+2026-04-03 02:35:47,475  WARNING   FAIL: M0618-Madry’s .indd - Output file missing
+2026-04-03 02:35:47,536  WARNING   FAIL: M0618-Midwestern Conference.indd - Output file missing
+2026-04-03 02:35:47,607  WARNING   FAIL: M0618-NASB.indd - Output file missing
+2026-04-03 02:35:47,665  WARNING   FAIL: M0618-Paseo High School.indd - Output file missing
+2026-04-03 02:35:47,718  WARNING   FAIL: M0618-Plaza Manor.indd - Output file missing
+2026-04-03 02:35:47,758  WARNING   FAIL: M0618-Ruth Ramsey.indd - Output file missing
+2026-04-03 02:35:47,759  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-03 02:36:04,098  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 02:36:12,171  WARNING   FAIL: M0618-Joseph Lewis HFD.indd - Output file missing
+2026-04-03 02:36:12,224  WARNING   FAIL: M0618-Marc Beachem.indd - Output file missing
+2026-04-03 02:36:12,258  WARNING   FAIL: M0618-Lucius Dodson.indd - Output file missing
+2026-04-03 02:36:12,312  WARNING   FAIL: M0618-Bill Will.indd - Output file missing
+2026-04-03 02:36:12,376  WARNING   FAIL: M0618-Make You Holla.indd - Output file missing
+2026-04-03 02:36:12,424  WARNING   FAIL: M0731- Make You Holla.indd - Output file missing
+2026-04-03 02:36:12,483  WARNING   FAIL: M0618-Pioneer Of the Week.indd - Output file missing
+2026-04-03 02:36:12,524  WARNING   FAIL: M0618-Randy.indd - Output file missing
+2026-04-03 02:36:12,583  WARNING   FAIL: M0610-Retirement Lula B. Sinclair.indd - Output file missing
+2026-04-03 02:36:12,625  WARNING   FAIL: M0618-Tyler D. Benson, Attorney.indd - Output file missing
+2026-04-03 02:36:12,673  WARNING   FAIL: 2 page - Happy Foods.indd - Output file missing
+2026-04-03 02:36:12,726  WARNING   FAIL: 4x9 Wild Woody's.indd - Output file missing
+2026-04-03 02:36:12,779  WARNING   FAIL: M0808-Wild Woody's.indd - Output file missing
+2026-04-03 02:36:12,814  WARNING   FAIL: M0815-Wild Woody’s Anniversary.indd - Output file missing
+2026-04-03 02:36:12,844  WARNING   FAIL: M0618-Willie Smith.indd - Output file missing
+2026-04-03 02:36:12,872  WARNING   FAIL: Baby Ad.indd - Output file missing
+2026-04-03 02:36:12,906  WARNING   FAIL: Abrought, John.indd - Output file missing
+2026-04-03 02:36:12,976  WARNING   FAIL: Baker, James.indd - Output file missing
+2026-04-03 02:36:13,023  WARNING   FAIL: Blackmon, Dave.indd - Output file missing
+2026-04-03 02:36:13,105  WARNING   FAIL: Blount, Derrick.indd - Output file missing
+2026-04-03 02:36:13,106  WARNING   Triggering hard reset: Killing InDesign.exe process...
+2026-04-03 02:36:29,563  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 02:36:37,567  ERROR     Aborting: 100 consecutive failures.
+2026-04-03 02:36:37,580  INFO      Process complete.

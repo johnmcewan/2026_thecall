@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newspaper Archive Reader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1714;
+    --ink-mid: #4a4540;
+    --ink-light: #8a8480;
+    --paper: #f7f4ee;
+    --paper-dark: #ede9e0;
+    --rule: #2a2520;
+    --accent: #8b1a1a;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Libre Baskerville', Georgia, serif;
+  }
+
+  html, body { height: 100%; background: var(--paper-dark); color: var(--ink); font-family: var(--font-body); }
+
+  /* ── DROP SCREEN ── */
+  #drop-screen {
+    position: fixed; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: var(--paper-dark); z-index: 100; transition: background 0.2s;
+  }
+  #drop-screen.drag-over { background: #e3ddd2; }
+  #drop-screen.hidden { display: none; }
+
+  .drop-masthead {
+    font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.8rem);
+    font-weight: 900; letter-spacing: -0.02em; color: var(--ink);
+    line-height: 1; margin-bottom: 0.15em; text-align: center;
+  }
+  .drop-sub {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--ink-light); margin-bottom: 2.5rem; text-align: center;
+  }
+  .drop-zone {
+    width: min(420px, 90vw); border: 2px dashed var(--ink-mid);
+    border-radius: 4px; padding: 2.8rem 2rem; text-align: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    background: var(--paper);
+  }
+  .drop-zone:hover, #drop-screen.drag-over .drop-zone { border-color: var(--accent); background: #faf8f3; }
+  .drop-icon { width: 44px; height: 44px; margin: 0 auto 1rem; opacity: 0.35; }
+  .drop-label { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .drop-hint { font-size: 0.76rem; color: var(--ink-light); letter-spacing: 0.05em; }
+  .drop-rule {
+    width: min(420px, 90vw); height: 1px;
+    background: linear-gradient(to right, transparent, var(--ink-mid), transparent);
+    margin: 1.4rem 0;
+  }
+  #file-input { display: none; }
+  .error-msg { margin-top: 1.2rem; font-size: 0.82rem; color: var(--accent); font-style: italic; text-align: center; max-width: 380px; }
+
+  /* ── READER SCREEN ── */
+  #reader-screen { display: none; min-height: 100vh; background: var(--paper-dark); padding: 1.8rem 1rem 4rem; }
+  #reader-screen.visible { display: block; }
+
+  .top-bar {
+    max-width: 780px; margin: 0 auto 1.4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light);
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  .top-bar button {
+    background: none; border: 1px solid var(--ink-mid); color: var(--ink);
+    font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 12px; cursor: pointer;
+    border-radius: 2px; transition: background 0.15s; white-space: nowrap;
+  }
+  .top-bar button:hover { background: var(--paper); }
+
+  /* ── NEWSPAPER ── */
+  .newspaper {
+    max-width: 780px; margin: 0 auto; background: var(--paper);
+    box-shadow: 0 2px 28px rgba(0,0,0,0.16);
+    padding: clamp(1.5rem, 5vw, 3.5rem) clamp(1.5rem, 6vw, 4rem);
+  }
+
+  .masthead {
+    text-align: center; border-top: 4px double var(--rule);
+    border-bottom: 4px double var(--rule); padding: 0.5rem 0; margin-bottom: 0.25rem;
+  }
+  .masthead-name { font-family: var(--font-display); font-size: clamp(1.2rem, 3.5vw, 2rem); font-weight: 900; letter-spacing: 0.07em; line-height: 1.1; }
+
+  .dateline {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--rule); padding: 3px 0 4px; margin-bottom: 1.6rem;
+    font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid);
+    gap: 0.5rem;
+  }
+
+  .section-label {
+    text-align: center; font-size: 0.72rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-mid);
+    border-top: 1px solid var(--ink-mid); border-bottom: 1px solid var(--ink-mid);
+    padding: 3px 0; margin-bottom: 0.9rem;
+  }
+
+  .article-headline {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(1.4rem, 4vw, 2.6rem); line-height: 1.1;
+    text-align: center; margin-bottom: 0.5rem;
+  }
+
+  .byline { text-align: center; font-size: 0.78rem; color: var(--ink-mid); margin-bottom: 0.25rem; letter-spacing: 0.04em; }
+  .byline-sub { text-align: center; font-size: 0.72rem; color: var(--ink-light); font-style: italic; margin-bottom: 0.8rem; }
+
+  .head-rule { border: none; border-top: 2px solid var(--rule); border-bottom: 1px solid var(--rule); height: 4px; margin-bottom: 1.4rem; }
+
+  .article-body { font-size: clamp(0.85rem, 1.8vw, 0.96rem); line-height: 1.82; color: var(--ink); text-align: justify; hyphens: auto; }
+  .article-body p { margin-bottom: 0.85em; }
+  .article-body p.drop-cap::first-letter {
+    font-family: var(--font-display); font-size: 3.8rem; font-weight: 900;
+    float: left; line-height: 0.8; margin: 0.1em 0.35em 0 0; color: var(--ink);
+  }
+  .article-body blockquote {
+    border-left: 3px solid var(--accent); margin: 0.7em 0 0.7em 0.8em;
+    padding-left: 0.9em; font-style: italic; color: var(--ink-mid);
+  }
+
+  .callout-box {
+    border-top: 2px solid var(--rule); border-bottom: 2px solid var(--rule);
+    padding: 0.65rem 0.9rem; margin: 1.1rem 0;
+    font-style: italic; font-size: 0.9rem; background: var(--paper-dark);
+  }
+  .callout-box strong { font-style: normal; font-weight: 700; }
+
+  .section-divider { text-align: center; color: var(--ink-light); font-size: 0.7rem; letter-spacing: 0.4em; margin: 1rem 0; }
+
+  .continuation-notice { font-size: 0.72rem; color: var(--ink-light); font-style: italic; text-align: right; margin-top: 1.2rem; }
+
+  /* Fallback raw frame display */
+  .raw-frame { border: 1px dashed var(--ink-light); padding: 0.8rem; margin-bottom: 1rem; }
+  .raw-frame-label { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.4rem; }
+
+  /* Page nav */
+  .page-nav { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.8rem; flex-wrap: wrap; }
+  .page-nav button {
+    background: none; border: 1px solid var(--ink-mid); color: var(--ink);
+    font-family: var(--font-body); font-size: 0.7rem; padding: 4px 16px;
+    cursor: pointer; letter-spacing: 0.08em; transition: background 0.15s; border-radius: 2px;
+  }
+  .page-nav button:hover { background: var(--paper-dark); }
+  .page-nav button.active { background: var(--ink); color: var(--paper); }
+
+  #filename-display { font-style: italic; color: var(--ink-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 50vw; }
+
+  @media (max-width: 500px) {
+    .dateline { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DROP SCREEN -->
+<div id="drop-screen">
+  <div class="drop-masthead">Archive Reader</div>
+  <div class="drop-sub">InDesign JSON &nbsp;·&nbsp; 2008–2014</div>
+  <div class="drop-zone" id="drop-zone">
+    <svg class="drop-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="4" width="28" height="36" rx="2" stroke="currentColor" stroke-width="2"/>
+      <path d="M28 4v10h8" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M16 24h16M16 30h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M24 38v6M21 41l3 3 3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="drop-label">Drop a JSON file here</div>
+    <div class="drop-hint">or click to browse</div>
+  </div>
+  <div class="drop-rule"></div>
+  <div class="drop-hint">Supports .indd-exported JSON files from the archive</div>
+  <input type="file" id="file-input" accept=".json,application/json">
+  <div class="error-msg" id="error-msg"></div>
+</div>
+
+<!-- READER SCREEN -->
+<div id="reader-screen">
+  <div class="top-bar">
+    <span id="filename-display"></span>
+    <button id="back-btn">&#8592; Load another file</button>
+  </div>
+  <div class="newspaper" id="newspaper"></div>
+  <div class="page-nav" id="page-nav"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════ */
+const $  = id => document.getElementById(id);
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Frame geometry helpers
+function fw(f)    { return Math.abs((f.bounds[2]||0) - (f.bounds[0]||0)); }
+function fh(f)    { return Math.abs((f.bounds[3]||0) - (f.bounds[1]||0)); }
+function fleft(f) { return Math.min(f.bounds[0]||0, f.bounds[2]||0); }
+function ftop(f)  { return Math.min(f.bounds[1]||0, f.bounds[3]||0); }
+
+// Paragraph content helpers
+const TRIVIA_RE   = /^trivia\s+question/i;
+const ANSWER_RE   = /^answer\s+to/i;
+const BYLINE_RE   = /^by\s+[A-Z]/;
+const CREDIT_RE   = /^(NNPA|AP|Staff|Special|Editor|Reporter|Correspondent)/i;
+const DATELINE_RE = /^[A-Z][A-Z ,.(]+\([A-Z]+\)\s*[–—\-]/;
+const SECTION_RE  = /^(chatter|conversation|commentary|sports|news|opinion|editorial|column)/i;
+const NUMBERED_RE = /^\d+\)\s+/;
+const QUOTE_RE    = /^[\u201C\u2018"]/;
+
+function paraText(p) { return (p.text || '').trim(); }
+function isShort(s)  { return s.length < 100; }
+function isLong(s)   { return s.length >= 80; }
+
+/* ═══════════════════════════════════════════════
+   FRAME CLASSIFICATION
+
+   We cannot rely solely on width because some files
+   put both headline and body in the same wide frame,
+   separated only by paragraph content.
+
+   Algorithm:
+   1. Sort frames by reading order.
+   2. Find the "primary body frame" = widest frame
+      that contains at least one long paragraph.
+   3. All other frames are metadata candidates
+      (headline, section label, byline).
+   4. Also inspect the top paragraphs of the primary
+      body frame for bylines / datelines / sub-headlines
+      before the first long body paragraph.
+═══════════════════════════════════════════════ */
+function classifyPage(frames) {
+  const result = {
+    sectionLabel : null,
+    headline     : null,
+    bylines      : [],   // ["By Name", "Title/org"]
+    bodyParas    : [],
+  };
+
+  if (!frames || frames.length === 0) return result;
+
+  // ── 1. Sort into reading order ──
+  const sorted = [...frames].sort((a, b) => {
+    const td = ftop(a) - ftop(b);
+    if (Math.abs(td) > 0.25) return td;
+    return fleft(a) - fleft(b);
+  });
+
+  const maxW = Math.max(...sorted.map(fw));
+
+  // ── 2. Tag frames ──
+  // "body" = frame that contains paragraph(s) >= 80 chars
+  // OR is >= 55% of the max width with > 2 paragraphs
+  const tagged = sorted.map(f => {
+    const paras = (f.paragraphs || []).map(paraText).filter(Boolean);
+    const longCount = paras.filter(isLong).length;
+    const relW = fw(f) / maxW;
+    const isBodyFrame = longCount > 0 || (relW >= 0.55 && paras.length > 2);
+    return { f, paras, relW, isBodyFrame, longCount, w: fw(f) };
+  });
+
+  const bodyFrames = tagged.filter(t => t.isBodyFrame);
+  const metaFrames = tagged.filter(t => !t.isBodyFrame);
+
+  // Fallback: if nothing is classified as body, take the widest
+  const effectiveBody = bodyFrames.length > 0
+    ? bodyFrames
+    : [tagged.sort((a,b) => b.w - a.w)[0]];
+
+  // ── 3. Extract metadata from non-body frames ──
+  for (const t of metaFrames) {
+    const joined = t.paras.join(' ').trim();
+    if (!joined) continue;
+
+    // Check each paragraph individually for type
+    let addedHeadline = false;
+    for (const p of t.paras) {
+      if (!p) continue;
+      if (SECTION_RE.test(p) && !result.sectionLabel) {
+        result.sectionLabel = p;
+      } else if (!addedHeadline && !result.headline) {
+        result.headline = t.paras.join(' '); // join multi-para headline frames
+        addedHeadline = true;
+        break;
+      }
+    }
+  }
+
+  // ── 4. Scan top of primary body frame for embedded metadata ──
+  // (bylines, datelines, and sub-headlines before real body text)
+  const primaryBody = effectiveBody[0];
+  let bodyStart = 0;
+
+  for (let i = 0; i < Math.min(6, primaryBody.paras.length); i++) {
+    const p = primaryBody.paras[i];
+    if (!p) { bodyStart = i + 1; continue; }
+
+    if (BYLINE_RE.test(p) && isShort(p)) {
+      result.bylines.push(p); bodyStart = i + 1;
+    } else if (CREDIT_RE.test(p) && isShort(p)) {
+      result.bylines.push(p); bodyStart = i + 1;
+    } else if (DATELINE_RE.test(p)) {
+      // Dateline is the first real body paragraph — stop scanning
+      bodyStart = i; break;
+    } else if (SECTION_RE.test(p) && isShort(p) && !result.sectionLabel) {
+      result.sectionLabel = p; bodyStart = i + 1;
+    } else if (!result.headline && isShort(p) && !isLong(p) && i < 3) {
+      // Could be an embedded headline at the very top
+      result.headline = p; bodyStart = i + 1;
+    } else {
+      // First unrecognised paragraph = start of body
+      bodyStart = i; break;
+    }
+  }
+
+  // ── 5. Collect all body paragraphs ──
+  // From primary body frame (after metadata), then any additional body frames
+  const primaryParas = primaryBody.paras.slice(bodyStart);
+
+  const extraParas = effectiveBody.slice(1).flatMap(t => t.paras);
+
+  result.bodyParas = [...primaryParas, ...extraParas];
+
+  return result;
+}
+
+/* ═══════════════════════════════════════════════
+   PARAGRAPH RENDERER
+═══════════════════════════════════════════════ */
+function renderParas(paras) {
+  let html = '';
+  let firstPara = true;
+
+  for (let i = 0; i < paras.length; i++) {
+    const text = (paras[i] || '').trim();
+    if (!text) continue;
+
+    // Callout boxes
+    if (TRIVIA_RE.test(text) || ANSWER_RE.test(text)) {
+      const colon = text.indexOf(':');
+      const label = colon > -1 ? text.slice(0, colon) : text;
+      const body  = colon > -1 ? text.slice(colon + 1).trim() : '';
+      html += `<div class="callout-box"><strong>${esc(label)}:</strong>${body ? ' ' + esc(body) : ''}</div>`;
+      continue;
+    }
+
+    // Section divider before numbered items (not at the very start)
+    if (NUMBERED_RE.test(text) && !firstPara) {
+      html += `<div class="section-divider">&#x2015;&nbsp;&nbsp;&#x2015;&nbsp;&nbsp;&#x2015;</div>`;
+    }
+
+    // Block quotes: long paragraph starting with an opening quote char
+    if (QUOTE_RE.test(text) && text.length > 80) {
+      html += `<blockquote>${esc(text)}</blockquote>`;
+      // Don't count this as the first body para for drop-cap purposes
+      continue;
+    }
+
+    const cls = firstPara ? 'drop-cap' : '';
+    firstPara = false;
+    html += `<p${cls ? ' class="' + cls + '"' : ''}>${esc(text)}</p>`;
+  }
+
+  return html;
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE RENDERER
+═══════════════════════════════════════════════ */
+function renderPage(doc, idx) {
+  const page = doc.pages[idx];
+  if (!page) return '<p style="font-style:italic;color:var(--ink-light);text-align:center;padding:2rem">Page not found.</p>';
+
+  const frames = page.frames || [];
+  if (frames.length === 0) {
+    return '<p style="font-style:italic;color:var(--ink-light);text-align:center;padding:2rem">This page appears to be empty.</p>';
+  }
+
+  const { sectionLabel, headline, bylines, bodyParas } = classifyPage(frames);
+
+  // ── Dateline / masthead metadata ──
+  const src = doc.source_file || doc.document_name || '';
+  // Try to pull a date hint from the folder path
+  const dateMatch = src.match(/(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d+/i)
+                 || src.match(/\d{1,2}[-–]\d{1,2}/);
+  const dateHint = dateMatch ? dateMatch[0] : '';
+  const pageLabel = `Page ${idx + 1} of ${doc.pages.length}`;
+
+  // Publication name: clean up the document_name
+  const rawName = (doc.document_name || '').replace(/\.indd$/i,'').replace(/_/g,' ').trim();
+  const pubName = rawName || 'The Kansas City Call';
+
+  let html = '';
+
+  // Masthead
+  html += `<div class="masthead"><div class="masthead-name">${esc(pubName)}</div></div>`;
+  html += `<div class="dateline">
+    <span>${esc(dateHint)}</span>
+    <span>Kansas City</span>
+    <span>${esc(pageLabel)}</span>
+  </div>`;
+
+  if (sectionLabel) html += `<div class="section-label">${esc(sectionLabel)}</div>`;
+  if (headline)     html += `<h1 class="article-headline">${esc(headline)}</h1>`;
+
+  if (bylines.length > 0) {
+    html += `<div class="byline">${esc(bylines[0])}</div>`;
+    for (let i = 1; i < bylines.length; i++) {
+      html += `<div class="byline-sub">${esc(bylines[i])}</div>`;
+    }
+  }
+
+  html += `<hr class="head-rule">`;
+
+  // Body
+  if (bodyParas.length > 0) {
+    html += `<div class="article-body">${renderParas(bodyParas)}</div>`;
+  } else {
+    // Absolute fallback: render every frame verbatim, labelled, so nothing is ever lost
+    html += `<div class="article-body">`;
+    frames.forEach((frame, fi) => {
+      const paras = (frame.paragraphs || []).map(paraText).filter(Boolean);
+      if (!paras.length) return;
+      html += `<div class="raw-frame">`;
+      html += `<div class="raw-frame-label">Frame ${fi + 1}</div>`;
+      paras.forEach(p => { html += `<p>${esc(p)}</p>`; });
+      html += `</div>`;
+    });
+    html += `</div>`;
+  }
+
+  if (idx < doc.pages.length - 1) {
+    html += `<div class="continuation-notice">Continued on page ${idx + 2} &rarr;</div>`;
+  }
+
+  return html;
+}
+
+/* ═══════════════════════════════════════════════
+   APP WIRING
+═══════════════════════════════════════════════ */
+let parsedDoc   = null;
+let currentPage = 0;
+
+const dropScreen  = $('drop-screen');
+const readerScreen= $('reader-screen');
+const dropZone    = $('drop-zone');
+const fileInput   = $('file-input');
+const errorMsg    = $('error-msg');
+const newspaper   = $('newspaper');
+const pageNav     = $('page-nav');
+const backBtn     = $('back-btn');
+const filenameEl  = $('filename-display');
+
+dropZone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+
+document.addEventListener('dragover', e => {
+  e.preventDefault();
+  if (!dropScreen.classList.contains('hidden')) dropScreen.classList.add('drag-over');
+});
+document.addEventListener('dragleave', e => {
+  if (!e.relatedTarget) dropScreen.classList.remove('drag-over');
+});
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  dropScreen.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+
+backBtn.addEventListener('click', () => {
+  readerScreen.classList.remove('visible');
+  dropScreen.classList.remove('hidden');
+  fileInput.value = '';
+  errorMsg.textContent = '';
+  parsedDoc = null;
+  newspaper.innerHTML = '';
+  pageNav.innerHTML = '';
+});
+
+function showError(msg) { errorMsg.textContent = msg; }
+
+function loadFile(file) {
+  errorMsg.textContent = '';
+  if (!file.name.toLowerCase().endsWith('.json')) {
+    showError('Please provide a .json file.'); return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const doc = JSON.parse(e.target.result);
+      // Validate minimal structure
+      if (!doc || typeof doc !== 'object') throw new Error('File is not a valid JSON object.');
+      if (!Array.isArray(doc.pages) || doc.pages.length === 0) throw new Error('No "pages" array found.');
+      parsedDoc = doc;
+      currentPage = 0;
+      renderDocument();
+    } catch(err) {
+      showError('Could not parse this file: ' + err.message);
+    }
+  };
+  reader.onerror = () => showError('File could not be read.');
+  reader.readAsText(file);
+}
+
+function renderDocument() {
+  dropScreen.classList.add('hidden');
+  readerScreen.classList.add('visible');
+  const fname = (parsedDoc.document_name || parsedDoc.source_file || 'Untitled')
+    .split(/[\\/]/).pop();
+  filenameEl.textContent = fname;
+  showPageAt(0);
+  buildPageNav();
+}
+
+function showPageAt(idx) {
+  currentPage = idx;
+  newspaper.innerHTML = renderPage(parsedDoc, idx);
+  document.querySelectorAll('.page-nav button').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildPageNav() {
+  pageNav.innerHTML = '';
+  if (!parsedDoc || parsedDoc.pages.length <= 1) return;
+  parsedDoc.pages.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = 'Page ' + (i + 1);
+    btn.addEventListener('click', () => showPageAt(i));
+    if (i === 0) btn.classList.add('active');
+    pageNav.appendChild(btn);
+  });
+}
+</script>
+</body>
+</html>
