@@ -576,3 +576,43 @@
 2026-04-03 05:58:39,631  WARNING   FAIL: Dunson Carrie.indd - Output file missing
 2026-04-03 07:13:03,040  WARNING   FAIL: N - Hardwick Elected.indd - Output file missing
 2026-04-03 07:13:03,082  WARNING   FAIL: N - Local Charity.indd - Output file missing
+2026-04-03 09:41:20,048  WARNING   FAIL: M0601-After 6 logo.indd - Output file missing
+2026-04-03 10:29:11,121  WARNING   FAIL: AP - Kansas African American.indd - Output file missing
+2026-04-03 11:19:49,279  WARNING   FAIL: Howard Gilbert.indd - Output file missing
+2026-04-03 12:21:39,651  INFO      Process complete.
+2026-04-03 12:21:39,837  INFO      Loading file list from cache: D:\development\2026_python\2026_thecall\cdwork\extract_indd_gemini\file_list_cache.txt
+2026-04-03 12:21:40,408  INFO      Total Files: 72988 | Remaining to Process: 12
+2026-04-03 12:21:40,409  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-03 12:21:40,499  INFO      Total: 72988 | To Process: 12
+2026-04-03 12:21:40,513  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 12:21:48,657  WARNING   FAIL: Long, Kiana L.indd - Output file missing
+2026-04-03 12:21:48,789  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:48,911  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:49,037  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:49,156  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:49,280  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:49,393  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:49,533  WARNING   FAIL: N - Hardwick Elected.indd - Output file missing
+2026-04-03 12:21:49,600  WARNING   FAIL: N - Local Charity.indd - Output file missing
+2026-04-03 12:21:49,671  WARNING   FAIL: M0601-After 6 logo.indd - Output file missing
+2026-04-03 12:21:49,768  WARNING   FAIL: AP - Kansas African American.indd - Output file missing
+2026-04-03 12:21:49,849  WARNING   FAIL: Howard Gilbert.indd - Output file missing
+2026-04-03 12:21:49,855  INFO      Process complete.
+2026-04-03 12:21:49,895  INFO      Loading file list from cache: D:\development\2026_python\2026_thecall\cdwork\extract_indd_gemini\file_list_cache.txt
+2026-04-03 12:21:50,335  INFO      Total Files: 72988 | Remaining to Process: 12
+2026-04-03 12:21:50,336  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-03 12:21:50,406  INFO      Total: 72988 | To Process: 12
+2026-04-03 12:21:50,412  INFO      Launched new instance: InDesign.Application.2026
+2026-04-03 12:21:58,486  WARNING   FAIL: Long, Kiana L.indd - Output file missing
+2026-04-03 12:21:58,545  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,618  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,684  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,732  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,762  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,816  WARNING   FAIL: Dunson Carrie.indd - Output file missing
+2026-04-03 12:21:58,870  WARNING   FAIL: N - Hardwick Elected.indd - Output file missing
+2026-04-03 12:21:58,908  WARNING   FAIL: N - Local Charity.indd - Output file missing
+2026-04-03 12:21:58,957  WARNING   FAIL: M0601-After 6 logo.indd - Output file missing
+2026-04-03 12:21:59,021  WARNING   FAIL: AP - Kansas African American.indd - Output file missing
+2026-04-03 12:21:59,071  WARNING   FAIL: Howard Gilbert.indd - Output file missing
+2026-04-03 12:21:59,081  INFO      Process complete.
