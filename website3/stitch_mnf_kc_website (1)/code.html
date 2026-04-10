@@ -1,0 +1,346 @@
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;family=Shrikhand&amp;family=Alfa+Slab+One&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9c3f00",
+                        "outline": "#887364",
+                        "inverse-surface": "#303221",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffdf9a",
+                        "surface-container-high": "#eaead1",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f5f5dc",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "surface-variant": "#e4e4cc",
+                        "primary-fixed": "#ffdbcc",
+                        "inverse-on-surface": "#f2f2d9",
+                        "on-primary-fixed": "#351000",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-container": "#fdc425",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#a04100",
+                        "error": "#ba1a1a",
+                        "tertiary": "#2b673f",
+                        "primary-fixed-dim": "#ffb693",
+                        "on-tertiary-container": "#f6fff4",
+                        "outline-variant": "#dbc2b0",
+                        "on-tertiary-fixed-variant": "#12512c",
+                        "tertiary-fixed-dim": "#96d5a3",
+                        "secondary-fixed-dim": "#f7be1d",
+                        "inverse-primary": "#ffb693",
+                        "on-surface": "#1b1d0e",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbfbe2",
+                        "surface": "#fbfbe2",
+                        "on-surface-variant": "#554336",
+                        "secondary": "#785a00",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "on-background": "#1b1d0e",
+                        "tertiary-container": "#458156",
+                        "on-primary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#c45100",
+                        "on-secondary-container": "#6d5200",
+                        "on-tertiary-fixed": "#00210d",
+                        "surface-dim": "#dbdcc3",
+                        "surface-container": "#efefd7",
+                        "burnt-orange": "#8B3E0C"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "label": ["Work Sans", "sans-serif"],
+                        "shrikhand": ["Shrikhand", "cursive"],
+                        "alfa": ["Alfa Slab One", "cursive"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAvRs4f4N3FVrDVZCSSgdYAswz6N5rC3le8TORbKDZbhWXvARHjGpn4Z7vtRfh2u_neOKbFLn1xDtwGmh8W5LF1pvc9EFWOP8_SualqyTeO2737b1ORbBSoiOEhyruyDkds4u7FMXhi6qZfsx5kh5__-GqrkPfGqVKMyu8n4SiNoE_bquKScEpzngto8VkQuwM9rhts2gJ45Gr6IDaTA9SxVIWczpAkV1RsmfaaH2yTo2M5DVdrxw9WwiZO5u8pRiY0etdOfMZyKv0H)
+        }
+        .hall-gradient-new {
+            background: linear-gradient(to bottom, 
+                #fbfbe2 0%, 
+                #fbfbe2 25%, 
+                #9c3f00 70%,
+                #9c3f00 100%);
+        }
+        .polaroid-shadow {
+            box-shadow: 25px 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        .reverse-gradient-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to bottom, #9c3f00 0%, #fbfbe2 100%);
+            mask-image: 
+                linear-gradient(to right, black 1px, transparent 1px),
+                linear-gradient(to bottom, black 1px, transparent 1px);
+            mask-size: 120px 120px;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .rainbow-stripe {
+            height: 4px;
+            background: linear-gradient(90deg, #9c3f00 25%, #fdc425 25% 50%, #2b673f 50% 75%, #887364 75%)
+        }
+        .ink-bleed {
+            filter: contrast(110%) brightness(95%)
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-12 py-6 max-w-full bg-stone-50/90 dark:bg-stone-900/90 backdrop-blur-md shadow-[0_12px_32px_rgba(27,29,14,0.06)]">
+<div class="text-3xl font-black text-orange-900 dark:text-orange-600 font-serif italic tracking-tight">
+            The Archive
+        </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-orange-800 hover:translate-y-[-2px] transition-transform duration-300" href="#">Players</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-orange-800 hover:translate-y-[-2px] transition-transform duration-300" href="#">Broadcasts</a>
+<a class="text-stone-600 dark:text-stone-400 font-medium hover:text-orange-800 hover:translate-y-[-2px] transition-transform duration-300" href="#">Standings</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-orange-800 dark:text-orange-500 text-2xl transition-all duration-300 hover:translate-y-[-2px]">
+                account_circle
+            </button>
+</div>
+<div class="absolute bottom-0 left-0 bg-stone-200 dark:bg-stone-800 h-[4px] w-full"></div>
+</nav>
+<main class="hall-gradient-new min-h-screen pt-24 relative">
+<div class="reverse-gradient-grid"></div>
+<!-- Hero Section -->
+<section class="relative py-24 px-8 border-b-8 border-primary overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+<div class="w-full md:w-2/3">
+<div class="rainbow-stripe mb-8 w-24"></div>
+<h1 class="font-shrikhand text-8xl md:text-[10rem] leading-none text-primary uppercase drop-shadow-lg tracking-tighter ink-bleed">
+                        HALL OF <br/>FAME
+                    </h1>
+<p class="font-alfa text-2xl mt-8 text-secondary tracking-tight max-w-xl uppercase leading-snug">
+                        Celebrating the icons of the frozen tundra and the Sunday afternoon airwaves.
+                    </p>
+<div class="mt-12 flex gap-6">
+<button class="bg-primary text-on-primary px-10 py-5 font-alfa text-lg rounded-xl hover:-translate-y-1 transition-transform duration-500 shadow-[8px_8px_0px_0px_#785a00]">
+                            NOMINATE PLAYER
+                        </button>
+</div>
+</div>
+<div class="w-full md:w-1/3 relative">
+<div class="aspect-[3/4] bg-surface-container-highest rounded-xl p-4 shadow-2xl rotate-3 transform border-4 border-white">
+<img alt="Vintage photograph of a football player" class="w-full h-full object-cover rounded-md grayscale contrast-125 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjoX9ygqgfUdPcDl9NMDOFhcZHl5OBtHL7lTTlOHeIlE5haHq_IgkJXCChvH-rk-YC_pux6vVV2dV1j-A0VaUllKonFBROwMmKcacKMdU1Hdh_gfw3mUJkpOCwk51Ni24oL1oSzrQBil22gJ9tbjGQRvOH80fZzpNTZ3M_vBL-3V-YSX-qwJlyDA6iqD1p9Tpm5rcL4mLAEburypSLKtsJD_BIwFdbXWQmfc7yHiWwELKAPsMCaPaMVmhOpEvDos1WK50Snw2x1ZgY"/>
+<div class="absolute -bottom-6 -left-6 bg-secondary text-on-secondary px-6 py-4 font-alfa -rotate-3 text-xl shadow-lg">
+                            CLASS OF '74
+                        </div>
+</div>
+</div>
+</div>
+<div class="absolute right-0 bottom-0 opacity-10 pointer-events-none select-none">
+<svg fill="none" height="400" viewbox="0 0 400 400" width="400" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 350 L350 350 L350 50 L50 50 Z" stroke="#9c3f00" stroke-width="2"></path>
+<path d="M50 200 H350 M200 50 V350" stroke="#9c3f00" stroke-dasharray="8 8" stroke-width="1"></path>
+<circle cx="200" cy="200" r="100" stroke="#9c3f00" stroke-width="2"></circle>
+</svg>
+</div>
+</section>
+<!-- Members Grid Section -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 py-24 relative z-10">
+<header class="mb-20 text-center">
+<h2 class="font-alfa text-4xl text-on-surface uppercase tracking-tight">Enshrined Members</h2>
+<p class="font-label text-xs uppercase tracking-[0.3em] text-primary mt-4">The Grid of Legends</p>
+<div class="mt-8 flex justify-center">
+<div class="w-24 h-1 bg-primary"></div>
+</div>
+</header>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-16 gap-x-10">
+<!-- Grid Items (30 Players) -->
+<!-- 1 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img alt="Hank Dawson" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Quarterback</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Hank "The Arm" Dawson</h3>
+</div>
+</div>
+</div>
+<!-- 2 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img alt="Vince Sterling" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_zKblEc-LX63QmkPzsaOa4_yjC_TC9g7ipAgobdHeT3UntriA3zCZ00ghnB8rKn8JkD_YCDz4ZKBRp2RiGHmMRGLBggtwb-vRMGAKMdJqvp5x2df9qYjoUy941YpCOwRh0ZLdK_hPej2DPmUgAQr0jxc8lmlnXOvEWAjRMxKkpCFgGKd682vyaDBvyyGu2c4vFIJyszr2tE1g6vEJESSYy1yOl-dBa7DcO5i3zNMW_NBVPj_jbJ7un6okkHR4uPw008ETDBkb47sO"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Head Coach</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Vince Sterling</h3>
+</div>
+</div>
+</div>
+<!-- 3 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img alt="Bubba Thompson" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBewiMdnuO4S8eHlSQVGGjGx3QAHo6FL2N6GZtf4BUXWUu8qSUCp0obfPcwOdJcTGuJsI-vxM8FfDMr5e_T0CDNNgbkSnHlSjDt-ELxOVpVNTa_TNhaFNluKYlq43dvzFUG3Y75YmKwPH6rH3p4DBWsmjO89dUWmk3IT4bsszzDyZoKHMb6J_jBojL8u-8yVyDBH-ildCVAptjXqXidnQqZmdzRrMsJlL9vDEzBKXfF5M2IeAGWz9hlLpq6we5Rf2zN-VHH1zxN8c28"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Defensive Line</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Bubba Thompson</h3>
+</div>
+</div>
+</div>
+<!-- 4 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img alt="Flash Gordon" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbSJBvn2aBd5kVwhveWFXKYna5mT9RkDhUiOlMBnvOBLQxKxo-96Iba9iZFkV4xvKP0OEEpHqPdcTiX5uqUoOi0XZLmc4fdU_FZGvyfAuMXqfpJ0fjau4I0SSej_G-lczbxynJT4RqDpU9NLDQoeUNpjNc-NQGJVj7WLs1_9BndFvrMnWgDam8rIYSM9CUY74Q1SqKuvupsboXBYFkF_PAXHIMd9BtrJoixESBZLdDa21Dq-SyG5BnvGbWppslfnBThBULwqeFYfVC"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Wide Receiver</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Johnny "Flash" Gordon</h3>
+</div>
+</div>
+</div>
+<!-- 5 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img alt="Marcus Reed" class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmIKoiUM4tHv2BKI8Inv9S4o7nLGlK-mBi_RKUE6KdXHNZunYaQWth9hpq4XoL_i_HA48P0sv1uIdf1GPOh1kwMmVLt9NRF0DaysGi7_q3YkvzvFvWMPm1-x-t3BcjfHnkEXTVLiAxFxpTUn-_-uQaoLJqnkq2dw-5iGJHulzCC1MTZQjmdgAa3-P6hI6eXeG8ADps3k6A0C3S6XPPIp3x5wAsTORBq3beZF5xLvNQ39eQAHetvosnDHT2POxjW3hzRs_T0LcWJ7Un"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Safety</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Marcus Reed</h3>
+</div>
+</div>
+</div>
+<!-- 6 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEgqs1e3vFz__UZo0eysvH0hGx9ZujTHJocSu_CVbuZ-WacjBugz6cK3uxZ608N9wCopXKt8Sq5nb2ADb678GqU8ElWzGAAU9ZgOlc3DZuRJbCxAMSdHNvLkcMt3l5dNvmR40-SoJW9PuJ3nTRSFNwduV1oAdz2ZDc1w9YwnusHMihP-lHX2g61O3-PCZVm86CNyaV4WFxZHl4aFLeWF1sdIPqd9hlOCv0TbjnQeiO76xOFWgPULjymD9Y_ejP0TT3uR1_l0PAVEiU"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Tight End</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Ray "Diesel" Miller</h3>
+</div>
+</div>
+</div>
+<!-- 7 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Linebacker</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Tony "Ax" Bell</h3>
+</div>
+</div>
+</div>
+<!-- 8 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Cornerback</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Leo "The Lock" Banks</h3>
+</div>
+</div>
+</div>
+<!-- 9 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Fullback</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Clyde Harrison</h3>
+</div>
+</div>
+</div>
+<!-- 10 -->
+<div class="group cursor-pointer">
+<div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow">
+<div class="aspect-[3/4] overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/>
+</div>
+<div class="p-4 bg-white border-t border-stone-100">
+<div class="font-alfa text-primary text-[10px] uppercase mb-1">Kicker</div>
+<h3 class="font-alfa text-xs text-on-surface uppercase leading-tight group-hover:text-primary">Morty "Toe" Sullivan</h3>
+</div>
+</div>
+</div>
+<!-- 11 to 30 following same pattern -->
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Enshrined</div><h3 class="font-alfa text-xs uppercase">Legendary Icon</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">All-Pro</div><h3 class="font-alfa text-xs uppercase">Vintage Legend</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Punter</div><h3 class="font-alfa text-xs uppercase">Long Distance</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Center</div><h3 class="font-alfa text-xs uppercase">The Anchor</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Guard</div><h3 class="font-alfa text-xs uppercase">Stone Wall</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9w)"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Tackle</div><h3 class="font-alfa text-xs uppercase">The Mountain</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Fullback</div><h3 class="font-alfa text-xs uppercase">Bruiser Lane</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Wide Receiver</div><h3 class="font-alfa text-xs uppercase">Deep Threat</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Tight End</div><h3 class="font-alfa text-xs uppercase">Iron Hands</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Running Back</div><h3 class="font-alfa text-xs uppercase">Slippery Sam</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Cornerback</div><h3 class="font-alfa text-xs uppercase">Shadow Coverage</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Safety</div><h3 class="font-alfa text-xs uppercase">The Eraser</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Kicker</div><h3 class="font-alfa text-xs uppercase">Clutch Time</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Owner</div><h3 class="font-alfa text-xs uppercase">Founder Father</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">General Manager</div><h3 class="font-alfa text-xs uppercase">Master Architect</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Broadcaster</div><h3 class="font-alfa text-xs uppercase">Voice of Gold</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Punt Returner</div><h3 class="font-alfa text-xs uppercase">Quick Feet</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Fullback</div><h3 class="font-alfa text-xs uppercase">Tractor Tank</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Special Teams</div><h3 class="font-alfa text-xs uppercase">The Gunner</h3></div></div></div>
+<div class="group cursor-pointer"><div class="bg-white rounded-lg overflow-hidden border-4 border-white transition-all duration-300 hover:-translate-y-2 polaroid-shadow"><div class="aspect-[3/4] overflow-hidden bg-stone-200"><img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBseqWfc31kHHeEKHoo6IDxr0zvrPmdTrODLvGhjJnnVD7UmzOcu1DvrmJ_lSix-YK2OERFWfrs5geauEhKWRhSzPd8604RU8gDIjEzmWUzbqEfJtwE6eNlor_HkyrWDDl5Nlk4X14OwOd9lIaCzmDnknR-q1g6HSZ4pWrNiEo_zfM0zoOLKMm9wMhFVTHdH_TTOREPnUAqbBSqnMwE9k8dBDZRduezZWNB7dUNRx5UmiX5P77TomZdwFBbFppYneXhItYoKlXBIPo7"/></div><div class="p-4 bg-white"><div class="font-alfa text-primary text-[10px] uppercase">Tackle</div><h3 class="font-alfa text-xs uppercase">Wall of Granite</h3></div></div></div>
+</div>
+</section>
+<div class="mx-auto w-[60%] max-w-[800px] h-[2px] bg-[#fbfbe2] my-12 opacity-50 relative z-10"></div>
+</main>
+<footer class="border-t-8 full-width py-12 px-8 flex flex-col items-center gap-8 text-center bg-white border-primary relative z-10">
+<div class="font-alfa text-3xl italic font-black uppercase text-primary">
+            Monday Nite Footballers
+        </div>
+<div class="flex flex-wrap justify-center gap-8 font-alfa uppercase tracking-widest text-sm text-primary">
+<a class="hover:text-primary-container underline decoration-primary/30 decoration-2 underline-offset-4 transition-all duration-300" href="#">Archives</a>
+<a class="hover:text-primary-container underline decoration-primary/30 decoration-2 underline-offset-4 transition-all duration-300" href="#">Privacy</a>
+<a class="hover:text-primary-container underline decoration-primary/30 decoration-2 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+<a class="hover:text-primary-container underline decoration-primary/30 decoration-2 underline-offset-4 transition-all duration-300" href="#">Terms</a>
+</div>
+<div class="font-sans uppercase tracking-[0.2em] text-[10px] font-bold mt-4 text-outline">
+            © 1974 MONDAY NITE BROADCASTING. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>

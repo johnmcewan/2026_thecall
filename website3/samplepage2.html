@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;family=Shrikhand&amp;family=Alfa+Slab+One&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline-variant": "#dbc2b0",
+                        "tertiary-container": "#458156",
+                        "primary": "#9c3f00",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eaead1",
+                        "on-secondary-fixed": "#251a00",
+                        "inverse-surface": "#303221",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1b1d0e",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#efefd7",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "on-secondary-container": "#6d5200",
+                        "surface-variant": "#e4e4cc",
+                        "secondary-fixed": "#ffdf9a",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#b1f2be",
+                        "inverse-primary": "#ffb693",
+                        "primary-container": "#c45100",
+                        "tertiary-fixed-dim": "#96d5a3",
+                        "surface-dim": "#dbdcc3",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbfbe2",
+                        "primary-fixed": "#ffdbcc",
+                        "tertiary": "#2b673f",
+                        "surface": "#fbfbe2",
+                        "on-tertiary-container": "#f6fff4",
+                        "secondary-fixed-dim": "#f7be1d",
+                        "primary-fixed-dim": "#ffb693",
+                        "surface-tint": "#a04100",
+                        "on-surface-variant": "#554336",
+                        "on-tertiary-fixed-variant": "#12512c",
+                        "secondary": "#785a00",
+                        "surface-container-low": "#f5f5dc",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f2d9",
+                        "error": "#ba1a1a",
+                        "outline": "#887364",
+                        "on-primary-fixed": "#351000",
+                        "on-background": "#1b1d0e",
+                        "background": "#fbfbe2",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-primary-container": "#fffbff",
+                        "secondary-container": "#fdc425",
+                        "on-tertiary-fixed": "#00210d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Work Sans", "sans-serif"],
+                        "label": ["Work Sans", "sans-serif"],
+                        "shrikhand": ["Shrikhand", "cursive"],
+                        "alfa": ["Alfa Slab One", "cursive"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .skyline-overlay {
+            mask-image: url('image_17'); /* Placeholder reference for the Kansas City Skyline */
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: bottom right;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+        /* Custom thin line art for the skyline grid effect */
+        .skyline-grid {
+            background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .stencil-btn {
+            background-color: #fdc425; /* secondary-container yellow */
+            mix-blend-mode: screen;
+            color: black; /* This color will be knocked out because of mix-blend-mode against a dark background */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<div class="grain-overlay"></div>
+<!-- Navigation Shell -->
+<nav class="bg-stone-50/90 dark:bg-stone-900/90 backdrop-blur-xl border-b-4 border-amber-900/10 dark:border-amber-100/10 shadow-xl dark:shadow-none docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+<div class="font-black text-amber-900 dark:text-amber-500 italic tracking-tighter text-3xl px-4 py-1 bg-amber-400 dark:bg-amber-900 rounded-md">
+                MONDAY NITE FOOTBALLERS
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-amber-900 dark:text-amber-400 border-b-4 border-amber-600 pb-1 font-serif font-black uppercase text-2xl Active: translate-y-0.5 transition-transform tracking-wide" href="#">SCHEDULE</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-800 font-serif font-black uppercase text-2xl transition-colors duration-300 tracking-wide" href="#">STATS</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-800 font-serif font-black uppercase text-2xl transition-colors duration-300 tracking-wide" href="#">ARCHIVE</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-amber-800 font-serif font-black uppercase text-2xl transition-colors duration-300 tracking-wide" href="#">SHOP</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-md font-serif font-black tracking-widest hover:bg-primary-container transition-all">
+                TICKETS
+            </button>
+</div>
+</nav>
+<!-- Section 1: Hero -->
+<header class="relative overflow-hidden bg-primary py-32 px-6 flex items-center justify-center min-h-[870px]">
+<div class="absolute inset-0 skyline-grid pointer-events-none"></div>
+<div class="absolute bottom-0 right-0 w-full h-1/2 skyline-overlay opacity-30 bg-white/10" style="clip-path: polygon(0 100%, 100% 100%, 100% 0, 80% 20%, 60% 5%, 40% 15%, 20% 0, 0 20%);"></div>
+<div class="relative z-10 max-w-6xl mx-auto text-center">
+<div class="inline-block px-4 py-1 bg-secondary-container text-on-secondary-container font-label text-sm font-black tracking-[0.2em] mb-8 rounded-sm">
+                LIVE FROM KANSAS CITY
+            </div>
+<h1 class="font-shrikhand text-7xl md:text-9xl text-on-primary drop-shadow-[0_4px_0_rgba(0,0,0,0.2)] mb-6 tracking-wider leading-normal">
+                The Sunday Afternoon Broadcast
+            </h1>
+<p class="font-headline text-2xl md:text-4xl text-primary-fixed-dim italic max-w-3xl mx-auto leading-tight">
+                Capturing the grit, the glory, and the grainy highlights of 1974's greatest gridiron battles.
+            </p>
+<div class="mt-12 flex flex-col md:flex-row gap-6 justify-center">
+<button class="px-8 py-4 bg-secondary-container font-shrikhand text-2xl rounded-md shadow-lg transform transition hover:-translate-y-1 tracking-widest text-amber-900">
+                    WATCH LIVE
+                </button>
+<button class="px-8 py-4 bg-secondary-container font-shrikhand text-2xl rounded-md shadow-lg transform transition hover:-translate-y-1 tracking-widest text-amber-900">
+                    SEASON RECAP
+                </button>
+</div>
+</div>
+</header>
+<!-- Rainbow Stripe Accent -->
+<div class="flex h-1.5 w-full">
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-tertiary"></div>
+<div class="flex-1 bg-outline"></div>
+</div>
+<!-- Section 2: The Squad (Polaroid Style) -->
+<section class="bg-tertiary py-24 relative overflow-hidden">
+<div class="absolute inset-0 skyline-grid pointer-events-none opacity-20"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<h2 class="font-alfa text-5xl text-on-tertiary-container mb-16 uppercase text-center md:text-left tracking-tighter">
+                The Squad
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<!-- Polaroid Card 1 -->
+<div class="bg-white p-4 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 rounded-sm">
+<div class="aspect-square bg-stone-200 overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover filter sepia-[0.3] contrast-[1.1]" data-alt="vintage action photo of a 1970s football player in a leather helmet mid-sprint on a grass field with warm sun flare" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaHuTAie-O675nxYfAKlJ7lARpixcb7YhY2kdOJrqFvKY89muautirMv-Ttm_oj1_29kEQOyjeEQCux-7o2tdhQOMdi1i3dDo8yY3p3GM0EPwmgB9CMewekDT5FjJGsXkrDXy06AtzpK1rLigLtYgEFARiwsXsZzeAP9F9lmLoM31mTlhNrBT2-qN4zUH7M8uR7lc8JsrOzBwcKIUD4j9kz2v0kTKiI50Z9w1PAnMkKwU5WczHhyFd4QgATqxDsBco897fdtUZjvhH"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+<p class="font-shrikhand text-2xl text-stone-800">"Iron" Mike</p>
+<p class="font-body text-xs text-stone-500 uppercase font-bold tracking-widest mt-1">Fullback | #44</p>
+</div>
+<!-- Polaroid Card 2 -->
+<div class="bg-white p-4 shadow-2xl -rotate-1 hover:rotate-0 transition-transform duration-500 rounded-sm">
+<div class="aspect-square bg-stone-200 overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover filter sepia-[0.3] contrast-[1.1]" data-alt="gritty close-up of a veteran football coach with a mustache and aviator sunglasses standing on a misty sideline in 1974" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATI1YbyCHkwGbnLxoRm7IoSC88-LusrZoS82jvekWf9l622KEKtKyivfgSP7h5Fqr_f185JISL_r6LO8meezqzn4lnHlKCAwNZVGPFo6dHgQOrBrXvT3rrf-pZw3f_KkQB_bqqv_m-gzgoQM8N_Xrw6XggcYRjq6bGIOL-l98FrorgtNcEo1KGjZ-popA_uxq7VW5u7Ihm37Av0ZP5AK1vV2fMO347HzgJyIhvh1vSOkfmQ80JE07twe537hUyPhpVP5uhiHdLlF-r"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+<p class="font-shrikhand text-2xl text-stone-800">Coach Sully</p>
+<p class="font-body text-xs text-stone-500 uppercase font-bold tracking-widest mt-1">Head Strategist</p>
+</div>
+<!-- Polaroid Card 3 -->
+<div class="bg-white p-4 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 rounded-sm">
+<div class="aspect-square bg-stone-200 overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover filter sepia-[0.3] contrast-[1.1]" data-alt="low angle shot of a wide receiver catching a ball against a late afternoon golden sky with vintage film grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyUkPWnGFWZU1c20p29n1z8uc3n0usFu2iSDwz6pqxSXCsvd8kfMMb_yCp-I_gUDoqUdvYYrFDXq4obSPbjncYXkQ-hMPQ6fR9xz3LCuaHR3USEzZE9LLhPN5EnRN7O5ykVS-eRPVpNc0itAr1QDB5YJ3LbOCnPn6XFyT-Pmqes3YIlbb377DpzxweWEU6JGTE9SsqXtiy1JKRu1QD2xHNP_x_0HucZ6axahEl_tCwtjJ0o18ki3uPJOcKbsBCv96Md6PUYrf2-yEv"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+<p class="font-shrikhand text-2xl text-stone-800">Speedy Pete</p>
+<p class="font-body text-xs text-stone-500 uppercase font-bold tracking-widest mt-1">Wide Out | #81</p>
+</div>
+<!-- Polaroid Card 4 -->
+<div class="bg-white p-4 shadow-2xl -rotate-2 hover:rotate-0 transition-transform duration-500 rounded-sm">
+<div class="aspect-square bg-stone-200 overflow-hidden mb-4 relative">
+<img class="w-full h-full object-cover filter sepia-[0.3] contrast-[1.1]" data-alt="blurred motion shot of an offensive line blocking during a muddy afternoon game with vintage cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIngI4gcfZxRyQWYRxOWVhR-Sz_1B44v8BEu7ILpy0rQbUFmns0Boa_4gY_18K6VO00wYlSOw3dQwIJSfT4wlWjiJJtpdjO9wRsJuNKCq6vO4q9U0eJ7SWeNkjhz2KIlWeSxLa_Ll6tuz-1Wg-8fPd9zZhI2sXsorH8gtSrEXoYNNMQBLrSxWg2zvHEk9d-ZTo9lAhbd6HklFtMHh2n8wefyegmwhXX3PyMLxJvcmhmyIUvOFuJhSKC82dGXwBQ6utKE86n5pK9AGw"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+<p class="font-shrikhand text-2xl text-stone-800">The Wall</p>
+<p class="font-body text-xs text-stone-500 uppercase font-bold tracking-widest mt-1">Offensive Line</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Flow of Time (Timeline) -->
+<section class="bg-secondary-container py-24 relative overflow-hidden">
+<div class="absolute inset-0 skyline-grid pointer-events-none opacity-10"></div>
+<div class="max-w-4xl mx-auto px-6 relative z-10">
+<h2 class="font-shrikhand text-6xl text-on-secondary-container text-center mb-20 italic">
+                Flow of Time
+            </h2>
+<div class="space-y-0 relative before:absolute before:left-1/2 before:top-0 before:h-full before:w-1 before:bg-on-secondary-container/20 before:-translate-x-1/2">
+<!-- Timeline Item 1 -->
+<div class="relative flex items-center justify-between py-12 group">
+<div class="w-5/12 text-right pr-8">
+<h3 class="font-alfa text-2xl text-primary">PRE-SEASON</h3>
+<p class="font-headline text-lg italic text-on-secondary-container/80">The heat of the August sun baked the grass as the veterans returned to camp.</p>
+</div>
+<div class="w-4 h-4 rounded-full bg-primary border-4 border-white z-10 relative"></div>
+<div class="w-5/12 pl-8">
+<span class="font-alfa text-4xl text-on-secondary-container/20">AUG '74</span>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative flex items-center justify-between py-12 group">
+<div class="w-5/12 text-right pr-8 order-last text-left">
+<h3 class="font-alfa text-2xl text-tertiary">KICKOFF</h3>
+<p class="font-headline text-lg italic text-on-secondary-container/80">Opening night against the giants of the north. A cold front was moving in.</p>
+</div>
+<div class="w-4 h-4 rounded-full bg-tertiary border-4 border-white z-10 relative"></div>
+<div class="w-5/12 text-right pr-8">
+<span class="font-alfa text-4xl text-on-secondary-container/20">SEP '74</span>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative flex items-center justify-between py-12 group">
+<div class="w-5/12 text-right pr-8">
+<h3 class="font-alfa text-2xl text-on-surface">THE STREAK</h3>
+<p class="font-headline text-lg italic text-on-secondary-container/80">Five games won on the trot. The papers called us the "Insurmountable Seven."</p>
+</div>
+<div class="w-4 h-4 rounded-full bg-on-surface border-4 border-white z-10 relative"></div>
+<div class="w-5/12 pl-8">
+<span class="font-alfa text-4xl text-on-secondary-container/20">OCT '74</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Community Pulse (Map) -->
+<section class="bg-on-surface py-24 relative overflow-hidden text-surface">
+<div class="absolute inset-0 skyline-grid pointer-events-none opacity-20"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+<div>
+<h2 class="font-alfa text-5xl mb-8 tracking-tighter uppercase leading-tight">
+                    Community Pulse
+                </h2>
+<p class="font-headline text-2xl italic text-surface-variant mb-12">
+                    "From the street corners of Downtown to the backyards in the suburbs, the city beats with one heart on Monday nights."
+                </p>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl">stadium</span>
+<div>
+<h4 class="font-alfa text-lg">THE MAIN HUB</h4>
+<p class="font-body text-sm opacity-70 uppercase tracking-widest">1200 Victory Lane, Kansas City</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary-container text-4xl">local_bar</span>
+<div>
+<h4 class="font-alfa text-lg">POST-GAME SOCIAL</h4>
+<p class="font-body text-sm opacity-70 uppercase tracking-widest">Sully’s Taproom - Old Town</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative aspect-square md:aspect-video lg:aspect-square bg-surface-container-highest rounded-xl overflow-hidden p-4 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+<!-- Abstract Map Simulation -->
+<div class="w-full h-full bg-stone-300 relative border-4 border-on-surface flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')]"></div>
+<div class="w-full h-2 bg-primary absolute top-1/3 -rotate-12"></div>
+<div class="h-full w-2 bg-tertiary absolute left-1/2 rotate-6"></div>
+<div class="absolute top-1/4 left-1/4 w-8 h-8 bg-secondary rounded-full animate-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">home</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 w-12 h-12 bg-primary-container rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-xl">sports_football</span>
+</div>
+<div class="absolute inset-0 pointer-events-none border-[16px] border-on-surface/10"></div>
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" data-alt="stylized birds eye view of a mid-century city layout with harsh shadows and high contrast editorial look" data-location="Kansas City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8bSI4MszTlCeZ819s8jQYu7tYWwM7kGf8X7UOVoUxy_8WGYtblOVSiZbhZg6JbEsFNoPrHjLkLnSc1NjrWQZ0jYVnPasQUnzesM_CUU04aV6O_ZtDzcFoOPs8215hcBrxa5DoGfKDWG2xM3S-biwUlmP3Cl2dK53L-TZc1d_b4qMsPmiRxPr8imd8ZMh2QSp_OHIfXSRoiwAADCQ1BOv_fnr8GqDAfBbhcM_NAKYGxO2U_zT1qnwflRg0supyMkKN_4LdUvbqYiIz"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-amber-900 dark:bg-stone-950 border-t-8 border-amber-400 full-width py-12 px-8 flex flex-col items-center gap-8 text-center">
+<div class="font-serif text-3xl italic text-amber-400 font-black">
+            MONDAY NITE FOOTBALLERS
+        </div>
+<div class="flex flex-wrap justify-center gap-8 text-amber-100/60 font-sans uppercase tracking-[0.2em] text-xs font-bold">
+<a class="hover:text-amber-200 underline decoration-2 underline-offset-4 transition-all duration-500" href="#">PRIVACY</a>
+<a class="hover:text-amber-200 underline decoration-2 underline-offset-4 transition-all duration-500" href="#">TERMS</a>
+<a class="hover:text-amber-200 underline decoration-2 underline-offset-4 transition-all duration-500" href="#">ADVERTISE</a>
+<a class="hover:text-amber-200 underline decoration-2 underline-offset-4 transition-all duration-500" href="#">CONTACT</a>
+</div>
+<div class="text-amber-50 dark:text-amber-200 font-sans uppercase tracking-[0.2em] text-[10px] font-bold opacity-50">
+            © 1974 MONDAY NITE BROADCASTING. ALL RIGHTS RESERVED.
+        </div>
+</footer>
+</body></html>
