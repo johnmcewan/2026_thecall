@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;family=Shrikhand&amp;family=Alfa+Slab+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#458156",
+                        "outline-variant": "#dbc2b0",
+                        "background": "#fbfbe2",
+                        "surface-container-highest": "#e4e4cc",
+                        "on-tertiary-container": "#f6fff4",
+                        "surface-dim": "#dbdcc3",
+                        "outline": "#887364",
+                        "on-background": "#1b1d0e",
+                        "inverse-primary": "#ffb693",
+                        "on-primary-container": "#fffbff",
+                        "surface-tint": "#a04100",
+                        "secondary-fixed": "#ffdf9a",
+                        "secondary-container": "#fdc425",
+                        "on-secondary-container": "#6d5200",
+                        "surface-bright": "#fbfbe2",
+                        "surface": "#fbfbe2",
+                        "tertiary-fixed-dim": "#96d5a3",
+                        "inverse-surface": "#303221",
+                        "surface-container": "#efefd7",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "inverse-on-surface": "#f2f2d9",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb693",
+                        "tertiary": "#2b673f",
+                        "primary-container": "#c45100",
+                        "primary": "#9c3f00",
+                        "tertiary-fixed": "#b1f2be",
+                        "secondary-fixed-dim": "#f7be1d",
+                        "on-primary-fixed": "#351000",
+                        "error-container": "#ffdad6",
+                        "secondary": "#785a00",
+                        "surface-variant": "#e4e4cc",
+                        "primary-fixed": "#ffdbcc",
+                        "on-surface-variant": "#554336",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#00210d",
+                        "surface-container-low": "#f5f5dc",
+                        "on-tertiary-fixed-variant": "#12512c",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eaead1",
+                        "on-surface": "#1b1d0e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"],
+                        "accent": ["Shrikhand"],
+                        "display": ["Alfa Slab One"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+        }
+        .rainbow-stripe {
+            height: 4px;
+            background: linear-gradient(90deg, #9c3f00 25%, #fdc425 25%, #fdc425 50%, #2b673f 50%, #2b673f 75%, #887364 75%);
+        }
+        .stencil-cut {
+            clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container min-h-screen flex flex-col">
+<div class="fixed inset-0 grain-overlay z-50"></div>
+<!-- TopNavBar -->
+<nav class="bg-[#fbfbe2]/90 backdrop-blur-xl shadow-[0_12px_32px_rgba(27,29,14,0.06)] flex justify-between items-center w-full px-12 py-6 fixed top-0 left-0 z-[60] border-b border-outline-variant/20">
+<div class="text-[#9c3f00] font-serif font-black italic tracking-tighter text-3xl">Monday Nite Footballers</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-[#1b1d0e] opacity-70 hover:opacity-100 hover:scale-105 transition-transform font-label text-sm uppercase tracking-widest" href="#">Archives</a>
+<a class="text-[#9c3f00] border-b-4 border-[#9c3f00] pb-1 hover:opacity-100 hover:scale-105 transition-transform font-label text-sm uppercase tracking-widest" href="#">Stadiums</a>
+<a class="text-[#1b1d0e] opacity-70 hover:opacity-100 hover:scale-105 transition-transform font-label text-sm uppercase tracking-widest" href="#">Clubs</a>
+<a class="text-[#1b1d0e] opacity-70 hover:opacity-100 hover:scale-105 transition-transform font-label text-sm uppercase tracking-widest" href="#">Broadcasts</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#9c3f00] text-3xl cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<div class="flex flex-1 pt-24">
+<!-- Full-Height Side Navigation Drawer -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col w-72 bg-[#1b1d0e] shadow-2xl border-r-4 border-primary">
+<!-- Archival Folder Header -->
+<div class="pt-28 p-8 border-b border-white/10">
+<h2 class="font-accent text-3xl mb-1 text-[#fdc425]">1974 Explorations</h2>
+<p class="font-display text-[10px] uppercase tracking-widest opacity-60 text-[#fbfbe2]">Kansas City Geography</p>
+</div>
+<div class="flex flex-col gap-2 p-4 mt-4">
+<div class="flex items-center gap-4 bg-[#2b673f] text-[#fbfbe2] rounded p-4 font-bold shadow-inner cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="stadium">stadium</span>
+<span class="font-sans uppercase tracking-[0.1em] text-xs font-black italic">Stadiums</span>
+</div>
+<div class="flex items-center gap-4 text-[#fbfbe2] opacity-70 p-4 cursor-pointer transition-all duration-300 hover:bg-white/5 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-sans uppercase tracking-[0.1em] text-xs font-bold">Archives</span>
+</div>
+<div class="flex items-center gap-4 text-[#fbfbe2] opacity-70 p-4 cursor-pointer transition-all duration-300 hover:bg-white/5 hover:opacity-100">
+<span class="material-symbols-outlined" data-icon="sports_bar">sports_bar</span>
+<span class="font-sans uppercase tracking-[0.1em] text-xs font-bold">Clubhouses</span>
+</div>
+</div>
+<div class="mt-auto p-8">
+<button class="w-full bg-primary text-white py-4 stencil-cut font-display text-[10px] uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all">
+                    Launch Broadcast
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 flex-1 p-12">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="font-label text-primary font-bold uppercase tracking-widest text-xs mb-2 block">Topographical Record — Vol. IV</span>
+<h1 class="font-accent text-primary text-6xl md:text-8xl leading-none">Kansas City</h1>
+<p class="font-display text-on-surface opacity-60 text-lg mt-2 italic">Metro Area Neighborhood Scouting Map</p>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl flex items-center gap-4 border border-outline-variant">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container border-2 border-primary/20">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-bold tracking-tighter opacity-50">Current View</p>
+<p class="font-headline font-black italic text-xl">18th &amp; Vine District</p>
+</div>
+</div>
+</div>
+<div class="rainbow-stripe mt-8 opacity-40"></div>
+</header>
+<!-- The Map Container -->
+<div class="bg-surface-container-low p-2 md:p-6 rounded-[2rem] shadow-2xl relative overflow-hidden border-2 border-outline-variant/30">
+<div class="absolute inset-0 border-[20px] border-surface-container-highest pointer-events-none z-10 opacity-30"></div>
+<div class="relative bg-surface-container-highest aspect-[16/9] rounded-xl overflow-hidden shadow-inner">
+<!-- Map Imagery -->
+<img alt="Kansas City Map" class="w-full h-full object-cover grayscale-[0.2] sepia-[0.3] brightness-[0.85] contrast-[1.1]" data-location="Kansas City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2_Elbx59KTnKeLkTTfalNeY0P8lHUimAq0VDCXBl3wbkk05aJ7ZzO_7Ik1Q6i1EpEm9BIHW5faJxyy7C-gSpbTUrDgYi1mzMoQC_Kd7ILatlVzVIvdQjM0_2c1kMyAzbB7h6136SlOqj83zghVSrZ8oVZ5CyogfkcLegtnlMRIRGB1aiigxeewourya0KvyzSRJGZmAwb_9FM5z0uXsd7mUFVkqgV_D84dauz49olK5bc1-45bL2UCri6yxb-eq2jawENFffF9fZY"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none"></div>
+<!-- Map Markers -->
+<div class="absolute top-[40%] left-[35%] z-20">
+<div class="relative flex flex-col items-center group/marker cursor-pointer">
+<div class="bg-white p-1 rounded-full shadow-lg border-2 border-primary animate-pulse">
+<div class="w-4 h-4 bg-primary rounded-full"></div>
+</div>
+<div class="absolute bottom-full mb-3 whitespace-nowrap bg-on-surface text-surface py-2 px-4 rounded-lg shadow-2xl translate-y-2 opacity-0 group-hover/marker:opacity-100 group-hover/marker:translate-y-0 transition-all duration-300 pointer-events-none">
+<span class="font-display text-[8px] uppercase tracking-widest block mb-1">Point of Interest</span>
+<p class="font-headline font-black italic">Municipal Stadium</p>
+<div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-on-surface"></div>
+</div>
+</div>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-8 right-8 flex flex-col gap-2 z-30">
+<button class="w-10 h-10 bg-surface flex items-center justify-center rounded shadow-lg hover:bg-surface-dim transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</button>
+<button class="w-10 h-10 bg-surface flex items-center justify-center rounded shadow-lg hover:bg-surface-dim transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-sm" data-icon="remove">remove</span>
+</button>
+</div>
+<!-- View History Stencil Button -->
+<div class="absolute bottom-8 left-8 z-30">
+<button class="stencil-cut bg-secondary-container px-8 py-3 flex items-center gap-3 group/btn relative overflow-hidden shadow-lg">
+<div class="absolute inset-0 bg-primary opacity-0 group-hover/btn:opacity-10 transition-opacity"></div>
+<span class="font-display text-on-secondary-container text-[10px] uppercase tracking-[0.2em]">View History</span>
+<span class="material-symbols-outlined text-on-secondary-container text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Descriptive Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12 mb-12">
+<div class="col-span-2 space-y-6">
+<h3 class="font-headline text-3xl font-black italic text-primary">Urban Grid &amp; Natural Flows</h3>
+<p class="text-on-surface/80 leading-relaxed text-lg max-w-2xl font-medium">
+                            The 1974 expansion of the Kansas City metropolitan area marked a pivot point in sports broadcast history. Our survey maps detail the transit routes between the core clubhouses and the emerging stadium districts. This neighborhood scale provides the necessary context for the 'Monday Nite' operations.
+                        </p>
+<div class="flex flex-wrap gap-12 mt-8 py-6 border-y border-outline-variant/30">
+<div>
+<p class="font-display text-[9px] uppercase opacity-40 mb-2 tracking-widest">Primary Axis</p>
+<p class="font-headline font-black italic text-2xl">18th Street</p>
+</div>
+<div>
+<p class="font-display text-[9px] uppercase opacity-40 mb-2 tracking-widest">Transit Frequency</p>
+<p class="font-headline font-black italic text-2xl">12 min intervals</p>
+</div>
+<div>
+<p class="font-display text-[9px] uppercase opacity-40 mb-2 tracking-widest">Broadcast Coverage</p>
+<p class="font-headline font-black italic text-2xl">98.4% Ultra-VHF</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden border border-outline-variant shadow-sm">
+<div class="absolute top-0 right-0 opacity-5 scale-150 -translate-y-4 translate-x-4 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="map">map</span>
+</div>
+<div>
+<h4 class="font-display text-[10px] uppercase tracking-[0.2em] mb-4 text-primary">Field Notes</h4>
+<p class="font-headline italic text-xl font-bold text-on-surface/90 leading-snug">"The stadium light spillover into the surrounding neighborhoods creates a unique broadcast aura—unmatched in the Midwest circuit."</p>
+</div>
+<div class="mt-8">
+<p class="font-label text-[10px] font-bold uppercase tracking-widest opacity-60">— Chief Surveyor, 1974</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="ml-72 py-12 px-12 flex justify-between items-center bg-[#1b1d0e] border-t-4 border-[#9c3f00] relative z-50">
+<div>
+<div class="text-[#fbfbe2] font-serif italic text-lg mb-2">Monday Nite Footballers</div>
+<p class="text-[#fbfbe2] font-sans text-[10px] tracking-widest uppercase opacity-50">© 1974 Sunday Afternoon Broadcast Network. All Rights Reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-[#fbfbe2] opacity-50 font-sans text-[10px] tracking-widest uppercase hover:text-[#fdc425] hover:opacity-100 transition-opacity" href="#">Privacy Archive</a>
+<a class="text-[#fbfbe2] opacity-50 font-sans text-[10px] tracking-widest uppercase hover:text-[#fdc425] hover:opacity-100 transition-opacity" href="#">Media Rights</a>
+<a class="text-[#fbfbe2] opacity-50 font-sans text-[10px] tracking-widest uppercase hover:text-[#fdc425] hover:opacity-100 transition-opacity" href="#">Contact Booth</a>
+</div>
+</footer>
+</body></html>

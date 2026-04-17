@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdbcc",
+                    "on-surface": "#1b1d0e",
+                    "on-primary-container": "#ffc9b0",
+                    "on-primary-fixed": "#351000",
+                    "inverse-primary": "#ffb693",
+                    "surface-container-high": "#eaead1",
+                    "inverse-on-surface": "#f2f2da",
+                    "on-background": "#1b1d0e",
+                    "secondary-fixed-dim": "#f6be1d",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "surface": "#fbfbe2",
+                    "on-surface-variant": "#564239",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "secondary": "#785a00",
+                    "surface-variant": "#e4e4cc",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#303221",
+                    "on-primary": "#ffffff",
+                    "outline": "#8a7268",
+                    "on-tertiary-fixed": "#001b3e",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#c0d5ff",
+                    "primary": "#762e00",
+                    "background": "#fbfbe2",
+                    "secondary-fixed": "#ffdf9a",
+                    "surface-container-low": "#f5f5dc",
+                    "on-tertiary-fixed-variant": "#00458d",
+                    "surface-dim": "#dbdcc4",
+                    "tertiary-fixed": "#d6e3ff",
+                    "primary-container": "#9c3f00",
+                    "tertiary-container": "#005ab3",
+                    "surface-bright": "#fbfbe2",
+                    "on-secondary-container": "#6d5200",
+                    "surface-container-highest": "#e4e4cc",
+                    "surface-tint": "#9f4103",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#251a00",
+                    "primary-fixed-dim": "#ffb693",
+                    "outline-variant": "#ddc1b4",
+                    "surface-container": "#efefd7",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#fdc425",
+                    "tertiary": "#004388",
+                    "tertiary-fixed-dim": "#aac7ff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Work Sans", "sans-serif"],
+                    "label": ["Work Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-bleed {
+            text-shadow: 0 0 0.5px rgba(118, 46, 0, 0.3);
+        }
+        .rainbow-stripe {
+            height: 4px;
+            display: flex;
+            width: 100%;
+        }
+        .broadcast-gradient {
+            background: linear-gradient(to right, #762e00 25%, #785a00 25% 50%, #004388 50% 75%, #ba1a1a 75%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 bg-[#fbfbe2] border-t-4 border-t-[#762e00] border-b border-[#762e00]/20">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#762e00] italic font-['Newsreader'] tracking-tight">Monday Nite Footballers</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#1b1d0e]/70 font-medium font-['Work_Sans'] hover:bg-[#efefd7] transition-colors px-2 py-1" href="#">Home</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Work_Sans'] hover:bg-[#efefd7] transition-colors px-2 py-1" href="#">Archive</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Work_Sans'] hover:bg-[#efefd7] transition-colors px-2 py-1" href="#">Personnel</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Work_Sans'] hover:bg-[#efefd7] transition-colors px-2 py-1" href="#">Geography</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-['Newsreader'] tracking-tight font-bold" href="#">Process</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary font-medium hover:bg-[#efefd7] px-4 py-2 transition-colors">Search</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-8 pt-24 pb-32">
+<!-- Hero Section: Massive Display Type -->
+<header class="mb-32">
+<div class="rainbow-stripe broadcast-gradient mb-8 w-24"></div>
+<h1 class="font-headline text-8xl md:text-[10rem] font-bold leading-none tracking-tighter text-primary ink-bleed">
+                The <br/>Process.
+            </h1>
+<div class="grid grid-cols-1 md:grid-cols-12 mt-12 gap-8">
+<div class="md:col-start-7 md:col-span-6">
+<p class="font-headline text-3xl italic text-on-surface leading-relaxed">
+                        "History is not merely what happened, but what remains in the pockets of the forgotten."
+                    </p>
+<p class="mt-6 text-on-surface-variant font-body leading-loose max-w-xl">
+                        Monday Nite Footballers is more than a database. It is a meticulous reconstruction of the 1970-1979 era of local sports, extracted from thousands of microfiche scans and handwritten playbooks discovered in the basements of community centers across the Midwest.
+                    </p>
+</div>
+</div>
+</header>
+<!-- Behind the Lens: Editorial Section -->
+<section class="mb-48 relative">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+<div class="md:col-span-7 relative z-10">
+<div class="bg-surface-container-highest p-12 -rotate-1 shadow-sm">
+<h2 class="font-headline text-5xl font-bold mb-8 text-on-surface">Behind the Lens</h2>
+<div class="space-y-6 font-body text-lg leading-relaxed text-on-surface">
+<p>Our primary source was the <span class="bg-secondary-container px-1 font-semibold">Kansas City Call</span>, a weekly paper that covered the leagues other major outlets ignored. Every Tuesday morning throughout the 70s, sports editors would transcribe play-by-play data gathered from telephone calls with coaches.</p>
+<p>Recovery required a custom-built optical character recognition (OCR) engine tuned specifically for the faded, high-contrast ink of 50-year-old newsprint.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 md:-ml-20 mb-20 relative">
+<img alt="Close-up of a vintage 1970s film camera resting on a stack of yellowed sports newspapers with a magnifying glass and fountain pen" class="w-full h-auto shadow-2xl grayscale contrast-125 brightness-90" data-alt="Close-up of a vintage 1970s film camera resting on a stack of yellowed sports newspapers with a magnifying glass and fountain pen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2gntsF3_LKCYD9Ath-mI1DjyVTvlPtGxf9iA9SMQeawKMNWUYas-p00HHXn_FNqvhms3-jmLigkbty738ZLodmb5gKLDgKFeKeTOo5AQfFUFZ0GEYbMB-3rQpFDpkeeMyPsKZCvnBdEXc7eBM_zmTeHOms5cibWKGEL05oJHPmgZ-fy_pieKgUf9QHZWHlO8yJ_w25KLctmPxZiFGtvZzlKgqee6C0u1ru2gNo0n797NzNSMK_1qTm5d6WJ7MF4gam6_jOkIaH7Y"/>
+<div class="absolute -bottom-10 -right-4 bg-primary p-4 text-white font-label text-xs uppercase tracking-widest -rotate-3">
+                        Archive Entry #0942
+                    </div>
+</div>
+</div>
+</section>
+<!-- Storytelling Timeline -->
+<section class="mb-48 border-l-2 border-outline-variant/30 pl-12 relative">
+<div class="absolute top-0 left-0 -translate-x-1/2 w-4 h-4 rounded-full bg-primary"></div>
+<div class="mb-24">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">Stage One: Discovery</span>
+<h3 class="font-headline text-4xl mb-6 font-bold">The Kansas City Call Archives</h3>
+<p class="max-w-2xl font-body text-on-surface-variant leading-loose">
+                    In 2021, our collective was granted access to the digitized Microfilm collection of the Call. We began by cataloging every sports headline between September and December for the years 1970–1979.
+                </p>
+<div class="mt-8 flex flex-wrap gap-4">
+<span class="bg-surface-container-highest px-3 py-1 text-xs font-medium uppercase font-label">12,400 Scans</span>
+<span class="bg-surface-container-highest px-3 py-1 text-xs font-medium uppercase font-label">92 Cities Covered</span>
+</div>
+</div>
+<div class="mb-24">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">Stage Two: Cross-Reference</span>
+<h3 class="font-headline text-4xl mb-6 font-bold">Validating the Stats</h3>
+<p class="max-w-2xl font-body text-on-surface-variant leading-loose">
+                    Raw data from the papers was cross-referenced with team rosters provided by high school alumni associations. This allowed us to resolve spelling discrepancies and identify players who went on to professional careers.
+                </p>
+</div>
+<div class="mb-12">
+<span class="font-label text-xs uppercase tracking-widest text-secondary font-bold mb-4 block">Stage Three: Curation</span>
+<h3 class="font-headline text-4xl mb-6 font-bold">The Digital Folio</h3>
+<p class="max-w-2xl font-body text-on-surface-variant leading-loose">
+                    Finally, the data is translated into this folio—preserving the aesthetic of the 1970s broadcast while providing modern tools for search and research.
+                </p>
+</div>
+</section>
+<!-- From Grain to Digital: Side-by-Side -->
+<section class="mb-48">
+<h2 class="font-headline text-6xl font-bold mb-16 text-center ink-bleed">From Grain to Digital</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant/20 overflow-hidden">
+<div class="bg-surface-container p-8 group">
+<div class="mb-4 flex justify-between items-center">
+<span class="font-label text-xs uppercase tracking-widest font-bold">1974 Microfiche Scan</span>
+<span class="material-symbols-outlined text-primary" data-icon="blur_on">blur_on</span>
+</div>
+<img alt="High contrast black and white grainy microfilm scan of a 1970s sports newspaper column with faded text and heavy noise" class="w-full grayscale brightness-75 contrast-150 mb-6" data-alt="High contrast black and white grainy microfilm scan of a 1970s sports newspaper column with faded text and heavy noise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXorJnqPcUe7j1vVsvz5xjIi_UIhtlaU3O8fzItMqVIqCHkC0qYWPrdcDQwXal1vwTIY1pNv9K6azfgljax0_77eSerJKIM65eAPNEhnsYNELZlc2UhXlW9ijnc1TOZ5VzUaIrf8ochjNQRwWDq3DbH114rMdP6xK7dclbNR4Ch4dIdjQzQn1t46iuIjKFVES2S6eOlwkqc5UIjKrNdyyqFT3cnlRgSOrQ2oSDpOYC_iYC57oX-nL2G_A-r-CRXB-3eCLb8E3cDJQ"/>
+<p class="font-body text-sm text-on-surface-variant italic">Source: Kansas City Call, Nov 12, 1974. Microfilm reel #88-B.</p>
+</div>
+<div class="bg-surface-container-highest p-8 group">
+<div class="mb-4 flex justify-between items-center">
+<span class="font-label text-xs uppercase tracking-widest font-bold">Modern Digitized Record</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="data_object">data_object</span>
+</div>
+<div class="bg-white p-8 shadow-sm h-[400px] flex flex-col font-mono text-xs text-on-surface overflow-hidden border border-outline-variant/10">
+<div class="rainbow-stripe broadcast-gradient mb-6 -mx-8 w-[calc(100%+64px)]"></div>
+<div class="flex-1 space-y-2 opacity-80">
+<p>{ "date": "1974-11-12", </p>
+<p>  "venue": "Municipal Stadium",</p>
+<p>  "home_team": "Lincoln High",</p>
+<p>  "away_team": "Central Academy",</p>
+<p>  "scraped_stats": [</p>
+<p>    {"player": "M. Williams", "td": 3, "yards": 142},</p>
+<p>    {"player": "J. Carter", "int": 1}</p>
+<p>  ]</p>
+<p>}</p>
+<div class="mt-8 pt-8 border-t border-outline-variant/20 italic font-sans text-lg">
+                                Lincoln High surges past Central Academy in a late-game rally, led by Williams' triple-threat performance...
+                            </div>
+</div>
+</div>
+<p class="mt-6 font-body text-sm text-on-surface-variant italic">Processed using MNF-OCR v2.1 Engine.</p>
+</div>
+</div>
+</section>
+<!-- The Collective Section -->
+<section class="mb-32">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="font-headline text-6xl font-bold mb-6 ink-bleed">The Collective</h2>
+<p class="font-body text-on-surface-variant leading-relaxed">
+                        A decentralized group of sports historians, archivists, and developers dedicated to preserving the legacy of grassroots sports.
+                    </p>
+</div>
+<button class="bg-primary-container text-white px-8 py-4 font-label font-bold tracking-widest uppercase text-xs rounded-sm hover:translate-y-[-2px] transition-transform shadow-md">
+                    Apply to Research
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Researcher 1 -->
+<div class="space-y-6">
+<img alt="Portrait of an older man with glasses in a library setting, warm incandescent lighting, soft focus background of bookshelves" class="w-full aspect-[4/5] object-cover grayscale brightness-90 sepia-[0.2]" data-alt="Portrait of an older man with glasses in a library setting, warm incandescent lighting, soft focus background of bookshelves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcVOgaWfZGd4aqTzwD2EgQhk51bu2Moic-36nr2g_lu9mdltLHzelmb3Ai5J2uCTcmbwZbd85U56ptCt_vfm10JX44qvM2g0-qjY_o5J_G4Q0bYzMo5XesNXyBTHcR7v2pxp21PdZ5xSA3s6jKE2sLcKSnfMbg92F9c3giAwABWk2F379-wcDqWPdPyGGoOWyiVYgyCgl4xqdRbtoGuf4wGWkO4s_nVjzFC75FoeJQPzS4nPYncpVg-eh3Sa2N6SiR0Pxdu8ZxOPE"/>
+<div>
+<h4 class="font-headline text-2xl font-bold">Arthur Vance</h4>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1">Lead Archivist, Kansas City</p>
+<p class="mt-4 text-sm text-on-surface-variant leading-loose">Specializing in the desegregation of Midwest high school athletics from 1965-1975.</p>
+</div>
+</div>
+<!-- Researcher 2 -->
+<div class="space-y-6 md:mt-12">
+<img alt="A young woman with a vintage sweater working at a light table examining old film negatives, dramatic high-contrast lighting" class="w-full aspect-[4/5] object-cover grayscale brightness-90 contrast-110" data-alt="A young woman with a vintage sweater working at a light table examining old film negatives, dramatic high-contrast lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKpHT184s4n1kAiW8MFOQ28szuocbRkLQD2Ux_JKOgYnQ9pq6Tw3HRgidl-VAZLnomdXuWRlK1UM2NnX_9APbRLJfRwcRym6Lz-_bR7tlmGxHAIz-mt2MxvEEfHjs4dn9EPQkJttEmfluMN1xBghmCUv1yDkNLkDyKnbPyP_boMEi0ywUBgdsWMLS__MriEdClowsGRUEKW2c79gAIvPkosbOFrlYCQALVOSKoiW28vBW689HYtXx_xlby9TIPjHrAgrZyVcisk7A"/>
+<div>
+<h4 class="font-headline text-2xl font-bold">Elena Rossi</h4>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1">Technical Curation</p>
+<p class="mt-4 text-sm text-on-surface-variant leading-loose">Architect of the MNF-OCR platform and digital preservation protocols.</p>
+</div>
+</div>
+<!-- Researcher 3 -->
+<div class="space-y-6">
+<img alt="Candid black and white photo of a man in a sports jacket holding a vintage microphone in an old stadium press box" class="w-full aspect-[4/5] object-cover grayscale contrast-125" data-alt="Candid black and white photo of a man in a sports jacket holding a vintage microphone in an old stadium press box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyNolyguCfk5HUaIaaNjfUFYS3WSV3pAYDpJ1bPx2103XjksjVEtCTkXW-zfX1XAlg4eChMwDbj-VFZBkSPWOx3IlESBoG1mjo3kvvaspC1DQib0bCCXv9uZhs1Cel0zL1vNewAOqiAf1TkEu9ETmCgUjYExapf2CK8fZ3H42sGWsHYxo7cDCr-e2GQv3f0GCbC4i1i1wiRdZMOXmTXjk6XgHhDqRSPL2QFOOztEyzhkz7AgJIGGyoznQ-HKbfR3VKADfMfYJguDM"/>
+<div>
+<h4 class="font-headline text-2xl font-bold">Marcus Thorne</h4>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1">Oral Historian</p>
+<p class="mt-4 text-sm text-on-surface-variant leading-loose">Collecting voice testimonies from surviving players of the '72-'74 championship seasons.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Call to Action -->
+<section class="bg-surface-container p-16 text-center border-t-2 border-primary mt-48">
+<h2 class="font-headline text-5xl font-bold mb-8">Support the Living Archive</h2>
+<p class="max-w-xl mx-auto font-body text-on-surface-variant mb-12">
+                The Monday Nite Footballers project is funded by grants and public donations. Every contribution goes toward the digitization of microfilm reels and the maintenance of our server infrastructure.
+            </p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body text-primary font-bold border-b-2 border-primary pb-1 hover:text-on-surface transition-colors" href="#">Read the Research Papers</a>
+<a class="font-body text-primary font-bold border-b-2 border-primary pb-1 hover:text-on-surface transition-colors" href="#">Donate to the Collection</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#ddc1b4]/15 mt-20 bg-[#fbfbe2]">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto font-['Work_Sans'] text-sm tracking-normal">
+<div class="text-[#1b1d0e] opacity-60 text-center md:text-left mb-6 md:mb-0">
+                © 1974 Monday Nite Broadcast Collective. Curated by The Living Archive.
+            </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#1b1d0e] opacity-60 hover:text-[#762e00] transition-opacity underline decoration-2 underline-offset-4" href="#">Terms of Research</a>
+<a class="text-[#1b1d0e] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Broadcast Rights</a>
+<a class="text-[#1b1d0e] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Press Kit</a>
+<a class="text-[#1b1d0e] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Contact Editor</a>
+</div>
+</div>
+</footer>
+</body></html>

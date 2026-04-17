@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jim Nunnelly - MNF Hall of Fame</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:wght@300;400;500;600;700;800;900&amp;family=Shrikhand&amp;family=Alfa+Slab+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-container": "#6d5200",
+                "on-error": "#ffffff",
+                "on-surface-variant": "#554336",
+                "on-tertiary-container": "#f6fff4",
+                "secondary-container": "#fdc425",
+                "on-tertiary-fixed": "#00210d",
+                "surface-container": "#efefd7",
+                "primary": "#9c3f00",
+                "surface-variant": "#e4e4cc",
+                "background": "#fbfbe2",
+                "secondary-fixed-dim": "#f7be1d",
+                "on-primary": "#ffffff",
+                "outline": "#887364",
+                "inverse-on-surface": "#f2f2d9",
+                "tertiary-fixed-dim": "#96d5a3",
+                "on-secondary": "#ffffff",
+                "on-background": "#1b1d0e",
+                "primary-container": "#c45100",
+                "on-surface": "#1b1d0e",
+                "tertiary-container": "#458156",
+                "surface-dim": "#dbdcc3",
+                "surface-container-high": "#eaead1",
+                "secondary": "#785a00",
+                "on-secondary-fixed": "#251a00",
+                "on-secondary-fixed-variant": "#5a4300",
+                "inverse-primary": "#ffb693",
+                "tertiary-fixed": "#b1f2be",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#303221",
+                "primary-fixed-dim": "#ffb693",
+                "outline-variant": "#dbc2b0",
+                "surface-container-low": "#f5f5dc",
+                "surface-bright": "#fbfbe2",
+                "on-primary-container": "#fffbff",
+                "surface-container-highest": "#e4e4cc",
+                "tertiary": "#2b673f",
+                "primary-fixed": "#ffdbcc",
+                "error-container": "#ffdad6",
+                "error": "#ba1a1a",
+                "on-error-container": "#93000a",
+                "on-primary-fixed": "#351000",
+                "on-tertiary": "#ffffff",
+                "surface": "#fbfbe2",
+                "surface-tint": "#a04100",
+                "on-tertiary-fixed-variant": "#12512c",
+                "on-primary-fixed-variant": "#7a3000",
+                "secondary-fixed": "#ffdf9a"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Shrikhand", "serif"],
+                "body": ["Work Sans", "sans-serif"],
+                "label": ["Work Sans", "sans-serif"],
+                "stats": ["Alfa Slab One", "cursive"],
+                "newsreader": ["Newsreader", "serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .paper-grain {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDxYNlieW4ugLBqnRyIOVg9fNbDfqwMROl-MCtE2qBpjP8-kVfCKwB1cvRaPLm8CwrRsFBfqwTY1JawnbsFtAUkVK78SzFnHSr0462MKZW-Xsu-7CCHXYnMn7Dbwq4OzRwXNQhwMZPagqiRimMZJwLb7OXPywe4eb21E7ysrZtUwPXgFN_up2rP2xa_AFh3yYweEVWTTd8qjXKlT4vJk4fsk7aYH6HPNT_do9aJ3jD6tvoBhiXIOykWwlaJeD6crqx4EZFBBP7GGmbX);
+            background-repeat: repeat
+        }
+        .rainbow-stripe {
+            height: 4px;
+            background: linear-gradient(to right, #9c3f00 25%, #fdc425 25% 50%, #2b673f 50% 75%, #887364 75%)
+        }
+        .grid-gradient-reverse {
+            background-image: 
+                linear-gradient(to bottom, #ffdbcc, transparent 40%, transparent), 
+                linear-gradient(to right, #ffdbcc 2px, transparent 2px), 
+                linear-gradient(to bottom, #ffdbcc 2px, transparent 2px);
+            background-size: 100% 100%, 60px 60px, 60px 60px;
+            opacity: 0.25;
+            mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+        }
+        .stencil-mask {
+            -webkit-mask-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 50%, black 50%, black 75%, transparent 75%, transparent);
+            -webkit-mask-size: 4px 4px
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<header class="fixed top-0 w-full z-50 bg-[#fbfbe2] dark:bg-[#1b1d0e] opacity-95 backdrop-blur-md flex justify-between items-center px-8 h-20 border-b-4 border-[#9c3f00] shadow-[0_4px_20px_rgba(27,29,14,0.1)]" style="border-color: #351000;">
+<div class="flex items-center gap-4">
+<span class="text-3xl font-black font-newsreader italic tracking-tighter text-[#351000]">MNF Hall of Fame</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-newsreader font-black uppercase italic text-on-surface opacity-70 hover:text-primary transition-colors cursor-pointer" href="#">Gallery</a>
+<a class="font-newsreader font-black uppercase italic border-b-4 border-secondary-container pb-1 cursor-pointer text-[#351000]" href="#">Rosters</a>
+<a class="font-newsreader font-black uppercase italic text-on-surface opacity-70 hover:text-primary transition-colors cursor-pointer" href="#">Standings</a>
+<a class="font-newsreader font-black uppercase italic text-on-surface opacity-70 hover:text-primary transition-colors cursor-pointer" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl cursor-pointer">account_circle</span>
+</div>
+</header>
+<main class="pt-20 min-h-screen relative overflow-hidden bg-gradient-to-b paper-grain from-[#4a2e15] via-[#351000] to-[#1b1d0e]">
+<!-- Large-scale architectural grid pattern (Reverse: Darkest at top) -->
+<div class="absolute inset-0 grid-gradient-reverse pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+<!-- Back Button -->
+<div class="mb-12">
+<button class="group relative flex items-center gap-2 px-8 py-3 bg-secondary text-on-secondary font-stats uppercase tracking-tighter overflow-hidden rounded-md shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl">
+<span class="material-symbols-outlined">arrow_back</span>
+<span>Back to Gallery</span>
+<div class="absolute inset-0 bg-white/10 stencil-mask pointer-events-none opacity-20"></div>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Left Side: Visual Identity -->
+<div class="lg:col-span-5 space-y-12 lg:sticky lg:top-32">
+<div class="relative group">
+<div class="relative bg-white p-6 shadow-[20px_20px_60px_rgba(0,0,0,0.15)] rotate-[-1deg] transition-transform hover:rotate-0 duration-500 border-b-[24px] border-surface-container-highest">
+<div class="aspect-[4/5] overflow-hidden bg-on-surface/5 relative">
+<img alt="Vintage portrait of Jim Nunnelly" class="w-full h-full object-cover grayscale brightness-90 contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR14k_Mlfa1Oxm4beC4C01oC3v8wxRNc96XrgpNsO_gVULztHzdDr74ufxy0j1Ri8t43ZSuNwrU_iRePEoH4g0PQVU9Vl2B237L0_2H9a0-_yLAcbo-VPqq2Mo5BOFMeXlXpNiy0Y9cmfHA-LzfVwoXJfSzk4ghIrErS69eeO1d5s8ncXVICgcSXDnsc6_iPx2q4OBSRpLUfXLc2XjRh4QBntkduhvkgz7tslD_vhKtHgmla3aX-lrXUPsalyPkvQzKMq3okIsFkni"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+<div class="absolute bottom-4 left-4 right-4 text-center">
+<span class="font-stats text-white/40 text-8xl opacity-10 select-none">MNF 74</span>
+</div>
+</div>
+<div class="mt-6 flex justify-between items-end border-t border-outline-variant pt-6">
+<div>
+<p class="font-label text-xs uppercase tracking-[0.2em] font-bold font-black text-on-surface">Authenticated Member</p>
+<p class="font-headline text-4xl leading-none mt-2 text-[#351000]">Jim Nunnelly</p>
+</div>
+<div class="font-stats text-6xl text-[#351000]">14</div>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-secondary-container rounded-full flex items-center justify-center -rotate-12 border-8 border-white shadow-2xl z-20">
+<span class="font-stats text-on-secondary-container text-2xl leading-none text-center">LEGEND<br/>OF '74</span>
+</div>
+</div>
+<!-- Featured Stats Trio -->
+<div class="grid grid-cols-1 gap-4">
+<div class="bg-surface-container-low/80 backdrop-blur p-6 rounded-2xl border-l-8 flex justify-between items-center border-[#351000]">
+<span class="font-label text-sm uppercase tracking-widest font-black text-on-surface">Position</span>
+<span class="font-stats text-3xl text-on-surface">Quarterback</span>
+</div>
+<div class="bg-surface-container-low/80 backdrop-blur p-6 rounded-2xl border-l-8 border-secondary flex justify-between items-center">
+<span class="font-label text-sm uppercase tracking-widest font-black text-on-surface">Active Era</span>
+<span class="font-stats text-3xl text-on-surface">1972-1980</span>
+</div>
+<div class="bg-surface-container-low/80 backdrop-blur p-6 rounded-2xl border-l-8 border-tertiary flex justify-between items-center">
+<span class="font-label text-sm uppercase tracking-widest font-black text-on-surface">Pass Yards</span>
+<span class="font-stats text-3xl text-on-surface">24,510</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Extensive Narrative -->
+<div class="lg:col-span-7 space-y-16">
+<div>
+<div class="rainbow-stripe mb-8 w-1/3"></div>
+<h1 class="font-headline text-7xl md:text-[9rem] text-on-primary-container leading-[0.8] tracking-tighter italic">
+                        The Sunday<br/>General
+                    </h1>
+<p class="font-newsreader text-2xl mt-8 italic font-medium max-w-xl text-on-primary-container">
+                        A retrospective on the career of 1974's most dominant field commander.
+                    </p>
+</div>
+<!-- Deep Narrative Area: Two Column Layout for Body Text -->
+<section class="bg-white/40 backdrop-blur-sm p-10 md:p-16 rounded-[2.5rem] border-t border-white shadow-sm">
+<h3 class="font-headline text-4xl text-[#351000] mb-12 flex items-center gap-4">
+
+                        The Narrative
+                    </h3>
+<div class="font-newsreader text-xl leading-relaxed text-on-surface grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+<div class="space-y-8">
+<p class="first-letter:text-8xl first-letter:font-headline first-letter:mr-4 first-letter:float-left first-letter:leading-[0.85] first-letter:pt-2">
+<span class="first-letter:text-8xl first-letter:font-headline first-letter:text-[#351000] first-letter:mr-4 first-letter:float-left first-letter:leading-[0.85] first-letter:pt-2">
+                                Jim Nunnelly wasn't just a signal caller; he was an architect of the gridiron during the most transformative decade in football history. Emerging from the dust of the early seventies, Nunnelly brought a cerebral precision to the Monday Nite circuit that left defenders chasing shadows under the stadium lights.
+                                </span>
+</p>
+<p>
+                                His rise coincided with the explosion of the televised era, where every throw was scrutinized by millions in high-contrast Technicolor. Nunnelly thrived under the lens, possessing a rare composure that many attributed to his upbringing in the Pacific Northwest—a calm that resisted even the most ferocious defensive lines of the era.
+                            </p>
+<p>
+                                Known for his signature pocket presence and a "Sun-Drenched" spiral that seemed to catch the dying afternoon light, his tenure from 1972 to 1980 remains a gold standard for professional leadership.
+                            </p>
+</div>
+<div class="space-y-8">
+<p>
+                                Colleagues remember him for his quiet confidence in the huddle and his uncanny ability to read a blitz before the ball was even snapped. "Jim saw the field like a chessboard," noted defensive coordinator Herb Sterling. "By the time you thought you had him cornered, he'd already found the outlet valve forty yards down the sideline."
+                            </p>
+<p>
+                                Off the field, Nunnelly was a reluctant icon. He avoided the glitz of the burgeoning celebrity culture, preferring the company of his offensive line and a quiet meal at the local diner. This groundedness translated directly to his play—reliable, sturdy, and undeniably effective when the clock was ticking down.
+                            </p>
+<div class="relative py-8">
+<div class="absolute left-0 top-0 w-12 h-1 bg-secondary-container"></div>
+<blockquote class="italic text-2xl leading-snug text-[#351000]">
+                                    "On a clear November Sunday, there was no one you'd rather have under center than Number 14."
+                                </blockquote>
+<cite class="block font-label text-xs mt-4 not-italic uppercase tracking-widest font-bold font-black text-on-surface">— Broadcast Legend, Bill Whittaker</cite>
+</div>
+<p>
+                                As we look back on the 1974 season, Nunnelly's legacy isn't just defined by the passing yards or the touchdowns. It's defined by the standard of excellence he set for every quarterback that followed him into the MNF arena.
+                            </p>
+</div>
+</div>
+</section>
+<!-- Archival Gallery -->
+<div class="space-y-6">
+<h4 class="font-headline text-2xl text-on-surface-variant uppercase tracking-widest">Archival Fragments</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="group overflow-hidden rounded-2xl shadow-xl rotate-1">
+<img alt="Stadium atmosphere" class="w-full h-80 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4RYYkTydGLXLpefrusnMhoeh8qrkd6xr3d_6X6GTGKw2b0wsGntHGkdsu0cyKYJptVYosL0PKq51pScqgB7a0TgPg_KqHD-dLD3c3As-PFUInVRihCy8GF7um-ayGwLuL5bqJhdk5dc27l8KYRFjDjR0Kupu4SoOQlub9qx3SF6lPGPwmg6N6-ZA9wjGs-EHJ4G1_oY9UeBSdUGgInf1QqlN2DqDO6N53sHfS81Gcsauaq-lzmd4zI6dzBkkFxHTWDfCeGKjoiU7v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<span class="font-label text-white text-xs uppercase tracking-widest">The Crowd at Municipal, '74</span>
+</div>
+</div>
+<div class="group overflow-hidden rounded-2xl shadow-xl -rotate-1">
+<img alt="Equipment detail" class="w-full h-80 object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb_Gm9HZ6UIfGuGtAO8jCBq7WDWokWirucgpNaGJQuSjIRtH-GFUuY7EvoSQXPfXkbXiJMUcN60Kqmx9mf2MnwSU_7EcDHPzY6v5onpprKTw89wwfJ0BpzZxaYOZOa1tRRRroRb4G3SMR4i2hEpb4wVtKUA65bm-V67ugJZ3cjwKhrZ8BlzkAjt_ffrZ81ASAjr3kr_RWMWTErropK_Ctn1_TlRR6N2lnVckfIocOU-LVpWYdaK35FQEIwH5CYcD4j7pYPjtt30eDM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<span class="font-label text-white text-xs uppercase tracking-widest">Battle-Worn Armor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full flex flex-col items-center justify-center gap-8 px-4 bg-[#1b1d0e] py-16 mt-auto relative z-20">
+<div class="rainbow-stripe w-full absolute top-0 left-0"></div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16">
+<a class="font-body text-xs tracking-[0.3em] uppercase text-[#fbfbe2] opacity-50 hover:text-secondary-container transition-colors" href="#">Privacy</a>
+<a class="font-body text-xs tracking-[0.3em] uppercase text-[#fbfbe2] opacity-50 hover:text-secondary-container transition-colors" href="#">Terms</a>
+<div class="text-secondary-container font-newsreader font-bold text-3xl italic mx-4">MNF</div>
+<a class="font-body text-xs tracking-[0.3em] uppercase text-[#fbfbe2] opacity-50 hover:text-secondary-container transition-colors" href="#">Broadcast Rights</a>
+<a class="font-body text-xs tracking-[0.3em] uppercase text-[#fbfbe2] opacity-50 hover:text-secondary-container transition-colors" href="#">Museum</a>
+</div>
+<div class="font-body text-[10px] tracking-[0.4em] uppercase text-[#fbfbe2] opacity-20 mt-4 text-center">
+        © 1974 Monday Nite Footballers. Curating the legacy of the golden era.
+    </div>
+</footer>
+<div class="fixed inset-0 pointer-events-none paper-grain opacity-[0.04] z-[100]"></div>
+</body></html>

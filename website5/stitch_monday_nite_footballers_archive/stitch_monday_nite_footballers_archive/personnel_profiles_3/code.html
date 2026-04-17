@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Personnel Profiles | Monday Nite Footballers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbcc",
+                        "on-surface": "#1b1d0e",
+                        "on-primary-container": "#ffc9b0",
+                        "on-primary-fixed": "#351000",
+                        "inverse-primary": "#ffb693",
+                        "surface-container-high": "#eaead1",
+                        "inverse-on-surface": "#f2f2da",
+                        "on-background": "#1b1d0e",
+                        "secondary-fixed-dim": "#f6be1d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface": "#fbfbe2",
+                        "on-surface-variant": "#564239",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "secondary": "#785a00",
+                        "surface-variant": "#e4e4cc",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "on-primary": "#ffffff",
+                        "outline": "#8a7268",
+                        "on-tertiary-fixed": "#001b3e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#c0d5ff",
+                        "primary": "#762e00",
+                        "background": "#fbfbe2",
+                        "secondary-fixed": "#ffdf9a",
+                        "surface-container-low": "#f5f5dc",
+                        "on-tertiary-fixed-variant": "#00458d",
+                        "surface-dim": "#dbdcc4",
+                        "tertiary-fixed": "#d6e3ff",
+                        "primary-container": "#9c3f00",
+                        "tertiary-container": "#005ab3",
+                        "surface-bright": "#fbfbe2",
+                        "on-secondary-container": "#6d5200",
+                        "surface-container-highest": "#e4e4cc",
+                        "surface-tint": "#9f4103",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#ffb693",
+                        "outline-variant": "#ddc1b4",
+                        "surface-container": "#efefd7",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fdc425",
+                        "tertiary": "#004388",
+                        "tertiary-fixed-dim": "#aac7ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-bleed {
+            text-shadow: 0 0 0.5px rgba(118, 46, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation -->
+<header class="bg-[#efefd7] dark:bg-[#252815] border-t-4 border-t-[#762e00] sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto border-b-4 border-primary">
+<div class="flex items-center gap-8">
+<span class="font-['Newsreader'] tracking-tight text-2xl font-black text-[#762e00] dark:text-[#9c3f00] italic">Monday Nite Footballers</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#1b1d0e]/80 dark:text-[#fbfbe2]/80 font-medium hover:bg-[#dbdcc4] dark:hover:bg-[#303221] transition-colors" href="#">Home</a>
+<a class="text-[#1b1d0e]/80 dark:text-[#fbfbe2]/80 font-medium hover:bg-[#dbdcc4] dark:hover:bg-[#303221] transition-colors" href="#">Archive</a>
+<a class="text-[#762e00] dark:text-[#9c3f00] border-b-2 border-[#762e00] pb-1 hover:bg-[#dbdcc4] transition-colors" href="#">Personnel</a>
+<a class="text-[#1b1d0e]/80 dark:text-[#fbfbe2]/80 font-medium hover:bg-[#dbdcc4] dark:hover:bg-[#303221] transition-colors" href="#">Geography</a>
+<a class="text-[#1b1d0e]/80 dark:text-[#fbfbe2]/80 font-medium hover:bg-[#dbdcc4] dark:hover:bg-[#303221] transition-colors" href="#">Process</a>
+</div>
+</div>
+<button class="flex items-center gap-2 text-[#762e00] dark:text-[#9c3f00] font-['Newsreader'] font-bold">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span>Search</span>
+</button>
+</nav>
+</header>
+<main class="max-w-7xl mx-auto px-8 pt-20 pb-32">
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Left: Master List (Master Personnel Ledger) -->
+<aside class="w-full md:w-1/3 flex flex-col gap-8">
+<div class="space-y-2">
+<h1 class="font-headline text-5xl font-extrabold text-primary ink-bleed tracking-tight leading-none">Personnel<br/>Folio</h1>
+<p class="font-body text-sm uppercase tracking-widest text-outline">Vol. 74-A • Master Ledger</p>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Active Item -->
+<div class="bg-surface-container-highest p-6 rounded-xl shadow-[8px_8px_0_0_#efefd7] border-l-8 border-secondary flex items-center gap-4 cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="Vintage grainy 1970s style headshot portrait of a man with sideburns wearing a collared shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjLVAVqhJdQMjIdNYbrBH6SwpcvewFzZVboGD7Q6BGsRe9puMtUd8-EcCv7E1CDg3oYafW9YxJjQ7yyodY5TBkFyCjKFAqscLxuMkLbhBIu-FsALTlrAJ0kf3rnjBjm3amXdmQH1ZqhihXe95-0iFRLa6juH6SR1aewftmwG6Z_k3YP3iI9vPfSgGH4z83qs42BAUgIkxtWj96PgnNmc2ubtV2qem2LUcB87PA8aSwNCrF_WvwcicD9vZ6GmJ1uFwwajpr3j6iJ7k"/>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface">Howard Cosell</h3>
+<p class="font-body text-xs text-secondary font-bold uppercase tracking-tighter">Chief Broadcaster</p>
+</div>
+</div>
+<!-- Inactive Items -->
+<div class="bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="Grainy film photograph of a middle-aged man in a suit with thick rimmed glasses from the 70s" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1LVLcTRfvb23QTEFIfYK_gnahWuwFnVH8xpABw9Ud1uuv5qjblQGjqzEUpvkc737I6ezRr6nWJrefRu_j9avJlEquxTVhQRTAOPLjGiMuYML9EzUCSG5a6qKvzChOb1ivb201jlSsKNz2y6ZR8yyLLytK599FBngxA4AdlwH9kuDmJcJ6NJ-Sp9Hy62_oiNMFav8agyY_TlqOvy39kVFkfFMRsTcRgmbaPWLIO-OU7ny8vyvJuufZwot50Lgbcv224qyKdwEgqRc"/>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface/80 group-hover:text-on-surface transition-colors">Frank Gifford</h3>
+<p class="font-body text-xs text-outline font-medium uppercase tracking-tighter">Color Analyst</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="Sepia toned studio portrait of a serious man with short hair and a leather jacket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd89jtF1B-Jf6WKFMJ1kFIU1_Ie7lb9sKQXA65cWDm43Oa2_MtrIv2nSSjpxfH3dtYICmHaZ26Q453gVADfdQvH9XsTHb6pNdhUbiNoC5sIvHwtc_CzSJ5Gdz7_USm4705JskCQlRH3BImgKbjqrH5MYlkW7QW3q2s2Nr7HHFSFiuKz1OQf3RU4tZr2R56g2MGxjdP65wwGWTSTPIOtyhWPqWyyzVgjucc39Bs5gqcmPy1Ia9VluhHSEDJOxmiDROoSHftMqVoRBY"/>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface/80 group-hover:text-on-surface transition-colors">Don Meredith</h3>
+<p class="font-body text-xs text-outline font-medium uppercase tracking-tighter">Field Correspondent</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="Retro 1970s film photo of a producer with headphones sitting at a mixing board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjBsIn4YfAUH9Y_boE8MuP2Iqg6BvmxoiO2cAU92Ej_gHw5ML9tgjHy5EaGp_TxJThVOyG9CsurLVrQG5YD-KLF90tpMi1vgmzUddJjxpT0KqZoagoQqzSGNdbavXkHZvniQbgxwNuaIQTEN1S1FEdQahMgC8A5Ln5t12a2XHLwMK1OVoJbEbewLdi3yQj_jMNFzVVRa6ncX7rejMlyRt5mXPHMwq2Fh33l8IAPU_Kfq78BnbWuq1j-8wCDOnXIG2hEbKAHGAs1YY"/>
+</div>
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface/80 group-hover:text-on-surface transition-colors">Roone Arledge</h3>
+<p class="font-body text-xs text-outline font-medium uppercase tracking-tighter">Executive Producer</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right: Detailed Profile Card (Asymmetric Layout) -->
+<section class="flex-1 flex flex-col gap-12 mt-12 md:mt-0">
+<div class="bg-surface-container-lowest p-12 rounded-xl shadow-[24px_24px_0_0_#efefd7] relative overflow-hidden transform rotate-1">
+<!-- Accent Rainbow Stripe -->
+<div class="absolute top-0 left-0 right-0 flex h-2">
+<div class="flex-1 bg-primary"></div>
+<div class="flex-1 bg-secondary"></div>
+<div class="flex-1 bg-tertiary"></div>
+<div class="flex-1 bg-error"></div>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-2/5 flex flex-col gap-6">
+<div class="aspect-[4/5] bg-surface-dim rounded-xl overflow-hidden border-8 border-surface-container shadow-inner">
+<img class="w-full h-full object-cover grayscale mix-blend-multiply opacity-90" data-alt="High contrast black and white editorial portrait of Howard Cosell with a microphone in front of a stadium" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0UP_6HeUemR2NNLZoGYWbISKpk3ZYdfEmp6MWM9LADZGKHTeUooWvWbGvgH_dyaKYCw4ISez0Z6HJVTydYPqLbjL4Ia7BZ9hjp1D7sOqmTOpdMbXUDSbf2DqLinOjEI6e7OZwzlqbp3my39GXcMJZ7lTBMtrts8LSI79yB4KWKMXxO5Gq4-NO5-U3aDyeqgfY46p0FAgwu8y-z3FjcnZaI1_sAvp-rfKGChnSR-bHtw1_wEY4ygv_73ZacDzjfSasx3f5HBuxmTs"/>
+</div>
+<button class="bg-primary-container text-on-primary py-4 px-8 rounded-sm font-label font-bold flex items-center justify-center gap-3 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                                Download Profile PDF
+                            </button>
+</div>
+<div class="flex-1 flex flex-col gap-8">
+<div class="space-y-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-xs font-bold font-label tracking-tighter uppercase rounded-none">Primary Anchor</span>
+<h2 class="font-headline text-6xl font-black text-on-surface tracking-tighter ink-bleed">Howard Cosell</h2>
+<p class="font-body text-lg italic text-outline leading-relaxed border-l-4 border-outline-variant pl-4">
+                                    "To tell it like it is."
+                                </p>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-secondary">Personnel Background</h4>
+<p class="font-body text-on-surface leading-relaxed opacity-90">
+                                        Renowned for his arrogant, verbose broadcasting style. Cosell was a pioneer in television sports, bringing a journalistic sensibility to the color commentary of Monday Nite Football.
+                                    </p>
+</div>
+<div class="space-y-4">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-tertiary">Key Quotes</h4>
+<ul class="space-y-3">
+<li class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="format_quote">format_quote</span>
+<p class="font-body italic text-sm">"The importance of being Howard."</p>
+</li>
+<li class="flex gap-4 items-start">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="format_quote">format_quote</span>
+<p class="font-body italic text-sm">"Look at that little monkey run!"</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Associated Clippings Section -->
+<div class="space-y-8">
+<div class="flex items-end gap-4 border-b-2 border-outline-variant pb-2">
+<h3 class="font-headline text-3xl font-bold text-primary italic">Associated Clippings</h3>
+<span class="font-label text-xs text-outline mb-1 font-medium">DOCUMENTARY EVIDENCE 1970-1974</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Clipping 1 -->
+<div class="bg-surface-container p-4 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform flex flex-col gap-4 border-t-4 border-tertiary">
+<img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg" data-alt="High angle grainy photograph of an American football stadium at night under bright floodlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOGYXoRMzJcSyQwBJxk-B41BmSWnexe6LAuBQRSQpIodq1btOqKreubOuRsPqcFC3QX1D09gCHu-KbfrlD6k3K2XA467hS7I_OC8ZcAZ-FtHs-Vz-uWJhDzkmHMq9QXuMR1tyQcD5oCwWaL3kvy8Qd9lotqx8ZkUXi3PpWdYoQvbKb4jJ1-q_biW4w8eLDiuQUNsCAfHWPyLGX_JiYIPHTJzKY4AXPUioaCTmsysWQ65TzHjZ4UleXMTyuJnj0bkGuBMXO_RyTa0A"/>
+<div class="space-y-1">
+<p class="font-label text-[10px] font-bold text-tertiary uppercase">Draft Transcript • Oct 1970</p>
+<h4 class="font-headline font-bold text-on-surface">The Birth of Prime Time</h4>
+</div>
+</div>
+<!-- Clipping 2 -->
+<div class="bg-surface-container p-4 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform flex flex-col gap-4 border-t-4 border-secondary">
+<img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg" data-alt="Vintage typewriter with a sheet of paper that has faded ink and blurred text" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-foD_lpA_xacRtq_FFhJKSy75oZY4-172FEcUWOrwAMzMT2K4kUgMuucr17pT5l4GneMQjkICYUUCmeHOdpgBzuj_Vz5rF-XSstuRXHLVZN47kpK9rz1gvDKcXSzQlQZtT1vKvk7s_zeBVw0pTgXxa6Hd5_Q03HjNHVlhL7JOxvy_QU_GHxGsoexJOhPXphIPLq4qutJECDdrbFdIRx_5bOBqjFnWY--_D4stSsnOU2Ycp__ElVFfo2Ch7n8U4ywPFAiUFJvtkok"/>
+<div class="space-y-1">
+<p class="font-label text-[10px] font-bold text-secondary uppercase">Press Release • Sep 1972</p>
+<h4 class="font-headline font-bold text-on-surface">Expanding the Broadcast</h4>
+</div>
+</div>
+<!-- Clipping 3 (Asymmetric rotation) -->
+<div class="bg-surface-container-highest p-4 rounded-xl shadow-md transform -rotate-2 hover:rotate-0 transition-transform flex flex-col gap-4 border-t-4 border-error">
+<img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg" data-alt="Stack of old weathered newspapers with 1970s headlines about sports and culture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBK8XFcHouXVxnlmXRJvokLck4M38AOmK_-jtj0oazzfc5jtqGFJPoVrLsBNV8EFxjVOyww-h9WDlGW9y65nRkaSzIkmyOTiTpKRCSeiC1OjYN3eKlXyxapbNChQnMvWdDDkjHTw_qW3TfJoJb-DeV5NbcvNhOO55kF2NwmF_wCJjGr2nDmx2fSjybPG_1TpaCCKsmkgGlGk8EGQRJo8D7_J7pmGuKuSC2AZsIHCFtE5naoTKBaaIVBSzq802_lerJWDcTvT1akGo"/>
+<div class="space-y-1">
+<p class="font-label text-[10px] font-bold text-error uppercase">INTERNAL MEMO • Nov 1973</p>
+<h4 class="font-headline font-bold text-on-surface">Cosell Contract Disputes</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="bg-[#fbfbe2] dark:bg-[#1b1d0e] w-full border-t border-[#ddc1b4]/15 mt-20">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+<p class="font-['Work_Sans'] text-sm tracking-normal text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60">© 1974 Monday Nite Broadcast Collective. Curated by The Living Archive.</p>
+<div class="flex gap-8 mt-6 md:mt-0">
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity hover:opacity-100" href="#">Terms of Research</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity hover:opacity-100" href="#">Broadcast Rights</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity hover:opacity-100" href="#">Press Kit</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity hover:opacity-100" href="#">Contact Editor</a>
+</div>
+</div>
+</footer>
+</body></html>

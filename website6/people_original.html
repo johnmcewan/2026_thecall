@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Personnel Profiles | Monday Nite Footballers</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-surface font-body text-on-surface">
+
+<!-- Top Navigation -->
+<header class="mnf-nav">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a class="mnf-nav__link" href="index.html">Home</a>
+      <a class="mnf-nav__link" href="articles.html">Archive</a>
+      <a class="mnf-nav__link mnf-nav__link--active" href="people.html">Personnel</a>
+      <a class="mnf-nav__link" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+      <button class="mnf-nav__icon-btn flex items-center gap-2 font-headline font-bold">
+        <span class="material-symbols-outlined">search</span>
+        <span>Search</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="max-w-7xl mx-auto px-8 pt-20 pb-32">
+  <div class="flex flex-col md:flex-row gap-12">
+
+    <!-- Master Personnel Ledger (Sidebar) -->
+    <aside class="w-full md:w-1/3 flex flex-col gap-8">
+      <div class="space-y-2">
+        <h1 class="font-headline text-5xl font-extrabold text-primary ink-bleed tracking-tight leading-none">Personnel<br/>Folio</h1>
+        <p class="label-caps text-outline">Vol. 74-A • Master Ledger</p>
+      </div>
+
+      <div class="flex flex-col gap-4">
+
+        <!-- Active Item -->
+        <div class="bg-surface-container-highest p-6 rounded-xl shadow-[8px_8px_0_0_#efefd7] border-l-8 border-secondary flex items-center gap-4 cursor-pointer">
+          <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+            <img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0UP_6HeUemR2NNLZoGYWbISKpk3ZYdfEmp6MWM9LADZGKHTeUooWvWbGvgH_dyaKYCw4ISez0Z6HJVTydYPqLbjL4Ia7BZ9hjp1D7sOqmTOpdMbXUDSbf2DqLinOjEI6e7OZwzlqbp3my39GXcMJZ7lTBMtrts8LSI79yB4KWKMXxO5Gq4-NO5-U3aDyeqgfY46p0FAgwu8y-z3FjcnZaI1_sAvp-rfKGChnSR-bHtw1_wEY4ygv_73ZacDzjfSasx3f5HBuxmTs" alt="Howard Cosell"/>
+          </div>
+          <div>
+            <h3 class="font-headline text-xl font-bold text-on-surface">Howard Cosell</h3>
+            <p class="label-caps text-outline">Primary Anchor</p>
+          </div>
+        </div>
+
+        <!-- Inactive Item -->
+        <div class="bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4">
+          <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+            <img class="w-full h-full object-cover grayscale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd89jtF1B-Jf6WKFMJ1kFIU1_Ie7lb9sKQXA65cWDm43Oa2_MtrIv2nSSjpxfH3dtYICmHaZ26Q453gVADfdQvH9XsTHb6pNdhUbiNoC5sIvHwtc_CzSJ5Gdz7_USm4705JskCQlRH3BImgKbjqrH5MYlkW7QW3q2s2Nr7HHFSFiuKz1OQf3RU4tZr2R56g2MGxjdP65wwGWTSTPIOtyhWPqWyyzVgjucc39Bs5gqcmPy1Ia9VluhHSEDJOxmiDROoSHftMqVoRBY" alt="Don Meredith"/>
+          </div>
+          <div>
+            <h3 class="font-headline text-xl font-bold text-on-surface/80 group-hover:text-on-surface transition-colors">Don Meredith</h3>
+            <p class="label-caps text-outline">Field Correspondent</p>
+          </div>
+        </div>
+
+        <!-- Inactive Item -->
+        <div class="bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4">
+          <div class="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+            <img class="w-full h-full object-cover grayscale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjBsIn4YfAUH9Y_boE8MuP2Iqg6BvmxoiO2cAU92Ej_gHw5ML9tgjHy5EaGp_TxJThVOyG9CsurLVrQG5YD-KLF90tpMi1vgmzUddJjxpT0KqZoagoQqzSGNdbavXkHZvniQbgxwNuaIQTEN1S1FEdQahMgC8A5Ln5t12a2XHLwMK1OVoJbEbewLdi3yQj_jMNFzVVRa6ncX7rejMlyRt5mXPHMwq2Fh33l8IAPU_Kfq78BnbWuq1j-8wCDOnXIG2hEbKAHGAs1YY" alt="Roone Arledge"/>
+          </div>
+          <div>
+            <h3 class="font-headline text-xl font-bold text-on-surface/80 group-hover:text-on-surface transition-colors">Roone Arledge</h3>
+            <p class="label-caps text-outline">Executive Producer</p>
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Detailed Profile Card -->
+    <section class="flex-1 flex flex-col gap-12 mt-12 md:mt-0">
+      <div class="bg-surface-container-lowest p-12 rounded-xl shadow-[24px_24px_0_0_#efefd7] relative overflow-hidden transform rotate-1">
+
+        <!-- Accent Rainbow Stripe -->
+        <div class="absolute top-0 left-0 right-0 rainbow-stripe" style="height:8px;">
+          <div class="stripe-1"></div>
+          <div class="stripe-2"></div>
+          <div class="stripe-3"></div>
+          <div class="stripe-4"></div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 pt-4">
+
+          <!-- Portrait Column -->
+          <div class="w-full lg:w-2/5 flex flex-col gap-6">
+            <div class="aspect-[4/5] bg-surface-dim rounded-xl overflow-hidden border-8 border-surface-container shadow-inner">
+              <img class="w-full h-full object-cover grayscale mix-blend-multiply opacity-90"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0UP_6HeUemR2NNLZoGYWbISKpk3ZYdfEmp6MWM9LADZGKHTeUooWvWbGvgH_dyaKYCw4ISez0Z6HJVTydYPqLbjL4Ia7BZ9hjp1D7sOqmTOpdMbXUDSbf2DqLinOjEI6e7OZwzlqbp3my39GXcMJZ7lTBMtrts8LSI79yB4KWKMXxO5Gq4-NO5-U3aDyeqgfY46p0FAgwu8y-z3FjcnZaI1_sAvp-rfKGChnSR-bHtw1_wEY4ygv_73ZacDzjfSasx3f5HBuxmTs"
+                alt="Howard Cosell portrait"/>
+            </div>
+            <button class="bg-primary-container text-on-primary py-4 px-8 rounded-sm font-label font-bold flex items-center justify-center gap-3 hover:opacity-90 transition-opacity active:scale-95">
+              <span class="material-symbols-outlined">download</span>
+              Download Profile PDF
+            </button>
+          </div>
+
+          <!-- Bio Column -->
+          <div class="flex-1 flex flex-col gap-8">
+            <div class="space-y-2">
+              <span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-xs font-bold font-label tracking-tighter uppercase rounded-none">Primary Anchor</span>
+              <h2 class="font-headline text-6xl font-black text-on-surface tracking-tighter ink-bleed">Howard Cosell</h2>
+              <p class="font-body text-lg italic text-outline leading-relaxed border-l-4 border-outline-variant pl-4">
+                "To tell it like it is."
+              </p>
+            </div>
+            <div class="space-y-6">
+              <div class="space-y-2">
+                <h4 class="label-caps text-secondary">Personnel Background</h4>
+                <p class="font-body text-on-surface leading-relaxed opacity-90">
+                  Renowned for his arrogant, verbose broadcasting style. Cosell was a pioneer in television sports, bringing a journalistic sensibility to the color commentary of Monday Nite Football.
+                </p>
+              </div>
+              <div class="space-y-4">
+                <h4 class="label-caps text-tertiary">Key Quotes</h4>
+                <ul class="space-y-3">
+                  <li class="flex gap-4 items-start">
+                    <span class="material-symbols-outlined text-tertiary text-sm">format_quote</span>
+                    <p class="font-body italic text-sm">"The importance of being Howard."</p>
+                  </li>
+                  <li class="flex gap-4 items-start">
+                    <span class="material-symbols-outlined text-tertiary text-sm">format_quote</span>
+                    <p class="font-body italic text-sm">"Look at that little monkey run!"</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Associated Clippings -->
+      <div class="space-y-8">
+        <div class="flex items-end gap-4 border-b-2 border-outline-variant pb-2">
+          <h3 class="font-headline text-3xl font-bold text-primary italic">Associated Clippings</h3>
+          <span class="label-caps text-outline mb-1">Documentary Evidence 1970-1974</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Clipping 1 -->
+          <div class="bg-surface-container p-4 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform flex flex-col gap-4 border-t-4 border-tertiary">
+            <img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOGYXoRMzJcSyQwBJxk-B41BmSWnexe6LAuBQRSQpIodq1btOqKreubOuRsPqcFC3QX1D09gCHu-KbfrlD6k3K2XA467hS7I_OC8ZcAZ-FtHs-Vz-uWJhDzkmHMq9QXuMR1tyQcD5oCwWaL3kvy8Qd9lotqx8ZkUXi3PpWdYoQvbKb4jJ1-q_biW4w8eLDiuQUNsCAfHWPyLGX_JiYIPHTJzKY4AXPUioaCTmsysWQ65TzHjZ4UleXMTyuJnj0bkGuBMXO_RyTa0A"
+              alt="Aerial stadium photograph"/>
+            <div class="space-y-1">
+              <p class="label-caps text-tertiary">Draft Transcript • Oct 1970</p>
+              <h4 class="font-headline font-bold text-on-surface">The Birth of Prime Time</h4>
+            </div>
+          </div>
+
+          <!-- Clipping 2 -->
+          <div class="bg-surface-container p-4 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform flex flex-col gap-4 border-t-4 border-secondary">
+            <img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-foD_lpA_xacRtq_FFhJKSy75oZY4-172FEcUWOrwAMzMT2K4kUgMuucr17pT5l4GneMQjkICYUUCmeHOdpgBzuj_Vz5rF-XSstuRXHLVZN47kpK9rz1gvDKcXSzQlQZtT1vKvk7s_zeBVw0pTgXxa6Hd5_Q03HjNHVlhL7JOxvy_QU_GHxGsoexJOhPXphIPLq4qutJECDdrbFdIRx_5bOBqjFnWY--_D4stSsnOU2Ycp__ElVFfo2Ch7n8U4ywPFAiUFJvtkok"
+              alt="Vintage typewriter"/>
+            <div class="space-y-1">
+              <p class="label-caps text-secondary">Press Release • Sep 1972</p>
+              <h4 class="font-headline font-bold text-on-surface">Expanding the Broadcast</h4>
+            </div>
+          </div>
+
+          <!-- Clipping 3 (Rotated) -->
+          <div class="bg-surface-container-highest p-4 rounded-xl shadow-md transform -rotate-2 hover:rotate-0 transition-transform flex flex-col gap-4 border-t-4 border-error">
+            <img class="w-full h-32 object-cover grayscale opacity-80 rounded-lg"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBK8XFcHouXVxnlmXRJvokLck4M38AOmK_-jtj0oazzfc5jtqGFJPoVrLsBNV8EFxjVOyww-h9WDlGW9y65nRkaSzIkmyOTiTpKRCSeiC1OjYN3eKlXyxapbNChQnMvWdDDkjHTw_qW3TfJoJb-DeV5NbcvNhOO55kF2NwmF_wCJjGr2nDmx2fSjybPG_1TpaCCKsmkgGlGk8EGQRJo8D7_J7pmGuKuSC2AZsIHCFtE5naoTKBaaIVBSzq802_lerJWDcTvT1akGo"
+              alt="Stack of 1970s newspapers"/>
+            <div class="space-y-1">
+              <p class="label-caps text-error">Internal Memo • Nov 1973</p>
+              <h4 class="font-headline font-bold text-on-surface">Cosell Contract Disputes</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="mnf-footer">
+  <div class="mnf-footer__inner">
+    <p class="mnf-footer__copy">© 1974 Monday Nite Broadcast Collective. Curated by The Living Archive.</p>
+    <nav class="mnf-footer__links">
+      <a class="mnf-footer__link" href="#">Terms of Research</a>
+      <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+      <a class="mnf-footer__link" href="#">Press Kit</a>
+      <a class="mnf-footer__link" href="#">Contact Editor</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kansas City Map | Monday Nite Footballers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;0,800;1,400&amp;family=Work+Sans:wght@400;500;700;900&amp;family=Shrikhand&amp;family=Alfa+Slab+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#96d5a3",
+                    "surface-tint": "#a04100",
+                    "outline": "#887364",
+                    "on-secondary-container": "#6d5200",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e4e4cc",
+                    "primary-container": "#c45100",
+                    "on-surface": "#1b1d0e",
+                    "on-secondary-fixed": "#251a00",
+                    "inverse-on-surface": "#f2f2d9",
+                    "surface-container-low": "#f5f5dc",
+                    "secondary-container": "#fdc425",
+                    "background": "#fbfbe2",
+                    "surface-dim": "#dbdcc3",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "tertiary-container": "#458156",
+                    "surface-container": "#efefd7",
+                    "on-tertiary-fixed": "#00210d",
+                    "primary-fixed-dim": "#ffb693",
+                    "inverse-primary": "#ffb693",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed": "#b1f2be",
+                    "secondary-fixed-dim": "#f7be1d",
+                    "primary": "#9c3f00",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fbfbe2",
+                    "secondary-fixed": "#ffdf9a",
+                    "on-surface-variant": "#554336",
+                    "on-primary-fixed": "#351000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "inverse-surface": "#303221",
+                    "on-tertiary-container": "#f6fff4",
+                    "surface-container-high": "#eaead1",
+                    "surface": "#fbfbe2",
+                    "on-tertiary-fixed-variant": "#12512c",
+                    "tertiary": "#2b673f",
+                    "secondary": "#785a00",
+                    "surface-container-highest": "#e4e4cc",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#dbc2b0",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1b1d0e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader", "serif"],
+                    "body": ["Work Sans", "sans-serif"],
+                    "label": ["Work Sans", "sans-serif"],
+                    "shrikhand": ["Shrikhand", "cursive"],
+                    "alfa": ["Alfa Slab One", "cursive"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+        }
+        .grain-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAPMIAgTfxirKabI1FbtDiB0zO0ujqPG_CGDMB1gPbUUVpNbU1m8wLmHq1x1GA70PZkB1LTAoZyp7alKGcSFqKp03UF-oN6R7ouIMmDp670bRWtszgWl55APjo7VcNb9m-Oyh7DMocybcspeOWt7LD6e4VZAYEpj2opi_kF-TPp_tdoPSvcKoor58TUgIM34tS4kmm-tJ0nJLji3a92P5Qe0GnygNr0rQF1tFcc-HQDv86Jf4GGVOLY2ksEoxW7IG6tHjwg78dYOQB4);
+            pointer-events: none
+        }
+        /* Refined city grid overlay */
+        .city-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .stenciled-text {
+            background: linear-gradient(to bottom, #9c3f00, #351000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+        .map-gradient {
+            background: radial-gradient(circle at center, transparent 0%, rgba(156, 63, 0, 0.2) 100%);
+        }
+        /* Drawer State */
+        #sidebar-toggle:checked ~ aside {
+            transform: translateX(0);
+        }
+        #sidebar-toggle:checked ~ main .toggle-label {
+            left: 400px;
+        }
+        #sidebar-toggle:checked ~ main .toggle-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container h-full overflow-hidden flex flex-col">
+<!-- Grain Overlay -->
+<div class="fixed inset-0 z-50 opacity-[0.03] grain-overlay"></div>
+<!-- TopAppBar -->
+<header class="bg-[#fbfbe2]/80 backdrop-blur-md sticky top-0 z-40 border-b border-surface-container">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black text-amber-900 italic font-shrikhand">
+                Monday Nite Footballers
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-stone-600 font-medium hover:text-amber-800 transition-colors uppercase tracking-widest text-[10px] font-alfa" href="#">Gallery</a>
+<a class="text-stone-600 font-medium hover:text-amber-800 transition-colors uppercase tracking-widest text-[10px] font-alfa" href="#">Rosters</a>
+<a class="text-stone-600 font-medium hover:text-amber-800 transition-colors uppercase tracking-widest text-[10px] font-alfa" href="#">Standings</a>
+<a class="text-amber-900 border-b-4 border-amber-600 pb-1 uppercase tracking-widest text-[10px] font-alfa" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-amber-700 font-bold uppercase tracking-widest text-[10px] font-alfa">Sign In</button>
+</div>
+</div>
+</header>
+<!-- Hidden Toggle -->
+<input checked="" class="hidden peer" id="sidebar-toggle" type="checkbox"/>
+<!-- Retractable Info Drawer -->
+<aside class="fixed top-0 left-0 h-full w-[400px] bg-surface-container-low shadow-2xl z-30 transition-transform duration-300 -translate-x-full pt-24 flex flex-col">
+<div class="p-10 overflow-y-auto flex-1">
+<h1 class="font-shrikhand text-5xl text-primary mb-8 leading-tight">The Gridiron <br/>Geography</h1>
+<div class="space-y-12">
+<!-- Location 1 -->
+<div class="group border-l-4 border-primary pl-6 py-2">
+<h3 class="font-shrikhand text-2xl text-on-surface mb-2">Municipal Stadium</h3>
+<p class="font-alfa text-on-surface-variant leading-relaxed text-[11px] uppercase tracking-wide">The hallowed concrete bowl where legends were forged in the KC heat. A relic of the glory years.</p>
+<div class="mt-6">
+<button class="bg-secondary-container px-6 py-2 rounded-sm transition-transform active:translate-y-0.5 hover:shadow-lg flex items-center gap-2 border-b-4 border-on-secondary-fixed-variant">
+<span class="stenciled-text font-alfa text-[10px]">VIEW HISTORY</span>
+</button>
+</div>
+</div>
+<!-- Location 2 -->
+<div class="group border-l-4 border-secondary pl-6 py-2">
+<h3 class="font-shrikhand text-2xl text-on-surface mb-2">The Clubhouse</h3>
+<p class="font-alfa text-on-surface-variant leading-relaxed text-[11px] uppercase tracking-wide">Where the playbooks were studied and the post-game scotch was poured. Strictly players only.</p>
+<div class="mt-6">
+<button class="bg-secondary-container px-6 py-2 rounded-sm transition-transform active:translate-y-0.5 hover:shadow-lg flex items-center gap-2 border-b-4 border-on-secondary-fixed-variant">
+<span class="stenciled-text font-alfa text-[10px]">VIEW HISTORY</span>
+</button>
+</div>
+</div>
+<!-- Location 3 -->
+<div class="group border-l-4 border-tertiary pl-6 py-2">
+<h3 class="font-shrikhand text-2xl text-on-surface mb-2">Main Street Archives</h3>
+<p class="font-alfa text-on-surface-variant leading-relaxed text-[11px] uppercase tracking-wide">The paper trail of 1974. Every headline, every penalty, every forgotten triumph lives here.</p>
+<div class="mt-6">
+<button class="bg-secondary-container px-6 py-2 rounded-sm transition-transform active:translate-y-0.5 hover:shadow-lg flex items-center gap-2 border-b-4 border-on-secondary-fixed-variant">
+<span class="stenciled-text font-alfa text-[10px]">VIEW HISTORY</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 70s Stripe Detail -->
+<div class="h-2 flex w-full">
+<div class="h-full flex-1 bg-primary"></div>
+<div class="h-full flex-1 bg-secondary"></div>
+<div class="h-full flex-1 bg-tertiary"></div>
+<div class="h-full flex-1 bg-outline"></div>
+</div>
+</aside>
+<main class="flex-1 relative overflow-hidden">
+<!-- Stylized 1970s Kansas City Map - Updated to street level -->
+<div class="absolute inset-0 z-0 bg-[#e6dfcc]">
+<img alt="Detailed Kansas City Street Map" class="w-full h-full object-cover opacity-70 mix-blend-multiply filter contrast-125 sepia-[.3]" src="https://lh3.googleusercontent.com/aida/ADBb0uiFKbToPfzGqFFhMCo3pbnA_cQL5Ar-Sb25otamQnjVKb84p4izuULmmblr5rm1BpacRdgy08hUukd8pl5zvXlqgrPUKvwYv8AafmGzmZlJPSyWeneOg6P5Ph_8-4cjKe6bNj3rZFo5IKCHQkJmen0pBeMBbOLZtyinOTg9kEkpgZHfsHepRVpdwGiUiF5VEw9XQTrrtFQTgYwAYCD0Vakt8UwiSiSaY3ILuOzi1bl6uewzBo-ag1UFFukO52_cJwz1SkYkVLCNZG4"/>
+<!-- Grid and Line Art Overlays -->
+<div class="absolute inset-0 city-grid opacity-30 pointer-events-none"></div>
+<div class="absolute inset-0 map-gradient mix-blend-overlay"></div>
+<div class="absolute inset-0 bg-primary/5 mix-blend-color-burn"></div>
+</div>
+<!-- Toggle Handle -->
+<label class="toggle-label fixed left-0 top-1/2 -translate-y-1/2 bg-primary text-white p-4 rounded-r-xl cursor-pointer z-40 transition-all duration-300 hover:pr-6 shadow-2xl flex items-center gap-3" for="sidebar-toggle">
+<span class="material-symbols-outlined toggle-icon transition-transform duration-300">chevron_right</span>
+<span class="font-alfa text-[10px] tracking-[0.2em] hidden md:block uppercase">Exploration Menu</span>
+</label>
+<!-- District & Landmark Markers - Re-calibrated for street level map -->
+<div class="relative w-full h-full z-10 pointer-events-none">
+<!-- District Label: Downtown -->
+<div class="absolute top-[48%] left-[45%] flex flex-col items-center">
+<span class="font-shrikhand text-on-surface opacity-40 text-4xl tracking-tighter -rotate-6 select-none">DOWNTOWN</span>
+</div>
+<!-- Municipal Stadium Marker -->
+<div class="absolute top-[52%] left-[49.5%] group cursor-pointer pointer-events-auto">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-14 h-14 rounded-full border-2 border-primary/40 scale-150 animate-pulse"></div>
+<div class="w-10 h-10 rounded-full bg-primary border-4 border-surface shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-white text-sm">sports_football</span>
+</div>
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-on-surface text-surface px-4 py-2 rounded-sm text-[10px] font-alfa opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl border-l-4 border-secondary">
+                        MUNICIPAL STADIUM (22nd &amp; Brooklyn)
+                    </div>
+</div>
+</div>
+<!-- The Clubhouse Marker -->
+<div class="absolute top-[65%] left-[44%] group cursor-pointer pointer-events-auto">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-14 h-14 rounded-full border-2 border-secondary/40 scale-125"></div>
+<div class="w-10 h-10 rounded-full bg-secondary border-4 border-surface shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">liquor</span>
+</div>
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-on-surface text-surface px-4 py-2 rounded-sm text-[10px] font-alfa opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl border-l-4 border-primary">
+                        THE CLUBHOUSE (Players Lounge)
+                    </div>
+</div>
+</div>
+<!-- Main Street Archives Marker -->
+<div class="absolute top-[55%] left-[43.5%] group cursor-pointer pointer-events-auto">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-14 h-14 rounded-full border-2 border-tertiary/40 scale-110"></div>
+<div class="w-10 h-10 rounded-full bg-tertiary border-4 border-surface shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-white text-sm">menu_book</span>
+</div>
+<div class="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-on-surface text-surface px-4 py-2 rounded-sm text-[10px] font-alfa opacity-0 group-hover:opacity-100 transition-opacity shadow-2xl border-l-4 border-outline">
+                        MAIN STREET ARCHIVES
+                    </div>
+</div>
+</div>
+<!-- UI Elements (HUD) -->
+<div class="absolute top-8 right-10 flex flex-col gap-2 items-end">
+<div class="flex items-center gap-4 bg-surface/80 backdrop-blur-md p-3 border-2 border-primary/20 shadow-xl">
+<div class="text-right">
+<p class="font-alfa text-[9px] text-primary tracking-widest uppercase">Location Focus</p>
+<p class="font-shrikhand text-lg text-on-surface">KANSAS CITY, MO</p>
+</div>
+<div class="h-10 w-[2px] bg-primary/30"></div>
+<div class="flex flex-col">
+<span class="font-alfa text-[10px] text-primary tracking-[0.2em]">39.0997° N</span>
+<span class="font-alfa text-[10px] text-primary tracking-[0.2em]">94.5786° W</span>
+</div>
+</div>
+<button class="mt-4 bg-surface/90 hover:bg-white p-3 border-2 border-primary/20 shadow-lg flex items-center gap-3 transition-all active:scale-95 pointer-events-auto">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+<span class="font-alfa text-[10px] text-primary tracking-widest uppercase">Back to Gallery</span>
+</button>
+</div>
+<!-- Map Key -->
+<div class="absolute bottom-12 right-12 border-2 border-primary/30 p-6 bg-surface-container-low/90 backdrop-blur-lg shadow-2xl pointer-events-auto max-w-xs border-r-8 border-secondary">
+<h4 class="font-shrikhand text-2xl text-primary leading-none mb-5">Kansas City 1974</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 rounded-full bg-primary border-2 border-white shadow-md"></div>
+<span class="font-alfa text-[10px] text-on-surface uppercase tracking-widest">Hallowed Ground</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-5 h-5 border-2 border-primary/50 bg-secondary/20"></div>
+<span class="font-alfa text-[10px] text-on-surface uppercase tracking-widest">Broadcast Radius</span>
+</div>
+<div class="pt-4 border-t border-primary/10">
+<p class="font-alfa text-[9px] text-on-surface-variant uppercase leading-relaxed opacity-80">
+                            * Topography defined by the street grid of the 1974 season. All landmarks historically accurate.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low/95 backdrop-blur-md border-t-2 border-amber-900/10 py-6 relative z-40">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 w-full gap-4 max-w-screen-2xl mx-auto">
+<div class="text-sm font-bold text-stone-800 font-shrikhand">
+                Monday Nite Footballers
+            </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-stone-500 hover:text-primary font-alfa text-[9px] tracking-widest uppercase transition-all" href="#">Archives</a>
+<a class="text-stone-500 hover:text-primary font-alfa text-[9px] tracking-widest uppercase transition-all" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-primary font-alfa text-[9px] tracking-widest uppercase transition-all" href="#">Contact</a>
+</div>
+<div class="text-stone-400 font-alfa text-[9px] tracking-widest uppercase">
+                © 1974 Monday Nite Footballers.
+            </div>
+</div>
+</footer>
+</body></html>

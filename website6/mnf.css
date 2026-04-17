@@ -1,0 +1,511 @@
+/* ==========================================================================
+   Monday Nite Footballers — Shared Stylesheet
+   "The Sunday Afternoon Broadcast" Design System
+   ==========================================================================
+   Load order in each HTML page:
+     1. Google Fonts <link> tags  (kept in HTML for parallel loading)
+     2. <link rel="stylesheet" href="mnf.css">
+     3. mnf-config.js  (sets window._mnfConfig)
+     4. <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+     5. Tailwind CDN <script>
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES — Design Tokens
+   A CSS-variable mirror of the Tailwind token set so vanilla CSS and
+   non-Tailwind contexts can consume the same palette.
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- Surface hierarchy --- */
+  --surface:                   #fbfbe2;
+  --surface-dim:               #dbdcc4;
+  --surface-container-lowest:  #ffffff;
+  --surface-container-low:     #f5f5dc;
+  --surface-container:         #efefd7;
+  --surface-container-high:    #eaead1;
+  --surface-container-highest: #e4e4cc;
+
+  /* --- Brand: Primary (burnt sienna) --- */
+  --primary:           #762e00;
+  --primary-container: #9c3f00;
+  --on-primary:        #ffffff;
+
+  /* --- Brand: Secondary (ochre) --- */
+  --secondary:           #785a00;
+  --secondary-container: #fdc425;
+  --secondary-fixed:     #ffdf9a;
+  --secondary-fixed-dim: #f6be1d;
+  --on-secondary:        #ffffff;
+  --on-secondary-container: #6d5200;
+
+  /* --- Brand: Tertiary (archive blue) --- */
+  --tertiary:            #004388;
+  --tertiary-container:  #005ab3;
+  --on-tertiary:         #ffffff;
+
+  /* --- Text --- */
+  --on-surface:         #1b1d0e;
+  --on-surface-variant: #564239;
+
+  /* --- Strokes --- */
+  --outline:         #8a7268;
+  --outline-variant: #ddc1b4;
+
+  /* --- Error / accent --- */
+  --error: #ba1a1a;
+
+  /* --- Nav / Footer chrome --- */
+  --chrome-bg:         #004388;
+  --chrome-text:       #fbfbe2;
+  --chrome-text-muted: rgba(251, 251, 226, 0.75);
+  --chrome-border:     rgba(255, 223, 154, 0.9);   /* secondary-fixed */
+
+  /* --- Typography --- */
+  --font-headline: "Newsreader", serif;
+  --font-body:     "Work Sans", sans-serif;
+
+  /* --- Motion — "heavy, like a slide projector" --- */
+  --ease-broadcast: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-slow:  0.4s;
+  --duration-medium: 0.25s;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. BASE / BODY
+   Paper-grain background canvas. The grain URL is the same one used across
+   articles.html and index.html.
+   -------------------------------------------------------------------------- */
+body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  /* Subtle selection highlight using secondary-container / ochre */
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #ffdf9a;   /* secondary-fixed */
+  color: #251a00;               /* on-secondary-fixed */
+}
+
+
+/* --------------------------------------------------------------------------
+   3. MATERIAL SYMBOLS — standardised variation settings
+   -------------------------------------------------------------------------- */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. TYPOGRAPHY EFFECTS
+   -------------------------------------------------------------------------- */
+
+/* Ink-bleed: mimics heavy letterpress ink bleeding into aged paper */
+.ink-bleed {
+  text-shadow: 0 0 0.5px rgba(118, 46, 0, 0.30);
+}
+
+/* Label caps: typewriter / label-maker aesthetic */
+.label-caps {
+  font-family: var(--font-body);
+  font-size: 0.625rem;       /* 10px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. RAINBOW / BROADCAST STRIPE
+   Signature 4-colour horizontal bar used as a sectional anchor.
+   Two variants:
+
+     .rainbow-stripe  — flex children, each child gets a .stripe-N class.
+                        Gives independent width/colour control per stripe.
+     .broadcast-stripe — pure CSS gradient, no children required.
+                         Use when you need a quick single element.
+   -------------------------------------------------------------------------- */
+
+/* --- Flex variant (children) --- */
+.rainbow-stripe {
+  height: 4px;
+  display: flex;
+  width: 100%;
+}
+
+.rainbow-stripe > * {
+  flex: 1;
+  height: 100%;
+}
+
+/* Named stripe colours */
+.stripe-1 { background-color: var(--primary);   }   /* burnt sienna */
+.stripe-2 { background-color: var(--secondary); }   /* ochre */
+.stripe-3 { background-color: var(--tertiary);  }   /* archive blue */
+.stripe-4 { background-color: var(--error);     }   /* broadcast red */
+
+/* --- Gradient variant (no children needed) --- */
+.broadcast-stripe {
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    var(--primary)   0%   25%,
+    var(--secondary) 25%  50%,
+    var(--tertiary)  50%  75%,
+    var(--error)     75% 100%
+  );
+  width: 100%;
+}
+
+/* Shorthand alias used in about.html */
+.broadcast-gradient {
+  background: linear-gradient(
+    to right,
+    var(--primary)   0%   25%,
+    var(--secondary) 25%  50%,
+    var(--tertiary)  50%  75%,
+    var(--error)     75% 100%
+  );
+}
+
+
+/* --------------------------------------------------------------------------
+   6. CLIPPING CARD
+   Slight rotation + snap-to-straight on hover; mimics physical scrapbook
+   clippings laid on a flat surface.
+   -------------------------------------------------------------------------- */
+.clipping-card {
+  transform: rotate(-1deg);
+  transition: transform var(--duration-slow) var(--ease-broadcast);
+}
+
+.clipping-card:hover {
+  transform: rotate(0deg);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. TEXTURE OVERLAYS
+   Applied as absolutely-positioned children over containers to add grain
+   without affecting the content z-index.
+   -------------------------------------------------------------------------- */
+
+/* Film-grain / paper noise — kills the "flat digital sheen" */
+.grain-overlay {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBmqGPm18Syt8rmDNuAPFi_6qVSNglvdviEOxg7VtIEAaANm34u9wbq7M6d-ASLX1l9tjbHfEw_Ln8ZCy_1OUcjdQ0cBSxHj8XBJvrmUFlCXOQsRHcWQNsaZZSmwSRWDUYJre-O4Z7KEv362ZV_l90rRwzsrWjzwUJlaTGSutS71QheLFE5IkxgChHtRaCSAxs98LtAHBYza6Hfhpfcivt-HND9Lvlk_Yf6qg2EnxyoO1aNzdpA3NqNPcwtWyW9Zb290yy_8gupVzc);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Vintage map paper texture (Geography page) */
+.map-texture {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA3U_P4u6ZC8viUGxENsmCxiUlDWRVYtFSBmllq28_gzeMqTWp7SX92zOWZmImEk7hy5Ig64U1zWagYJiRhxrcsKc98wgB5FjrieEhWTkhNRc0j-kEGPYBVjyz4ccG9QGQJPYtSf8J9D9bsz92iBs7zCf3ky0S21_DWHvmN3irYTxtjNNhzIBvo8alUhGfUC2YITWbsvRTCILFsBdJt2nz4oekYUOtWy35XsHNqldQX8XKE1P2PaAGZWU_WeKq7-r8jWZdPEvBVFK8);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Index hero page background */
+.page-bg-texture {
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDi7bK6wCSuQcnpzf1IPZTljY4J1I9Vp6vfvoePuGm3lf7vWp82G2-CkMiOBAZ1Lihrer_rc47_j0ZMpdKQsbHwmk1UYqaob7LXwyI5N8VCFkfU8CoY0DKRugZko-0B1IaywOS2yMYTySFvR5XG3TZ71rbbPXuBws2ppHv_cbHMw8bXQa7oAkReYfhAxjNe22DlaMiC36eY-6vod7tCfPv6kKAwXmbzgXOUt8hHLtyITjyVmA-SKqVguhKO0splftQTlL-OekYyuzo);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. SITE NAV  (.mnf-nav)
+   Shared top navigation chrome — archive blue bar with colour-band borders.
+   Page-specific active link highlight is applied inline via Tailwind utilities.
+   -------------------------------------------------------------------------- */
+.mnf-nav {
+  background-color: var(--chrome-bg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-top:    4px solid #001b3e;   /* on-tertiary-fixed (deep navy) */
+  border-bottom: 4px solid #001b3e;
+}
+
+.mnf-nav__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  max-width: 80rem;   /* 7xl */
+  margin: 0 auto;
+}
+
+.mnf-nav__logo {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--chrome-text);
+  font-style: italic;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+}
+
+.mnf-nav__links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .mnf-nav__links { display: flex; }
+}
+
+.mnf-nav__link {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--chrome-text-muted);
+  text-decoration: none;
+  transition: color var(--duration-medium) var(--ease-broadcast);
+}
+
+.mnf-nav__link:hover {
+  color: var(--chrome-text);
+}
+
+/* Active state — solid underline in surface colour */
+.mnf-nav__link--active {
+  color: var(--chrome-text);
+  border-bottom: 2px solid var(--chrome-text);
+  padding-bottom: 4px;
+}
+
+.mnf-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mnf-nav__search-btn {
+  background-color: var(--secondary-fixed-dim, #f6be1d);
+  color: #251a00;   /* on-secondary-fixed */
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.125rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--duration-medium);
+}
+
+.mnf-nav__search-btn:hover  { opacity: 0.88; }
+.mnf-nav__search-btn:active { transform: scale(0.97); }
+
+.mnf-nav__icon-btn {
+  color: var(--chrome-text);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: background-color var(--duration-medium);
+}
+
+.mnf-nav__icon-btn:hover {
+  background-color: rgba(0, 90, 179, 0.5);  /* tertiary-container tint */
+}
+
+
+/* --------------------------------------------------------------------------
+   9. SITE FOOTER  (.mnf-footer)
+   Archive blue footer with top colour-band border.
+   -------------------------------------------------------------------------- */
+.mnf-footer {
+  width: 100%;
+  background-color: var(--chrome-bg);
+  border-top: 4px solid var(--secondary-fixed); /* #ffdf9a */
+  margin-top: 5rem;
+}
+
+.mnf-footer__inner {
+  width: 100%;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .mnf-footer__inner { flex-direction: row; }
+}
+
+.mnf-footer__copy {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--chrome-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .mnf-footer__copy { margin-bottom: 0; }
+}
+
+.mnf-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.mnf-footer__link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--chrome-text-muted);
+  text-decoration: none;
+  transition: color var(--duration-medium);
+}
+
+.mnf-footer__link:hover {
+  color: var(--secondary-fixed);   /* hover to warm gold */
+}
+
+
+/* --------------------------------------------------------------------------
+   10. SIDE NAVIGATION  (.mnf-sidenav)
+   Fixed left-rail used on the Archive and Geography pages.
+   -------------------------------------------------------------------------- */
+.mnf-sidenav {
+  display: none;            /* hidden on mobile */
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 16rem;             /* w-64 */
+  background-color: var(--surface-container);  /* #efefd7 */
+  flex-direction: column;
+  padding-top: 8rem;
+  box-shadow: 8px 0 24px -12px rgba(27, 29, 14, 0.15);
+  z-index: 40;
+}
+
+@media (min-width: 1024px) {
+  .mnf-sidenav { display: flex; }
+}
+
+.mnf-sidenav__brand {
+  padding: 0 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.mnf-sidenav__logo-mark {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--surface-container-highest);
+  border-radius: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.mnf-sidenav__title {
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.mnf-sidenav__subtitle {
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  opacity: 0.6;
+}
+
+.mnf-sidenav__link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--on-surface);
+  opacity: 0.8;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  transition: opacity var(--duration-medium), background-color var(--duration-medium);
+}
+
+.mnf-sidenav__link:hover {
+  opacity: 1;
+  background-color: var(--surface-container-highest);
+}
+
+/* Active / current-page state */
+.mnf-sidenav__link--active {
+  background-color: var(--primary-container);  /* #9c3f00 */
+  color: #ffffff;
+  opacity: 1;
+  border-radius: 0 0.125rem 0.125rem 0;
+  margin-left: 0.5rem;
+  border-left: 4px solid var(--secondary);
+  transform: translateX(4px);
+}
+
+.mnf-sidenav__link--active:hover {
+  background-color: var(--primary-container);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. BUTTONS  (standalone, outside Tailwind utility context)
+   -------------------------------------------------------------------------- */
+
+/* Primary CTA — sun-drenched gradient */
+.btn-primary {
+  background: linear-gradient(45deg, var(--primary), var(--primary-container));
+  color: var(--on-primary);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.75rem 2rem;
+  border-radius: 0.125rem;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-medium) var(--ease-broadcast),
+              box-shadow var(--duration-medium) var(--ease-broadcast);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(27, 29, 14, 0.12);
+}
+
+/* Secondary CTA — ochre fill */
+.btn-secondary {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.75rem 2rem;
+  border-radius: 0.125rem;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-medium) var(--ease-broadcast),
+              opacity var(--duration-medium);
+}
+
+.btn-secondary:hover { opacity: 0.90; }

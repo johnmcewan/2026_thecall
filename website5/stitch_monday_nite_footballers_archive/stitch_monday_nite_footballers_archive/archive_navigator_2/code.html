@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Archive Navigator | Monday Nite Footballers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbcc",
+                        "on-surface": "#1b1d0e",
+                        "on-primary-container": "#ffc9b0",
+                        "on-primary-fixed": "#351000",
+                        "inverse-primary": "#ffb693",
+                        "surface-container-high": "#eaead1",
+                        "inverse-on-surface": "#f2f2da",
+                        "on-background": "#1b1d0e",
+                        "secondary-fixed-dim": "#f6be1d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface": "#fbfbe2",
+                        "on-surface-variant": "#564239",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "secondary": "#785a00",
+                        "surface-variant": "#e4e4cc",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "on-primary": "#ffffff",
+                        "outline": "#8a7268",
+                        "on-tertiary-fixed": "#001b3e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#c0d5ff",
+                        "primary": "#762e00",
+                        "background": "#fbfbe2",
+                        "secondary-fixed": "#ffdf9a",
+                        "surface-container-low": "#f5f5dc",
+                        "on-tertiary-fixed-variant": "#00458d",
+                        "surface-dim": "#dbdcc4",
+                        "tertiary-fixed": "#d6e3ff",
+                        "primary-container": "#9c3f00",
+                        "tertiary-container": "#005ab3",
+                        "surface-bright": "#fbfbe2",
+                        "on-secondary-container": "#6d5200",
+                        "surface-container-highest": "#e4e4cc",
+                        "surface-tint": "#9f4103",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#ffb693",
+                        "outline-variant": "#ddc1b4",
+                        "surface-container": "#efefd7",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fdc425",
+                        "tertiary": "#004388",
+                        "tertiary-fixed-dim": "#aac7ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBmqGPm18Syt8rmDNuAPFi_6qVSNglvdviEOxg7VtIEAaANm34u9wbq7M6d-ASLX1l9tjbHfEw_Ln8ZCy_1OUcjdQ0cBSxHj8XBJvrmUFlCXOQsRHcWQNsaZZSmwSRWDUYJre-O4Z7KEv362ZV_l90rRwzsrWjzwUJlaTGSutS71QheLFE5IkxgChHtRaCSAxs98LtAHBYza6Hfhpfcivt-HND9Lvlk_Yf6qg2EnxyoO1aNzdpA3NqNPcwtWyW9Zb290yy_8gupVzc);
+    opacity: 0.05;
+    pointer-events: none
+    }
+.broadcast-stripe {
+    height: 4px;
+    display: flex;
+    width: 100%
+    }
+.broadcast-stripe div {
+    height: 100%;
+    flex: 1
+    }
+.ink-bleed {
+    text-shadow: 0 0 0.5px rgba(118, 46, 0, 0.3)
+    }</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 bg-[#fbfbe2] dark:bg-[#1b1d0e] border-t-4 border-t-[#762e00] shadow-[0_4px_0_0_#762e00]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#762e00] dark:text-[#9c3f00] italic font-['Newsreader'] tracking-tight">Monday Nite Footballers</span>
+<div class="hidden md:flex gap-6 font-['Newsreader'] tracking-tight font-bold text-on-surface">
+<a class="text-[#1b1d0e]/70 dark:text-[#fbfbe2]/70 font-medium hover:bg-[#efefd7] dark:hover:bg-[#252815] transition-colors px-2 py-1" href="#">Home</a>
+<a class="text-[#762e00] dark:text-[#9c3f00] border-b-2 border-[#762e00] pb-1" href="#">Archive</a>
+<a class="text-[#1b1d0e]/70 dark:text-[#fbfbe2]/70 font-medium hover:bg-[#efefd7] dark:hover:bg-[#252815] transition-colors px-2 py-1" href="#">Personnel</a>
+<a class="text-[#1b1d0e]/70 dark:text-[#fbfbe2]/70 font-medium hover:bg-[#efefd7] dark:hover:bg-[#252815] transition-colors px-2 py-1" href="#">Geography</a>
+<a class="text-[#1b1d0e]/70 dark:text-[#fbfbe2]/70 font-medium hover:bg-[#efefd7] dark:hover:bg-[#252815] transition-colors px-2 py-1" href="#">Process</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-[#efefd7] rounded-sm transition-colors">search</button>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-[#efefd7] dark:bg-[#252815] flex-col pt-32 shadow-[8px_0_24px_-12px_rgba(27,29,14,0.15)] z-40">
+<div class="px-6 mb-10">
+<div class="w-12 h-12 bg-primary rounded-sm mb-4 flex items-center justify-center text-white font-headline italic font-bold">MNF</div>
+<h2 class="font-['Newsreader'] text-lg font-bold text-[#762e00]">MNF Archive</h2>
+<p class="font-['Work_Sans'] font-medium uppercase tracking-wider text-[10px] opacity-60">1970-1979 Folio</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] dark:text-[#fbfbe2] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all font-['Work_Sans'] font-medium uppercase tracking-wider text-xs" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 bg-[#9c3f00] text-white rounded-sm ml-2 border-l-4 border-[#785a00] font-['Work_Sans'] font-medium uppercase tracking-wider text-xs shadow-md translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span> Archive
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] dark:text-[#fbfbe2] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all font-['Work_Sans'] font-medium uppercase tracking-wider text-xs" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span> Personnel
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] dark:text-[#fbfbe2] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all font-['Work_Sans'] font-medium uppercase tracking-wider text-xs" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span> Geography
+            </a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] dark:text-[#fbfbe2] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all font-['Work_Sans'] font-medium uppercase tracking-wider text-xs" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span> Process
+            </a>
+</nav>
+</aside>
+<main class="lg:ml-64 min-h-screen p-8 max-w-7xl mx-auto">
+<!-- Header & Breadcrumbs -->
+<header class="mb-12 relative">
+<div class="broadcast-stripe mb-6">
+<div class="bg-primary"></div>
+<div class="bg-secondary"></div>
+<div class="bg-tertiary"></div>
+<div class="bg-error"></div>
+</div>
+<h1 class="text-6xl font-headline font-extrabold text-primary ink-bleed tracking-tight mb-2">The Microfilm Vault</h1>
+<p class="font-body text-lg text-on-surface-variant max-w-2xl italic">Navigating the printed echoes of the golden era. Select a year to filter the broadcast history.</p>
+</header>
+<!-- Search and Date Filter -->
+<section class="bg-surface-container p-8 mb-16 relative shadow-sm">
+<div class="grain-overlay absolute inset-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end relative z-10">
+<!-- Keyword Entry -->
+<div class="md:col-span-4">
+<label class="block font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">Search Keywords</label>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 px-0 py-2 font-headline text-xl italic transition-all placeholder:text-outline-variant" placeholder="e.g. 'Miami Dolphins', 'Howard Cosell'" type="text"/>
+<span class="absolute right-0 bottom-2 material-symbols-outlined text-outline">search</span>
+</div>
+</div>
+<!-- Date Range Selector -->
+<div class="md:col-span-8">
+<label class="block font-label text-[10px] font-bold uppercase tracking-widest text-secondary mb-4">Select Era (1970 — 1979)</label>
+<div class="flex flex-wrap gap-2">
+<!-- Tactile Year Buttons -->
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1970</button>
+<button class="px-4 py-2 bg-primary-container text-white border-b-4 border-primary font-bold font-headline shadow-inner">1971</button>
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1972</button>
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1973</button>
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1974</button>
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1975</button>
+<button class="px-5 py-2 bg-surface-container-low text-outline-variant font-bold font-headline cursor-not-allowed">...</button>
+<button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">1979</button>
+<button class="ml-auto px-6 py-2 bg-primary text-white font-label font-bold uppercase text-xs tracking-widest rounded-sm hover:translate-y-[-1px] active:translate-y-[1px] transition-all">Filter Archive</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Archive Results Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-start">
+<!-- Result Card 1 -->
+<article class="group relative bg-surface-container-low p-6 transition-all hover:translate-y-[-4px]">
+<div class="grain-overlay absolute inset-0"></div>
+<div class="relative overflow-hidden mb-6 h-64 bg-surface-dim">
+<img alt="Grainy microfilm scan of a 1970s newspaper sports headline about a dramatic Monday night game" class="w-full h-full object-cover mix-blend-multiply opacity-80 contrast-125 group-hover:scale-105 transition-transform duration-700" data-alt="Grainy black and white microfilm scan of a 1970s sports newspaper page with high contrast and visible print texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgmWqVCJGbvmAB7Trd0oacYVB8-B921G6N-i1MF7VhA7xnLzqJ2W0NzK98vZO2T6NgqhL_j6vcOtrTVuSeVtMXLpn2ouAfzO-oIzApKZU3Lz7MbS5R1IFKmoOBw5fcu7HeQB792BIEc07Ldd0gZ4LLCr-TpPaClYuYJWEwVcZbRg3db_jpxR2la9UEq2tZ7P8_o_UKic4SIxY9arynns-7_4NL3DsuCuxHgz5o3S6xoPEoJECvpuXZf93gaaUNOYTkj4DnPGipDUA"/>
+<div class="absolute inset-0 border-[12px] border-surface-container-low pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase tracking-widest">Headline</span>
+<span class="text-outline font-label text-[10px] uppercase font-semibold">Page 14-B</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">Dolphins Edge Raiders in Thrilling Coliseum Opener</h3>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mt-2">The smog cleared just enough for Garo Yepremian to split the uprights in the final seconds of play, cementing a legacy that...</p>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline font-bold text-primary italic">Sept 21, 1971</span>
+<button class="flex items-center gap-1 text-primary font-label text-[10px] font-bold uppercase tracking-tighter hover:underline underline-offset-4">
+                            View Full Sheet <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Result Card 2 - Asymmetric Rotation -->
+<article class="group relative bg-surface-container-highest p-6 transition-all rotate-1 hover:rotate-0 hover:translate-y-[-4px]">
+<div class="grain-overlay absolute inset-0"></div>
+<div class="relative overflow-hidden mb-6 h-64 bg-surface-dim">
+<img alt="Vintage photography of three sports announcers in loud plaid jackets behind a wooden desk with large microphones" class="w-full h-full object-cover mix-blend-multiply opacity-80 contrast-125 group-hover:scale-105 transition-transform duration-700" data-alt="High contrast newsprint photo of 1970s television broadcast personalities with heavy ink bleed and halftone dots" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpi-xodqhoaE5XwoQSE4msKaXp0tUlu5qPoyeQ8QYAX13tciduYzcd7hqcmBZsUMxf9MVwJaanyEeijXe-BqaB-GSWdZuruempyipkLtz7oEzAfpJR79v9fApDvhgIX5R3uakVjq3nHOS-RvyXMuW3ssWJTKg4I_j2zxmnUSbRZvvt7ASgKjngIEdtaWTAjlzyzT_RmVzEp2NZPmLwoUFbvJMRYCu9WIyDGcgzy7XMp3Au9i56QVFnrVVIBwXLKjVDGh7reptMQZM"/>
+<div class="absolute inset-0 border-[12px] border-surface-container-highest pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-tertiary-container text-on-tertiary-container font-label text-[10px] font-bold uppercase tracking-widest">Editorial</span>
+<span class="text-outline font-label text-[10px] uppercase font-semibold">Page 3-A</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">The Cosell Effect: Why We Can't Look Away</h3>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mt-2">Love him or loathe him, the man in the yellow jacket has transformed Monday nights into a national sociological experiment...</p>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline font-bold text-primary italic">Oct 12, 1973</span>
+<button class="flex items-center gap-1 text-primary font-label text-[10px] font-bold uppercase tracking-tighter hover:underline underline-offset-4">
+                            View Full Sheet <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Result Card 3 -->
+<article class="group relative bg-surface-container-low p-6 transition-all hover:translate-y-[-4px]">
+<div class="grain-overlay absolute inset-0"></div>
+<div class="relative overflow-hidden mb-6 h-64 bg-surface-dim">
+<img alt="Detailed weather map and stats chart from a 1970s local newspaper with hand-drawn elements" class="w-full h-full object-cover mix-blend-multiply opacity-80 contrast-125 group-hover:scale-105 transition-transform duration-700" data-alt="Microfilm snippet of a 1970s sports statistical grid with handwritten notations and ink smudges on aged paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR9U8ZhpE0gk5jRBu9BdAGNGlBqJz4A4_YXgNFcChliIpeUBNy-OuH1kx6hUO2bMhR8xsO13YIdWfdvoPVM7KD6USAAH6WnvKQx_1OX4b2gKSi_2bu7pakWiKENO1yiX04zpyaiLFEO3L9eZB6WqMR-nzZzkJ5p8BnNRVKowjm_6BOvJdT8vltigWdPGGQMGQ4nt5B9LhJSur8vvf0jzmWdD4m16OG3ru_2aDdejPiNAelg6knnJcqDhhVTGI6pIk8J3Jl0wGY0EU"/>
+<div class="absolute inset-0 border-[12px] border-surface-container-low pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase tracking-widest">Statistics</span>
+<span class="text-outline font-label text-[10px] uppercase font-semibold">Page 22-C</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">Full Week 4 Yards-Gained Ledger &amp; Defensive Analysis</h3>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mt-2">A comprehensive breakdown of every play from last nite's gridiron clash. Figures adjusted for wind speed at kickoff...</p>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline font-bold text-primary italic">Nov 04, 1971</span>
+<button class="flex items-center gap-1 text-primary font-label text-[10px] font-bold uppercase tracking-tighter hover:underline underline-offset-4">
+                            View Full Sheet <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Result Card 4 -->
+<article class="group relative bg-surface-container-low p-6 transition-all hover:translate-y-[-4px]">
+<div class="grain-overlay absolute inset-0"></div>
+<div class="relative overflow-hidden mb-6 h-64 bg-surface-dim">
+<img alt="Microfilm close up of a stylized 1970s car advertisement next to a football score column" class="w-full h-full object-cover mix-blend-multiply opacity-80 contrast-125 group-hover:scale-105 transition-transform duration-700" data-alt="Scan of vintage 1970s print advertisement with bold typography and grainy photo quality alongside column of text" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8jSL9wv5YcKilEQM_1aLlIuxRdWKXw7lvU2SoAdLEWT9BlrgwlPPDQCkcV-l-LCbl5ZAE1KZ4K2lnXM1zsD1L6Go26_zJkhkCXbpXQAwo9tkcl4Po3cymV2FxG4szgqmCJWzVImi-JYJWMIcP1_EZnbkKkQyxwKQ4naFM007NITP0I6pCTGjXzyh1M-REdyuj4slcooVrzXEr5y2jggBNqXiZ51tG0V_l_3hovIy2aw6SKi21F5pw7IkHAV9X8COVpirRd0GQblo"/>
+<div class="absolute inset-0 border-[12px] border-surface-container-low pointer-events-none"></div>
+</div>
+<div class="flex flex-col gap-2 relative z-10">
+<div class="flex justify-between items-start">
+<span class="px-2 py-1 bg-error-container text-on-error-container font-label text-[10px] font-bold uppercase tracking-widest">Advert</span>
+<span class="text-outline font-label text-[10px] uppercase font-semibold">Page 8-B</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">Detroit Pride: The New '71 Fleet Hits The Showroom</h3>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mt-2">Power meets performance. See why the Motor City's latest is the only way to arrive at the stadium this autumn season...</p>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+<span class="font-headline font-bold text-primary italic">Aug 15, 1971</span>
+<button class="flex items-center gap-1 text-primary font-label text-[10px] font-bold uppercase tracking-tighter hover:underline underline-offset-4">
+                            View Full Sheet <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- Pagination / Footer Note -->
+<footer class="mt-24 w-full py-12 border-t border-[#ddc1b4]/15 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto font-['Work_Sans'] text-sm tracking-normal">
+<div class="flex flex-col items-center md:items-start gap-2 mb-8 md:mb-0">
+<p class="text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60">© 1974 Monday Nite Broadcast Collective. Curated by The Living Archive.</p>
+<div class="flex gap-6">
+<a class="text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Terms of Research</a>
+<a class="text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Broadcast Rights</a>
+<a class="text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Press Kit</a>
+<a class="text-[#1b1d0e] dark:text-[#fbfbe2] opacity-60 hover:text-[#762e00] transition-opacity" href="#">Contact Editor</a>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-4 py-2 border border-primary text-primary font-bold font-headline transition-all hover:bg-primary-fixed">Previous Folio</button>
+<button class="px-4 py-2 bg-primary text-white font-bold font-headline transition-all hover:bg-primary-container">Next Folio</button>
+</div>
+</footer>
+</main>
+<!-- Floating Filter FAB (Mobile Only) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</body></html>

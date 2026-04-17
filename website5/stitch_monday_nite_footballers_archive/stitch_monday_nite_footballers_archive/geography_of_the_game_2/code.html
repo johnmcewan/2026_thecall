@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbcc",
+                        "on-surface": "#1b1d0e",
+                        "on-primary-container": "#ffc9b0",
+                        "on-primary-fixed": "#351000",
+                        "inverse-primary": "#ffb693",
+                        "surface-container-high": "#eaead1",
+                        "inverse-on-surface": "#f2f2da",
+                        "on-background": "#1b1d0e",
+                        "secondary-fixed-dim": "#f6be1d",
+                        "on-secondary-fixed-variant": "#5a4300",
+                        "surface": "#fbfbe2",
+                        "on-surface-variant": "#564239",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "secondary": "#785a00",
+                        "surface-variant": "#e4e4cc",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303221",
+                        "on-primary": "#ffffff",
+                        "outline": "#8a7268",
+                        "on-tertiary-fixed": "#001b3e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#c0d5ff",
+                        "primary": "#762e00",
+                        "background": "#fbfbe2",
+                        "secondary-fixed": "#ffdf9a",
+                        "surface-container-low": "#f5f5dc",
+                        "on-tertiary-fixed-variant": "#00458d",
+                        "surface-dim": "#dbdcc4",
+                        "tertiary-fixed": "#d6e3ff",
+                        "primary-container": "#9c3f00",
+                        "tertiary-container": "#005ab3",
+                        "surface-bright": "#fbfbe2",
+                        "on-secondary-container": "#6d5200",
+                        "surface-container-highest": "#e4e4cc",
+                        "surface-tint": "#9f4103",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#251a00",
+                        "primary-fixed-dim": "#ffb693",
+                        "outline-variant": "#ddc1b4",
+                        "surface-container": "#efefd7",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fdc425",
+                        "tertiary": "#004388",
+                        "tertiary-fixed-dim": "#aac7ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.ink-bleed {
+    text-shadow: 0 0 0.5px rgba(118, 46, 0, 0.3)
+    }
+.broadcast-stripe {
+    height: 4px;
+    background: linear-gradient(to right, #762e00 25%, #785a00 25%, #785a00 50%, #004388 50%, #004388 75%, #ba1a1a 75%)
+    }
+.map-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA3U_P4u6ZC8viUGxENsmCxiUlDWRVYtFSBmllq28_gzeMqTWp7SX92zOWZmImEk7hy5Ig64U1zWagYJiRhxrcsKc98wgB5FjrieEhWTkhNRc0j-kEGPYBVjyz4ccG9QGQJPYtSf8J9D9bsz92iBs7zCf3ky0S21_DWHvmN3irYTxtjNNhzIBvo8alUhGfUC2YITWbsvRTCILFsBdJt2nz4oekYUOtWy35XsHNqldQX8XKE1P2PaAGZWU_WeKq7-r8jWZdPEvBVFK8);
+    mix-blend-mode: multiply;
+    pointer-events: none
+    }</style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<header class="bg-[#fbfbe2] sticky top-0 z-50 border-t-4 border-b-4 border-[#762e00]">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#762e00] italic font-['Newsreader'] tracking-tight">Monday Nite Footballers</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#1b1d0e]/70 font-medium font-['Newsreader'] hover:bg-[#efefd7] transition-colors px-2" href="#">Home</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Newsreader'] hover:bg-[#efefd7] transition-colors px-2" href="#">Archive</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Newsreader'] hover:bg-[#efefd7] transition-colors px-2" href="#">Personnel</a>
+<a class="text-[#762e00] border-b-2 border-[#762e00] pb-1 font-bold font-['Newsreader']" href="#">Geography</a>
+<a class="text-[#1b1d0e]/70 font-medium font-['Newsreader'] hover:bg-[#efefd7] transition-colors px-2" href="#">Process</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#762e00] font-bold font-['Newsreader'] hover:bg-[#efefd7] px-4 py-1 transition-colors">Search</button>
+<div class="md:hidden">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</div>
+</div>
+</nav>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-[#efefd7] flex-col pt-32 shadow-[8px_0_24px_-12px_rgba(27,29,14,0.15)] z-40">
+<div class="px-6 mb-8">
+<div class="w-12 h-12 bg-surface-container-highest rounded-sm flex items-center justify-center mb-2 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="vintage football helmet insignia with aged texture and muted team colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCSOppa9AQ4NOpHyb3Zfufo6F9Q_vSUCHV2vE0flRNUo02WhPW3_-qgSPVkMTs3fX4EbpyGbW8Yo43tnb6HhgWTd2YnX7u1pH2JPqFMONgy8ZUhLpju-zkIm4TudBZjrEJ-YRZ_wONeCvmWYgCll_GoY7Q538agQ6wpWFcDeIP0Lg856nGwd8d3owid1E7aWSI0kLlMyCEjrAvIZ8YpRqpzoM1shwgs0HqPSu3_H9FSPuol7DZue2KzmDZbj8sa0hJ8H51UICi1pk"/>
+</div>
+<h2 class="font-['Newsreader'] text-lg font-bold text-[#762e00]">MNF Archive</h2>
+<p class="font-['Work_Sans'] font-medium uppercase tracking-wider text-[10px] opacity-60">1970-1979 Folio</p>
+</div>
+<nav class="flex flex-col gap-1 pr-4">
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="home">home</span>
+<span class="font-['Work_Sans'] font-medium uppercase tracking-wider text-xs">Home</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="library_books">library_books</span>
+<span class="font-['Work_Sans'] font-medium uppercase tracking-wider text-xs">Archive</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="font-['Work_Sans'] font-medium uppercase tracking-wider text-xs">Personnel</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 bg-[#9c3f00] text-white rounded-sm ml-2 border-l-4 border-[#785a00] translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="map">map</span>
+<span class="font-['Work_Sans'] font-medium uppercase tracking-wider text-xs">Geography</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-3 text-[#1b1d0e] opacity-80 hover:opacity-100 hover:bg-[#e4e4cc] transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="history">history</span>
+<span class="font-['Work_Sans'] font-medium uppercase tracking-wider text-xs">Process</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 bg-surface p-4 md:p-8">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Header Section -->
+<section class="space-y-4">
+<div class="broadcast-stripe w-32"></div>
+<h1 class="font-headline text-5xl md:text-7xl text-primary ink-bleed font-bold tracking-tighter">Geography of the Game</h1>
+<p class="font-body text-on-surface-variant max-w-2xl text-lg leading-relaxed">
+                        A spatial survey of Kansas City during the transformative broadcast decade. Mapping the transit lines, social hubs, and tactical centers of the Monday Nite era.
+                    </p>
+</section>
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- The Interactive Map -->
+<div class="flex-grow relative h-[600px] bg-surface-container shadow-inner overflow-hidden rounded-sm">
+<!-- Muted Vintage Map Canvas -->
+<div class="absolute inset-0 opacity-40 bg-[#d4c8a8]" data-location="Kansas City" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfihOMdDqdICD0SOD02vymX8kvfilcsE_vqPIIcTWfajsAuNu9QTH82Yer4H6FJaxpsWEEXJ3hFX-THf4nDoMt5CFSJXD2uw29pb_bXWnHQKJDJvT7kwLySjb_7Um7ajuVLwqb1JqEIA4Lv9XxwcrzwF3uH9_0pV7I9MforQY4ov-D7oDG3h_8vow9iU9E9bdq-laYD0xSl_BWIBZ1GwHQbjKyxOre0z3N2dvjwQCznaGpe6j77h9bLrgdKsJqniDjvrLcA6IXRUk'); background-size: cover; background-position: center; filter: sepia(0.6) contrast(1.1);"></div>
+<div class="absolute inset-0 map-texture"></div>
+<!-- Map Markers (Jersey Patch Style) -->
+<!-- Marker 1: Arrowhead -->
+<div class="absolute top-[40%] left-[60%] group cursor-pointer">
+<div class="w-10 h-10 bg-[#ba1a1a] rounded-sm border-2 border-[#ffdf9a] flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-white text-xl" data-icon="stadium">stadium</span>
+</div>
+<!-- Tooltip: Paper-on-Paper -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+<div class="bg-surface-container-lowest p-1 shadow-xl transform -rotate-1 translate-y-2 group-hover:translate-y-0 transition-transform">
+<img class="w-full h-32 object-cover" data-alt="grainy black and white photograph of an old sports stadium with massive concrete pillars and 1970s cars parked outside" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1av9KgKjiRR0T7XCq8uCl_kSKa1qv70GE2uLcfJzTeL6VJKB1Eg9ipJrY6a2PxCUC3xFPLlBXrz4JBiBYgC5YUiB5yKMBBxmWdbzD24rA_HtXslobC2U04WeYFH2kA80bk_KQkjfQ3wnH3oCBtMiESIxYm8GFGWH8pFGAbt_KJ9FYSfFLXgefANAkksyGI8XxaMsfpzz-9RMODHexEN3rtc_1quSJbSH3d1hzhuNCvBDBoMLInOHBWIb8Dlh-eDHYCvpXWUOV4V8"/>
+<div class="p-3 bg-surface-container-low mt-1">
+<h4 class="font-headline font-bold text-primary">Arrowhead Base</h4>
+<p class="text-xs font-body text-on-surface-variant">Established 1972. The nexus of the Monday Nite ritual.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Marker 2: The Call -->
+<div class="absolute top-[25%] left-[30%] group cursor-pointer">
+<div class="w-10 h-10 bg-[#004388] rounded-sm border-2 border-[#d6e3ff] flex items-center justify-center shadow-lg transform -rotate-2 hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-white text-xl" data-icon="newspaper">newspaper</span>
+</div>
+<!-- Tooltip -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+<div class="bg-surface-container-lowest p-1 shadow-xl transform rotate-2 translate-y-2 group-hover:translate-y-0 transition-transform">
+<img class="w-full h-32 object-cover" data-alt="close up of a vintage typewriter and scattered broadsheet newspapers in a dimly lit 1970s office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNqRCbMfAqX4JRRH-cbyQBhfI7ZMcd15aU8OCAzi2GYwtH69hkdKOuAhmsHxMelNmjHDY3EAVdATK9lc_fTCOGDWjF19DvEkKKR6MhXiKynd_VRSHH6UhnHQAHg_lA97Hp-qa6nqFiotdOB9nXdPgYlLs5lBsNbJiFbHElHiHSmqB1W99AP4TVAExjMu6wBWz-PmgTlE-CdjAipfaeef5VQGC-sMmutaVuzkgl_QvSfqt2sVcKyt0mdUnJVO0MDcctFHrcnEdyTRo"/>
+<div class="p-3 bg-surface-container-low mt-1">
+<h4 class="font-headline font-bold text-tertiary">The Call Offices</h4>
+<p class="text-xs font-body text-on-surface-variant">Editorial hub for the local press corps.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Marker 3: Gathering Spot -->
+<div class="absolute top-[55%] left-[25%] group cursor-pointer">
+<div class="w-10 h-10 bg-[#785a00] rounded-sm border-2 border-[#ffdf9a] flex items-center justify-center shadow-lg transform rotate-6 hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-white text-xl" data-icon="local_bar">local_bar</span>
+</div>
+<!-- Tooltip -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+<div class="bg-surface-container-lowest p-1 shadow-xl transform -rotate-3 translate-y-2 group-hover:translate-y-0 transition-transform">
+<img class="w-full h-32 object-cover" data-alt="interior of a 1970s bar with wood paneling, amber lighting, and patrons in vintage earth-toned clothing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDozenrP69MrJCZMhGDno9vLhJcQ8lchw_wkb-A2cCt-fjOsRET9hsWpts-x-K1KA9SFHdhzeuAOk4BHINkJPbB6qvzxTGKRVGS5U2JwUpIV4EH9BXfHcafIpwPlg7isYni0vYy3TYmtxKYOpWtxtPiIwBpth2GplLIPUQSM0Od9ARVnFwnzmwMFNWDCtd0BLh_skiXHcfciS4cUJFZPPRLBN0foXKCIbRaEqHLikd6RVjhW5bJFXpD445pKATVcrSkf9Rw63Hh5Eo"/>
+<div class="p-3 bg-surface-container-low mt-1">
+<h4 class="font-headline font-bold text-secondary">The Blue Room</h4>
+<p class="text-xs font-body text-on-surface-variant">Post-game analysis and social collective.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Controls (Minimalist) -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-surface-container-highest flex items-center justify-center shadow-md hover:bg-surface-bright"><span class="material-symbols-outlined" data-icon="add">add</span></button>
+<button class="w-10 h-10 bg-surface-container-highest flex items-center justify-center shadow-md hover:bg-surface-bright"><span class="material-symbols-outlined" data-icon="remove">remove</span></button>
+</div>
+</div>
+<!-- Sidebar: Points of Interest -->
+<aside class="w-full lg:w-80 space-y-6">
+<div class="bg-surface-container-low p-6 shadow-[4px_4px_0_0_#efefd7] border-l-4 border-l-primary">
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-6">Points of Interest</h3>
+<div class="space-y-8">
+<div>
+<h4 class="font-label uppercase tracking-widest text-xs text-primary font-bold mb-3 border-b border-outline-variant pb-1">Media Centers</h4>
+<ul class="space-y-4">
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">The Call Offices</p>
+<p class="text-sm font-body text-on-surface-variant">Press Row &amp; Editorial Suites</p>
+</li>
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Broadcast Hill</p>
+<p class="text-sm font-body text-on-surface-variant">Transmission &amp; Signal Control</p>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="font-label uppercase tracking-widest text-xs text-secondary font-bold mb-3 border-b border-outline-variant pb-1">Gathering Spots</h4>
+<ul class="space-y-4">
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">The Blue Room</p>
+<p class="text-sm font-body text-on-surface-variant">18th &amp; Vine District</p>
+</li>
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">Arthur Bryant's</p>
+<p class="text-sm font-body text-on-surface-variant">Tactical Lunch Meetings</p>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="font-label uppercase tracking-widest text-xs text-tertiary font-bold mb-3 border-b border-outline-variant pb-1">Tactical Grounds</h4>
+<ul class="space-y-4">
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Arrowhead Stadium</p>
+<p class="text-sm font-body text-on-surface-variant">The Operational Core</p>
+</li>
+<li class="group cursor-pointer">
+<p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Municipal Field</p>
+<p class="text-sm font-body text-on-surface-variant">Legacy Site Research</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Data Clip Card -->
+<div class="bg-surface-container-highest p-4 transform rotate-2 shadow-lg">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="info">info</span>
+<p class="font-headline italic text-on-surface leading-snug">"The city is a grid of stories, each touchdown leaving a permanent mark on the geography of our neighborhoods."</p>
+<p class="font-body text-[10px] mt-2 uppercase tracking-widest opacity-60">— Dispatch Vol. 4, 1975</p>
+</div>
+</aside>
+</div>
+<!-- Footer Stats Grid (Asymmetric) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
+<div class="bg-surface-container p-6 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-9xl" data-icon="location_on">location_on</span>
+</div>
+<h5 class="font-label uppercase text-[10px] tracking-widest text-on-surface-variant mb-1">Total Mapped</h5>
+<div class="font-headline text-4xl font-black text-primary">24 Locations</div>
+</div>
+<div class="bg-surface-container p-6 border-t-4 border-t-secondary">
+<h5 class="font-label uppercase text-[10px] tracking-widest text-on-surface-variant mb-1">Primary District</h5>
+<div class="font-headline text-4xl font-black text-secondary">Jackson County</div>
+</div>
+<div class="bg-surface-container p-6 transform -translate-y-2 shadow-xl bg-surface-container-high">
+<h5 class="font-label uppercase text-[10px] tracking-widest text-on-surface-variant mb-1">Archive Status</h5>
+<div class="font-headline text-4xl font-black text-on-surface">Verified</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-[#fbfbe2] border-t border-[#ddc1b4]/15 mt-20">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="broadcast-stripe w-24"></div>
+<p class="font-['Work_Sans'] text-sm tracking-normal text-[#1b1d0e] opacity-60 text-center md:text-left max-w-md">
+                    © 1974 Monday Nite Broadcast Collective. Curated by The Living Archive. Accessing restricted personnel files and geographic surveys.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 mt-8 md:mt-0">
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] opacity-60 hover:text-[#762e00] hover:underline decoration-2 underline-offset-4 transition-all" href="#">Terms of Research</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] opacity-60 hover:text-[#762e00] hover:underline decoration-2 underline-offset-4 transition-all" href="#">Broadcast Rights</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] opacity-60 hover:text-[#762e00] hover:underline decoration-2 underline-offset-4 transition-all" href="#">Press Kit</a>
+<a class="font-['Work_Sans'] text-sm text-[#1b1d0e] opacity-60 hover:text-[#762e00] hover:underline decoration-2 underline-offset-4 transition-all" href="#">Contact Editor</a>
+</div>
+</div>
+</footer>
+</body></html>
