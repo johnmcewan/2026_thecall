@@ -208,6 +208,17 @@
 
       <div class="flex flex-col lg:flex-row gap-8">
 
+        <!-- Ranked Mention List (Left Margin) -->
+        <aside class="w-full lg:w-52 shrink-0">
+          <div class="bg-surface-container-low p-4 shadow-[4px_4px_0_0_#efefd7] border-l-4 border-l-secondary h-[600px] flex flex-col">
+            <h3 class="font-headline text-lg font-bold text-on-surface mb-1">Most Mentioned</h3>
+            <p class="text-xs text-on-surface-variant mb-3 font-body">Click to locate on map</p>
+            <ul class="space-y-0 overflow-y-auto flex-1 pr-1" id="mentionRankList">
+              <li class="text-on-surface-variant text-sm">Loading...</li>
+            </ul>
+          </div>
+        </aside>
+
         <!-- Interactive Map Canvas -->
         <div class="flex-grow relative h-[600px] bg-surface-container shadow-inner overflow-hidden rounded-sm">
 
@@ -447,6 +458,11 @@
 
   // Add markers to map
   function addMarkersToMap() {
+    // Pre-compute mention count range for scaling
+    const counts = locationData.map(l => parseInt(l['Mention Count']) || 1);
+    const maxCount = Math.max(...counts) || 1;
+    const minSize = 14, maxSize = 46;
+
     locationData.forEach((location, index) => {
       // Skip header row or invalid entries
       if (!location.Latitude || !location.Longitude || !location['Location Name']) {
@@ -462,12 +478,15 @@
         return;
       }
 
-      // Create custom icon
-      const iconColor = hexToRgb(color);
+      // Scale circle size by mention count
+      const mentionCount = parseInt(location['Mention Count']) || 1;
+      const size = Math.round(minSize + ((mentionCount - 1) / (maxCount - 1 || 1)) * (maxSize - minSize));
+      const fontSize = Math.max(9, Math.round(size * 0.38));
+
+      // Create custom icon with size proportional to mention count
       const icon = L.divIcon({
-        className: 'custom-marker',
-        html: `<div style="background-color: ${color}; width: 28px; height: 28px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 12px;">${index + 1}</div>`,
-        iconSize: [28, 28],
+        html: `<div style="background-color: ${color}; width: ${size}px; height: ${size}px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [size, size],
         className: ''
       });
 
@@ -551,7 +570,33 @@
       `).join('')
       : '<li class="text-on-surface-variant">No tactical grounds found</li>';
 
+    // Update ranked mention list (sorted by mention count desc)
+    const ranked = locationData
+      .filter(loc => loc['Location Name'] && loc.Latitude && loc.Longitude)
+      .map(loc => ({ ...loc, _count: parseInt(loc['Mention Count']) || 0 }))
+      .sort((a, b) => b._count - a._count);
+
+    const maxMentions = ranked.length ? ranked[0]._count : 1;
+
+    const mentionRankHTML = ranked.map((loc, i) => {
+      const barWidth = maxMentions > 0 ? Math.round((loc._count / maxMentions) * 100) : 0;
+      return `
+        <li class="group cursor-pointer py-1.5 border-b border-outline-variant last:border-0"
+            onclick="focusLocation(${loc.Latitude}, ${loc.Longitude})">
+          <div class="flex items-baseline justify-between gap-1 mb-0.5">
+            <p class="font-headline font-bold text-xs text-on-surface group-hover:text-secondary transition-colors leading-tight">${loc['Location Name']}</p>
+            <span class="text-xs font-body text-on-surface-variant shrink-0">${loc._count}</span>
+          </div>
+          <div class="h-1 bg-outline-variant rounded-full overflow-hidden">
+            <div class="h-full bg-secondary rounded-full transition-all" style="width: ${barWidth}%"></div>
+          </div>
+        </li>
+      `;
+    }).join('');
+
     document.getElementById('tacticalGrounds').innerHTML = tacticalGroundsHTML;
+
+    document.getElementById('mentionRankList').innerHTML = mentionRankHTML || '<li class="text-on-surface-variant text-sm">No data</li>';
   }
 
   // Focus on a specific location

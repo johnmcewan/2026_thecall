@@ -9,11 +9,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  
   <!-- Design System -->
   <link rel="stylesheet" href="mnf.css"/>
   <script src="mnf-config.js"></script>
   <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .leaflet-popup-content {
+      font-family: inherit;
+      margin: 0;
+      padding: 0;
+    }
+
+    .location-popup {
+      min-width: 250px;
+    }
+
+    .location-popup h5 {
+      font-weight: bold;
+      margin: 8px 0 4px 0;
+      color: #001b3e;
+      font-size: 16px;
+    }
+
+    .location-popup p {
+      margin: 4px 0;
+      font-size: 13px;
+      color: #424242;
+      line-height: 1.4;
+    }
+
+    .location-popup .category {
+      font-size: 11px;
+      color: #757575;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .location-popup .mention-count {
+      font-size: 12px;
+      color: #999;
+      font-style: italic;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #eee;
+    }
+
+    .map-controls {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .map-control-btn {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
+      font-size: 20px;
+    }
+
+    .map-control-btn:hover {
+      background: #f5f5f5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .loading-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 50;
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #001b3e;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
 
@@ -38,7 +159,7 @@
 <div class="flex min-h-screen">
 
   <!-- Side Navigation -->
-  <aside class="mnf-sidenav">
+<!--   <aside class="mnf-sidenav">
     <div class="mnf-sidenav__brand">
       <div class="mnf-sidenav__logo-mark">
         <img class="w-full h-full object-cover"
@@ -70,7 +191,7 @@
         <span>Process</span>
       </a>
     </nav>
-  </aside>
+  </aside> -->
 
   <!-- Main Content Canvas -->
   <main class="flex-1 lg:ml-64 bg-surface p-4 md:p-8">
@@ -79,89 +200,53 @@
       <!-- Page Header -->
       <section class="space-y-4">
         <div class="broadcast-stripe w-32"></div>
-        <h1 class="font-headline text-5xl md:text-7xl text-primary ink-bleed font-bold tracking-tighter">Geography of the Game</h1>
+        <h1 class="font-headline text-5xl md:text-7xl text-primary ink-bleed font-bold tracking-tighter">Geography of the Monday Niters</h1>
         <p class="font-body text-on-surface-variant max-w-2xl text-lg leading-relaxed">
-          A spatial survey of Kansas City during the transformative broadcast decade. Mapping the transit lines,
-          social hubs, and tactical centers of the Monday Nite era.
+          A survey of the locations mentioned in the Monday Nite articles in the Kansas City Call, 2003-2014.
         </p>
       </section>
 
       <div class="flex flex-col lg:flex-row gap-8">
 
+        <!-- Ranked Mention List (Left Margin) -->
+        <aside class="w-full lg:w-52 shrink-0">
+          <div class="bg-surface-container-low p-4 shadow-[4px_4px_0_0_#efefd7] border-l-4 border-l-secondary h-[600px] flex flex-col">
+            <h3 class="font-headline text-lg font-bold text-on-surface mb-1">Most Mentioned</h3>
+            <p class="text-xs text-on-surface-variant mb-3 font-body">Click to locate on map</p>
+            <ul class="space-y-0 overflow-y-auto flex-1 pr-1" id="mentionRankList">
+              <li class="text-on-surface-variant text-sm">Loading...</li>
+            </ul>
+          </div>
+        </aside>
+
         <!-- Interactive Map Canvas -->
         <div class="flex-grow relative h-[600px] bg-surface-container shadow-inner overflow-hidden rounded-sm">
 
-          <!-- Vintage map image -->
-          <div class="absolute inset-0 opacity-40 bg-[#d4c8a8]"
+          <!-- Vintage map image overlay -->
+          <div class="map-overlay opacity-20 bg-[#d4c8a8]"
             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfihOMdDqdICD0SOD02vymX8kvfilcsE_vqPIIcTWfajsAuNu9QTH82Yer4H6FJaxpsWEEXJ3hFX-THf4nDoMt5CFSJXD2uw29pb_bXWnHQKJDJvT7kwLySjb_7Um7ajuVLwqb1JqEIA4Lv9XxwcrzwF3uH9_0pV7I9MforQY4ov-D7oDG3h_8vow9iU9E9bdq-laYD0xSl_BWIBZ1GwHQbjKyxOre0z3N2dvjwQCznaGpe6j77h9bLrgdKsJqniDjvrLcA6IXRUk'); background-size: cover; background-position: center; filter: sepia(0.6) contrast(1.1);">
           </div>
-          <!-- Paper grain texture overlay -->
-          <div class="absolute inset-0 map-texture"></div>
+          
+          <!-- Leaflet Map -->
+          <div id="map"></div>
 
-          <!-- Map Markers (Jersey-Patch Style) -->
-
-          <!-- Marker 1: Arrowhead -->
-          <div class="absolute top-[40%] left-[60%] group cursor-pointer">
-            <div class="w-10 h-10 bg-error rounded-sm border-2 border-secondary-fixed flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform">
-              <span class="material-symbols-outlined text-white text-xl">stadium</span>
-            </div>
-            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-              <div class="bg-surface-container-lowest p-1 shadow-xl transform -rotate-1 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <img class="w-full h-32 object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1av9KgKjiRR0T7XCq8uCl_kSKa1qv70GE2uLcfJzTeL6VJKB1Eg9ipJrY6a2PxCUC3xFPLlBXrz4JBiBYgC5YUiB5yKMBBxmWdbzD24rA_HtXslobC2U04WeYFH2kA80bk_KQkjfQ3wnH3oCBtMiESIxYm8GFGWH8pFGAbt_KJ9FeLXgefANAkksyGI8XxaMsfpzz-9RMODHexEN3rtc_1quSJbSH3d1hzhuNCvBDBoMLInOHBWIb8Dlh-eDHYCvpXWUOV4V8"
-                  alt="Arrowhead Stadium"/>
-                <div class="p-3 bg-surface-container-low mt-1">
-                  <h4 class="font-headline font-bold text-primary">Arrowhead Base</h4>
-                  <p class="text-xs font-body text-on-surface-variant">Established 1972. The nexus of the Monday Nite ritual.</p>
-                </div>
-              </div>
-            </div>
+          <!-- Loading Indicator -->
+          <div id="loadingIndicator" class="loading-indicator">
+            <div class="loading-spinner"></div>
+            <p class="text-on-surface">Loading locations...</p>
           </div>
 
-          <!-- Marker 2: The Call -->
-          <div class="absolute top-[25%] left-[30%] group cursor-pointer">
-            <div class="w-10 h-10 bg-tertiary rounded-sm border-2 border-tertiary-fixed flex items-center justify-center shadow-lg transform -rotate-2 hover:rotate-0 transition-transform">
-              <span class="material-symbols-outlined text-white text-xl">newspaper</span>
-            </div>
-            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-              <div class="bg-surface-container-lowest p-1 shadow-xl transform rotate-2 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <img class="w-full h-32 object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNqRCbMfAqX4JRRH-cbyQBhfI7ZMcd15aU8OCAzi2GYwtH69hkdKOuAhmsHxMelNmjHDY3EAVdATK9lc_fTCOGDWjF19DvEkKKR6MhXiKynd_VRSHH6UhnHQAHg_lA97Hp-qa6nqFiotdOB9nXdPgYlLs5lBsNbJiFbHElHiHSmqB1W99AP4TVAExjMu6wBWz-PmgTlE-CdjAipfaeef5VQGC-sMmutaVuzkgl_QvSfqt2sVcKyt0mdUnJVO0MDcctFHrcnEdyTRo"
-                  alt="Kansas City Call Offices"/>
-                <div class="p-3 bg-surface-container-low mt-1">
-                  <h4 class="font-headline font-bold text-tertiary">The Call Offices</h4>
-                  <p class="text-xs font-body text-on-surface-variant">Editorial hub for the local press corps.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Marker 3: The Blue Room -->
-          <div class="absolute top-[55%] left-[25%] group cursor-pointer">
-            <div class="w-10 h-10 bg-secondary rounded-sm border-2 border-secondary-fixed flex items-center justify-center shadow-lg transform rotate-6 hover:rotate-0 transition-transform">
-              <span class="material-symbols-outlined text-white text-xl">local_bar</span>
-            </div>
-            <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-64 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-              <div class="bg-surface-container-lowest p-1 shadow-xl transform -rotate-3 translate-y-2 group-hover:translate-y-0 transition-transform">
-                <img class="w-full h-32 object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDozenrP69MrJCZMhGDno9vLhJcQ8lchw_wkb-A2cCt-fjOsRET9hsWpts-x-K1KA9SFHdhzeuAOk4BHINkJPbB6qvzxTGKRVGS5U2JwUpIV4EH9BXfHcafIpwPlg7isYni0vYy3TYmtxKYOpWtxtPiIwBpth2GplLIPUQSM0Od9ARVnFwnzmwMFNWDCtd0BLh_skiXHcfciS4cUJFZPPRLBN0foXKCIbRaEqHLikd6RVjhW5bJFXpD445pKATVcrSkf9Rw63Hh5Eo"
-                  alt="The Blue Room bar"/>
-                <div class="p-3 bg-surface-container-low mt-1">
-                  <h4 class="font-headline font-bold text-secondary">The Blue Room</h4>
-                  <p class="text-xs font-body text-on-surface-variant">Post-game analysis and social collective.</p>
-                </div>
-              </div>
-            </div>
+          <!-- Map Legend -->
+          <div id="mapLegend" style="position: absolute; bottom: 1rem; left: 1rem; z-index: 100; background: white; border: 1px solid #ddd; border-radius: 4px; padding: 10px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); min-width: 150px; font-family: inherit;">
+            <p style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #757575; margin: 0 0 8px 0;">Mentions</p>
+            <div id="legendItems" style="display: flex; flex-direction: column; gap: 6px;"></div>
           </div>
 
           <!-- Map Controls -->
-          <div class="absolute bottom-4 right-4 flex flex-col gap-2">
-            <button class="w-10 h-10 bg-surface-container-highest flex items-center justify-center shadow-md hover:bg-surface-bright">
-              <span class="material-symbols-outlined">add</span>
-            </button>
-            <button class="w-10 h-10 bg-surface-container-highest flex items-center justify-center shadow-md hover:bg-surface-bright">
-              <span class="material-symbols-outlined">remove</span>
-            </button>
+          <div class="map-controls">
+            <button class="map-control-btn" id="zoomInBtn" title="Zoom In">+</button>
+            <button class="map-control-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+            <button class="map-control-btn" id="centerBtn" title="Center on 18th & Vine">🎯</button>
           </div>
         </div>
 
@@ -171,41 +256,33 @@
             <h3 class="font-headline text-2xl font-bold text-on-surface mb-6">Points of Interest</h3>
             <div class="space-y-8">
               <div>
-                <h4 class="label-caps text-primary font-bold mb-3 border-b border-outline-variant pb-1">Media Centers</h4>
-                <ul class="space-y-4">
-                  <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">The Call Offices</p>
-                    <p class="text-sm font-body text-on-surface-variant">Press Row &amp; Editorial Suites</p>
-                  </li>
-                  <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-primary transition-colors">Broadcast Hill</p>
-                    <p class="text-sm font-body text-on-surface-variant">Transmission &amp; Signal Control</p>
-                  </li>
-                </ul>
+                <h4 class="label-caps text-primary font-bold mb-3 border-b border-outline-variant pb-1">Statistics</h4>
+                <div class="space-y-2">
+                  <div>
+                    <p class="text-xs font-body text-on-surface-variant">Total Locations Mapped</p>
+                    <p class="font-headline text-2xl font-bold text-primary" id="totalLocations">—</p>
+                  </div>
+                  <div>
+                    <p class="text-xs font-body text-on-surface-variant">Central Hub</p>
+                    <p class="font-headline text-sm font-bold text-on-surface">18th & Vine District</p>
+                  </div>
+                </div>
               </div>
               <div>
                 <h4 class="label-caps text-secondary font-bold mb-3 border-b border-outline-variant pb-1">Gathering Spots</h4>
-                <ul class="space-y-4">
+                <ul class="space-y-4" id="gatheringSpots">
                   <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">The Blue Room</p>
-                    <p class="text-sm font-body text-on-surface-variant">18th &amp; Vine District</p>
-                  </li>
-                  <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">Arthur Bryant's</p>
-                    <p class="text-sm font-body text-on-surface-variant">Tactical Lunch Meetings</p>
+                    <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">Loading...</p>
+                    <p class="text-sm font-body text-on-surface-variant">From map data</p>
                   </li>
                 </ul>
               </div>
               <div>
                 <h4 class="label-caps text-tertiary font-bold mb-3 border-b border-outline-variant pb-1">Tactical Grounds</h4>
-                <ul class="space-y-4">
+                <ul class="space-y-4" id="tacticalGrounds">
                   <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Arrowhead Stadium</p>
-                    <p class="text-sm font-body text-on-surface-variant">The Operational Core</p>
-                  </li>
-                  <li class="group cursor-pointer">
-                    <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Municipal Field</p>
-                    <p class="text-sm font-body text-on-surface-variant">Legacy Site Research</p>
+                    <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Loading...</p>
+                    <p class="text-sm font-body text-on-surface-variant">From map data</p>
                   </li>
                 </ul>
               </div>
@@ -231,15 +308,15 @@
             <span class="material-symbols-outlined text-9xl">location_on</span>
           </div>
           <h5 class="label-caps text-on-surface-variant mb-1">Total Mapped</h5>
-          <div class="font-headline text-4xl font-black text-primary">24 Locations</div>
+          <div class="font-headline text-4xl font-black text-primary" id="statsTotal">—</div>
         </div>
         <div class="bg-surface-container p-6 border-t-4 border-t-secondary">
           <h5 class="label-caps text-on-surface-variant mb-1">Primary District</h5>
-          <div class="font-headline text-4xl font-black text-secondary">Jackson County</div>
+          <div class="font-headline text-4xl font-black text-secondary">18th & Vine</div>
         </div>
         <div class="bg-surface-container-high p-6 transform -translate-y-2 shadow-xl">
           <h5 class="label-caps text-on-surface-variant mb-1">Archive Status</h5>
-          <div class="font-headline text-4xl font-black text-on-surface">Verified</div>
+          <div class="font-headline text-4xl font-black text-on-surface">Live</div>
         </div>
       </section>
 
@@ -264,6 +341,348 @@
     </nav>
   </div>
 </footer>
+
+<!-- Leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<!-- Papa Parse for CSV parsing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<script>
+  // Configuration
+  const MAP_CONFIG = {
+    centerLat: 39.0997,
+    centerLng: -94.5650,
+    initialZoom: 13,
+    markerColors: {
+      'KC Media Institution': '#e63946',
+      'KC School': '#457b9d',
+      'KC Neighborhood': '#f1faee',
+      'OK University': '#a8dadc',
+      'KS University': '#f1faee',
+      'MO City': '#f4a261',
+      'KC Institution': '#e76f51',
+      'KC Sports Venue': '#d62828',
+      'KS City': '#f4a261',
+      'International Region': '#9b59b6',
+      'KC Historic Venue': '#f39c12',
+      'OK City': '#e74c3c',
+      'CA City': '#3498db',
+      'KC Street': '#95a5a6',
+      'KC Civic Organization': '#2ecc71',
+      'KC Business': '#e67e22',
+      'KC Historic Nightclub': '#c0392b',
+      'OH Landmark': '#8e44ad',
+      'National Capital': '#34495e',
+      'KC Historic Building': '#16a085',
+      'KC Historic Community Ctr': '#d35400',
+      'KC Historic Music Venue': '#c0392b',
+      'KC Historic Theater': '#9b59b6',
+      'TN University': '#8e44ad',
+      'TX City': '#e74c3c',
+      'NY City': '#3498db',
+      'PA City': '#95a5a6',
+      'IA University': '#2ecc71',
+      'International Country': '#9b59b6',
+      'MO University': '#3498db',
+      'MO Town': '#f39c12',
+      'MO County': '#e67e22',
+      'TN Street': '#c0392b',
+      'NJ City': '#95a5a6',
+      'CA Region': '#3498db',
+      'KC Bar/Meeting Venue': '#e63946',
+      'KC Museum/Venue': '#f39c12',
+      'KC Golf/Sports': '#2ecc71',
+      'KC Historic Bar': '#c0392b',
+      'KC Government': '#34495e',
+      'KC Address': '#95a5a6',
+      'KC Historic Hospital': '#e74c3c',
+      'KC Historic Park': '#2ecc71',
+      'KC Retail/Neighborhood': '#3498db',
+      'TX University': '#8e44ad',
+      'GA Church': '#c0392b',
+      'KC Street/Intersection': '#95a5a6',
+      'KC Memorial': '#2ecc71'
+    }
+  };
+
+  let map;
+  let markers = [];
+  let locationData = [];
+
+  // Initialize map
+  function initMap() {
+    map = L.map('map').setView([MAP_CONFIG.centerLat, MAP_CONFIG.centerLng], MAP_CONFIG.initialZoom);
+
+    // Add OpenStreetMap tiles
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   attribution: '© OpenStreetMap contributors',
+    //   maxZoom: 19
+    // }).addTo(map);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
+
+    // Load CSV data
+    loadCSVData();
+
+    // Set up controls
+    setupControls();
+  }
+
+  // Load and parse CSV data
+  function loadCSVData() {
+    // Using Papa Parse to parse CSV
+    fetch('MNF_Locations.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            locationData = results.data;
+            addMarkersToMap();
+            updateSidebar();
+            buildLegend();
+            hideLoadingIndicator();
+          },
+          error: function(error) {
+            console.error('Error parsing CSV:', error);
+            hideLoadingIndicator();
+            showErrorMessage('Failed to load location data');
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching CSV:', error);
+        hideLoadingIndicator();
+        showErrorMessage('Failed to fetch CSV file');
+      });
+  }
+
+  // Add markers to map
+  function addMarkersToMap() {
+    // Pre-compute mention count range for scaling
+    const counts = locationData.map(l => parseInt(l['Mention Count']) || 1);
+    const maxCount = Math.max(...counts) || 1;
+    const minSize = 14, maxSize = 46;
+
+    locationData.forEach((location, index) => {
+      // Skip header row or invalid entries
+      if (!location.Latitude || !location.Longitude || !location['Location Name']) {
+        return;
+      }
+
+      const lat = parseFloat(location.Latitude);
+      const lng = parseFloat(location.Longitude);
+      const category = location.Category || 'Unknown';
+      const color = MAP_CONFIG.markerColors[category] || '#95a5a6';
+
+      if (isNaN(lat) || isNaN(lng)) {
+        return;
+      }
+
+      // Scale circle size by mention count
+      const mentionCount = parseInt(location['Mention Count']) || 1;
+      const size = Math.round(minSize + ((mentionCount - 1) / (maxCount - 1 || 1)) * (maxSize - minSize));
+      const fontSize = Math.max(9, Math.round(size * 0.38));
+
+      // Create custom icon with size proportional to mention count
+      const icon = L.divIcon({
+        html: `<div style="background-color: ${color}; width: ${size}px; height: ${size}px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [size, size],
+        className: ''
+      });
+
+      // Create popup content
+      const popupContent = `
+        <div class="location-popup">
+          <span class="category">${category}</span>
+          <h5>${location['Location Name']}</h5>
+          <p><strong>Address:</strong> ${location['Full Address / Description']}</p>
+          <p class="mention-count">📌 Mentioned ${location['Mention Count'] || '?'} times</p>
+        </div>
+      `;
+
+      // Create marker
+      const marker = L.marker([lat, lng], { icon: icon })
+        .bindPopup(popupContent)
+        .addTo(map);
+
+      markers.push({
+        marker: marker,
+        location: location,
+        category: category
+      });
+    });
+  }
+
+  // Convert hex to RGB (utility function)
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  // Update sidebar with dynamic content
+  function updateSidebar() {
+    const totalLocations = locationData.length;
+    document.getElementById('totalLocations').textContent = totalLocations;
+    document.getElementById('statsTotal').textContent = totalLocations + ' Locations';
+
+    // Get gathering spots (nightclubs, bars, etc.)
+    const gatheringSpots = locationData.filter(loc => 
+      loc.Category && (
+        loc.Category.includes('Nightclub') || 
+        loc.Category.includes('Bar') ||
+        loc.Category.includes('Venue') ||
+        loc.Category === 'KC Business'
+      )
+    ).slice(0, 4);
+
+    // Get tactical grounds (stadiums, sports venues, etc.)
+    const tacticalGrounds = locationData.filter(loc => 
+      loc.Category && (
+        loc.Category.includes('Sports') ||
+        loc.Category.includes('Venue') ||
+        loc.Category === 'KC Institution'
+      )
+    ).slice(0, 4);
+
+    // Update gathering spots
+    const gatheringSpotsHTML = gatheringSpots.length > 0 
+      ? gatheringSpots.map(spot => `
+        <li class="group cursor-pointer" onclick="focusLocation(${spot.Latitude}, ${spot.Longitude})">
+          <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">${spot['Location Name']}</p>
+          <p class="text-sm font-body text-on-surface-variant">${spot.Category}</p>
+        </li>
+      `).join('')
+      : '<li class="text-on-surface-variant">No gathering spots found</li>';
+
+    document.getElementById('gatheringSpots').innerHTML = gatheringSpotsHTML;
+
+    // Update tactical grounds
+    const tacticalGroundsHTML = tacticalGrounds.length > 0
+      ? tacticalGrounds.map(ground => `
+        <li class="group cursor-pointer" onclick="focusLocation(${ground.Latitude}, ${ground.Longitude})">
+          <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">${ground['Location Name']}</p>
+          <p class="text-sm font-body text-on-surface-variant">${ground.Category}</p>
+        </li>
+      `).join('')
+      : '<li class="text-on-surface-variant">No tactical grounds found</li>';
+
+    // Update ranked mention list (sorted by mention count desc)
+    const ranked = locationData
+      .filter(loc => loc['Location Name'] && loc.Latitude && loc.Longitude)
+      .map(loc => ({ ...loc, _count: parseInt(loc['Mention Count']) || 0 }))
+      .sort((a, b) => b._count - a._count);
+
+    const maxMentions = ranked.length ? ranked[0]._count : 1;
+
+    const mentionRankHTML = ranked.map((loc, i) => {
+      const barWidth = maxMentions > 0 ? Math.round((loc._count / maxMentions) * 100) : 0;
+      return `
+        <li class="group cursor-pointer py-1.5 border-b border-outline-variant last:border-0"
+            onclick="focusLocation(${loc.Latitude}, ${loc.Longitude})">
+          <div class="flex items-baseline justify-between gap-1 mb-0.5">
+            <p class="font-headline font-bold text-xs text-on-surface group-hover:text-secondary transition-colors leading-tight">${loc['Location Name']}</p>
+            <span class="text-xs font-body text-on-surface-variant shrink-0">${loc._count}</span>
+          </div>
+          <div class="h-1 bg-outline-variant rounded-full overflow-hidden">
+            <div class="h-full bg-secondary rounded-full transition-all" style="width: ${barWidth}%"></div>
+          </div>
+        </li>
+      `;
+    }).join('');
+
+    document.getElementById('tacticalGrounds').innerHTML = tacticalGroundsHTML;
+
+    document.getElementById('mentionRankList').innerHTML = mentionRankHTML || '<li class="text-on-surface-variant text-sm">No data</li>';
+  }
+
+  // Build map legend (size scale by mention count)
+  function buildLegend() {
+    const counts = locationData
+      .map(l => parseInt(l['Mention Count']) || 0)
+      .filter(n => n > 0);
+
+    if (!counts.length) return;
+
+    const minCount = Math.min(...counts);
+    const maxCount = Math.max(...counts);
+    const midCount = Math.round((minCount + maxCount) / 2);
+
+    const minSize = 14, maxSize = 46;
+    function scaleSize(count) {
+      return Math.round(minSize + ((count - minCount) / ((maxCount - minCount) || 1)) * (maxSize - minSize));
+    }
+
+    const steps = [
+      { label: `${minCount} mention${minCount !== 1 ? 's' : ''}`, count: minCount },
+      { label: `~${midCount} mentions`, count: midCount },
+      { label: `${maxCount} mentions`, count: maxCount }
+    ];
+
+    const legendEl = document.getElementById('legendItems');
+    legendEl.innerHTML = steps.map(step => {
+      const sz = scaleSize(step.count);
+      const half = maxSize / 2;
+      return `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="width: ${half * 2}px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <div style="width: ${sz}px; height: ${sz}px; border-radius: 50%; background: #001b3e; opacity: 0.75;"></div>
+          </div>
+          <span style="font-size: 11px; color: #424242; white-space: nowrap;">${step.label}</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Focus on a specific location
+  function focusLocation(lat, lng) {
+    map.flyTo([lat, lng], 15, { duration: 1 });
+  }
+
+  // Set up custom controls
+  function setupControls() {
+    document.getElementById('zoomInBtn').addEventListener('click', () => {
+      map.zoomIn();
+    });
+
+    document.getElementById('zoomOutBtn').addEventListener('click', () => {
+      map.zoomOut();
+    });
+
+    document.getElementById('centerBtn').addEventListener('click', () => {
+      map.flyTo([MAP_CONFIG.centerLat, MAP_CONFIG.centerLng], MAP_CONFIG.initialZoom, { duration: 1 });
+    });
+  }
+
+  // Hide loading indicator
+  function hideLoadingIndicator() {
+    const indicator = document.getElementById('loadingIndicator');
+    if (indicator) {
+      indicator.style.display = 'none';
+    }
+  }
+
+  // Show error message
+  function showErrorMessage(message) {
+    const indicator = document.getElementById('loadingIndicator');
+    if (indicator) {
+      indicator.innerHTML = `<p class="text-error">${message}</p>`;
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', initMap);
+</script>
 
 </body>
 </html>
