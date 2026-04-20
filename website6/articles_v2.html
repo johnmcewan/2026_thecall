@@ -71,9 +71,9 @@
         <div class="stripe-3"></div>
         <div class="stripe-4"></div>
       </div>
-      <h1 class="text-6xl font-headline font-extrabold text-primary ink-bleed tracking-tight mb-2">The Newspaper Vault</h1>
+      <h1 class="text-6xl font-headline font-extrabold text-primary ink-bleed tracking-tight mb-2">The Microfilm Vault</h1>
       <p class="font-body text-lg text-on-surface-variant max-w-2xl italic">
-        Select a year to filter the newspaper history.
+        Navigating the printed echoes of the golden era. Select a year to filter the broadcast history.
       </p>
     </header>
 
@@ -87,8 +87,9 @@
           <label class="block label-caps text-secondary mb-2">Search Keywords</label>
           <div class="relative">
             <input
+              id="searchInput"
               class="w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 px-0 py-2 font-headline text-xl italic transition-all placeholder:text-outline-variant"
-              placeholder="e.g. 'Miami Dolphins', 'Howard Cosell'"
+              placeholder="e.g. 'Groove Station', 'Matt Cassel'"
               type="text"/>
             <span class="absolute right-0 bottom-2 material-symbols-outlined text-outline">search</span>
           </div>
@@ -96,25 +97,27 @@
 
         <!-- Date Range Selector -->
         <div class="md:col-span-8">
-          <label class="block label-caps text-secondary mb-4">Select Year (2003 — 2015)</label>
-          <div class="flex flex-wrap gap-2">
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2003</button>
-            <button class="px-4 py-2 bg-primary-container text-white border-b-4 border-primary font-bold font-headline shadow-inner">1971</button>
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2004</button>
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2005</button>
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2006</button>
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2007</button>
-            <button class="px-5 py-2 bg-surface-container-low text-outline-variant font-bold font-headline cursor-not-allowed">...</button>
-            <button class="px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors">2008</button>
-            <button class="ml-auto px-6 py-2 bg-primary text-white font-label font-bold uppercase text-xs tracking-widest rounded-sm hover:translate-y-[-1px] active:translate-y-[1px] transition-all">Filter Archive</button>
+          <label class="block label-caps text-secondary mb-4">Filter by Year</label>
+          <div class="flex flex-wrap gap-2 items-center">
+            <div id="yearButtons" class="flex flex-wrap gap-2">
+              <!-- populated by JS -->
+            </div>
+            <button id="filterBtn" class="ml-auto px-6 py-2 bg-primary text-white font-label font-bold uppercase text-xs tracking-widest rounded-sm hover:translate-y-[-1px] active:translate-y-[1px] transition-all">Search Archive</button>
           </div>
         </div>
 
       </div>
     </section>
 
+    <!-- Result count -->
+    <div class="flex items-baseline gap-3 mb-8">
+      <span id="resultCount" class="font-headline text-4xl font-black text-primary">—</span>
+      <span class="label-caps text-on-surface-variant">results</span>
+      <span id="activeQuery" class="font-body italic text-on-surface-variant text-sm ml-2"></span>
+    </div>
+
     <!-- Archive Results Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-start mb-24">
+    <section id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-start mb-24">
 
       <!-- Result Card 1 -->
       <article class="group relative bg-surface-container-low p-6 transition-all hover:translate-y-[-4px]">
@@ -262,6 +265,192 @@
 <button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
   <span class="material-symbols-outlined">filter_list</span>
 </button>
+
+<script>
+  // ── State ────────────────────────────────────────────────────────────
+  let allArticles = [];
+  let activeYear  = null;  // null = all years
+
+  // ── Load data ────────────────────────────────────────────────────────
+  fetch('MNF_articles.json')
+    .then(r => r.json())
+    .then(data => {
+      allArticles = Array.isArray(data) ? data : Object.values(data);
+      buildYearButtons();
+      runSearch();   // show all on load
+    })
+    .catch(() => {
+      document.getElementById('resultsGrid').innerHTML =
+        `<p class="col-span-3 text-error font-body italic">Could not load MNF_articles.json. Make sure the file is in the same directory as this page.</p>`;
+      document.getElementById('resultCount').textContent = '0';
+    });
+
+  // ── Extract all paragraph text from an article ───────────────────────
+  function getFullText(article) {
+    const parts = [];
+    try {
+      for (const page of article.text.pages) {
+        for (const frame of page.frames) {
+          for (const para of frame.paragraphs) {
+            if (para.text) parts.push(para.text);
+          }
+        }
+      }
+    } catch(e) {}
+    return parts.join(' ');
+  }
+
+  // ── Extract headline (first frame's text) ───────────────────────────
+  function getHeadline(article) {
+    try {
+      return article.text.pages[0].frames[0].text.trim() || article.text.document_name;
+    } catch(e) { return article.text?.document_name || article.source_file || 'Untitled'; }
+  }
+
+  // ── Extract snippet around first keyword match ───────────────────────
+  function getSnippet(fullText, keywords) {
+    if (!keywords.length) return fullText.slice(0, 200) + '…';
+    const kw = keywords[0];
+    const idx = fullText.toLowerCase().indexOf(kw.toLowerCase());
+    if (idx === -1) return fullText.slice(0, 200) + '…';
+    const start = Math.max(0, idx - 80);
+    const end   = Math.min(fullText.length, idx + 160);
+    return (start > 0 ? '…' : '') + fullText.slice(start, end) + (end < fullText.length ? '…' : '');
+  }
+
+  // ── Highlight keywords in a string (safe, no innerHTML injection) ────
+  function highlight(text, keywords) {
+    if (!keywords.length) return escHtml(text);
+    // Build a safe regex from all keywords
+    const pattern = keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    const re = new RegExp(`(${pattern})`, 'gi');
+    return escHtml(text).replace(
+      new RegExp(`(${keywords.map(k => escHtml(k).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi'),
+      '<mark class="bg-secondary-container text-on-secondary-container px-0.5 rounded-sm not-italic">$1</mark>'
+    );
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Format date ──────────────────────────────────────────────────────
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    return isNaN(d) ? dateStr : d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  // ── Build year filter buttons ────────────────────────────────────────
+  function buildYearButtons() {
+    const years = [...new Set(
+      allArticles
+        .map(a => a.filedate ? new Date(a.filedate).getFullYear() : null)
+        .filter(Boolean)
+    )].sort();
+
+    const container = document.getElementById('yearButtons');
+
+    // "All" pill
+    const allBtn = makeYearBtn('All', null);
+    allBtn.classList.add('border-primary', 'bg-primary-container', 'text-white');
+    container.appendChild(allBtn);
+
+    years.forEach(y => container.appendChild(makeYearBtn(y, y)));
+  }
+
+  function makeYearBtn(label, year) {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.dataset.year = year ?? '';
+    btn.className = 'px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors';
+    btn.addEventListener('click', () => {
+      activeYear = year;
+      // Update active styling
+      document.querySelectorAll('#yearButtons button').forEach(b => {
+        b.classList.remove('border-primary','bg-primary-container','text-white');
+        b.classList.add('border-secondary','bg-surface-container-highest','text-on-surface');
+      });
+      btn.classList.add('border-primary','bg-primary-container','text-white');
+      btn.classList.remove('border-secondary','bg-surface-container-highest','text-on-surface');
+      runSearch();
+    });
+    return btn;
+  }
+
+  // ── Main search + render ─────────────────────────────────────────────
+  function runSearch() {
+    const raw      = document.getElementById('searchInput').value.trim();
+    const keywords = raw ? raw.split(/\s+/).filter(Boolean) : [];
+
+    // Filter by year
+    let results = activeYear
+      ? allArticles.filter(a => a.filedate && new Date(a.filedate).getFullYear() === activeYear)
+      : allArticles;
+
+    // Filter by keywords (all must appear in the full text)
+    if (keywords.length) {
+      results = results.filter(a => {
+        const body = getFullText(a).toLowerCase();
+        return keywords.every(k => body.includes(k.toLowerCase()));
+      });
+    }
+
+    // Update count & query label
+    document.getElementById('resultCount').textContent = results.length;
+    document.getElementById('activeQuery').textContent =
+      keywords.length ? `for "${raw}"${activeYear ? ` in ${activeYear}` : ''}` :
+      activeYear ? `in ${activeYear}` : '';
+
+    // Render cards
+    const grid = document.getElementById('resultsGrid');
+    if (!results.length) {
+      grid.innerHTML = `<p class="col-span-3 font-body italic text-on-surface-variant py-8">No articles matched your search. Try broader keywords.</p>`;
+      return;
+    }
+
+    const rotations = ['', 'rotate-1', '-rotate-1', 'rotate-0'];
+    const bgCycles  = ['bg-surface-container-low', 'bg-surface-container-highest', 'bg-surface-container'];
+
+    grid.innerHTML = results.map((article, i) => {
+      const headline = getHeadline(article);
+      const fullText = getFullText(article);
+      const snippet  = getSnippet(fullText, keywords);
+      const dateStr  = formatDate(article.filedate);
+      const rot      = rotations[i % rotations.length];
+      const bg       = bgCycles[i % bgCycles.length];
+      const fname    = article.source_file || '';
+
+      return `
+        <article class="group relative ${bg} p-6 transition-all ${rot} hover:rotate-0 hover:translate-y-[-4px]">
+          <div class="grain-overlay absolute inset-0"></div>
+          <div class="flex flex-col gap-2 relative z-10">
+            <div class="flex justify-between items-start gap-2">
+              <span class="px-2 py-1 bg-secondary-container text-on-secondary-container font-label text-[10px] font-bold uppercase tracking-widest shrink-0">Article</span>
+              <span class="text-outline font-label text-[10px] uppercase font-semibold text-right truncate">${escHtml(fname)}</span>
+            </div>
+            <h3 class="font-headline text-xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">
+              ${highlight(headline, keywords)}
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant mt-2 leading-relaxed">
+              ${highlight(snippet, keywords)}
+            </p>
+            <div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+              <span class="font-headline font-bold text-primary italic">${escHtml(dateStr)}</span>
+              <span class="text-outline font-label text-[10px] uppercase font-semibold">ID ${article.id ?? '—'}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  // ── Wire up events ───────────────────────────────────────────────────
+  document.getElementById('filterBtn').addEventListener('click', runSearch);
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') runSearch();
+  });
+</script>
 
 </body>
 </html>
