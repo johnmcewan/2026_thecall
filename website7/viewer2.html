@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Call — Archive Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #1a1208;
+    --paper:      #f5f0e8;
+    --aged:       #e8dfc8;
+    --rule:       #2a1f0a;
+    --accent:     #8b1a1a;
+    --muted:      #6b5f4a;
+    --caption:    #4a3f2a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #2a1f0a;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0,0,0,0.03) 28px, rgba(0,0,0,0.03) 29px);
+    min-height: 100vh;
+    font-family: 'IM Fell English', Georgia, serif;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* ── Masthead ── */
+  .masthead {
+    width: 100%;
+    max-width: 860px;
+    background: var(--paper);
+    border-top: 6px solid var(--rule);
+    border-bottom: 3px solid var(--rule);
+    text-align: center;
+    padding: 1.2rem 2rem 0.8rem;
+    position: relative;
+  }
+  .masthead::before, .masthead::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: var(--rule);
+    margin: 4px 0;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .masthead .tagline {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Search bar ── */
+  .search-bar {
+    width: 100%;
+    max-width: 860px;
+    background: var(--aged);
+    border-left: 3px solid var(--rule);
+    border-right: 3px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .search-bar label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    padding: 0 0.75rem;
+    white-space: nowrap;
+  }
+  .search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--muted);
+    outline: none;
+    padding: 0.6rem 0.75rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    color: var(--ink);
+  }
+  .search-bar input::placeholder { color: var(--muted); opacity: 0.7; }
+  .search-count {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 0 0.75rem;
+    white-space: nowrap;
+    border-left: 1px solid var(--muted);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+  }
+
+  /* ── Main card ── */
+  .card {
+    width: 100%;
+    max-width: 860px;
+    background: var(--paper);
+    border-left: 3px solid var(--rule);
+    border-right: 3px solid var(--rule);
+    padding: 2rem 2.5rem 1.5rem;
+    min-height: 420px;
+    position: relative;
+  }
+
+  /* Metadata strip */
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    border-bottom: 1px solid var(--muted);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .meta span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .meta .badge {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 1px 6px;
+    font-size: 0.62rem;
+    border-radius: 1px;
+  }
+
+  /* Article content rendered from text_html */
+  .article-body h2.ad-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 0.4rem;
+  }
+  .article-body .ad-frame {
+    margin-bottom: 1rem;
+    padding-left: 0;
+  }
+  .article-body .ad-frame + .ad-frame {
+    border-top: 1px solid var(--aged);
+    padding-top: 0.8rem;
+    margin-top: 0.2rem;
+  }
+  .article-body .ad-para {
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  /* ── Navigation ── */
+  .nav-strip {
+    width: 100%;
+    max-width: 860px;
+    background: var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-left: 3px solid var(--rule);
+    border-right: 3px solid var(--rule);
+  }
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--paper);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-btn:hover:not(:disabled) { background: var(--accent); }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+  .nav-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  .counter {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    color: var(--aged);
+    letter-spacing: 0.08em;
+    text-align: center;
+    flex: 1;
+  }
+
+  /* ── Footer rule ── */
+  .footer-rule {
+    width: 100%;
+    max-width: 860px;
+    border-bottom: 6px solid var(--paper);
+    opacity: 0.3;
+  }
+
+  /* ── No results ── */
+  .no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+
+  /* ── Fade transition ── */
+  .card { transition: opacity 0.15s ease; }
+  .card.fade { opacity: 0; }
+
+  /* ── Keyboard hint ── */
+  .kbd-hint {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.62rem;
+    color: rgba(245,240,232,0.3);
+    text-align: center;
+    margin-top: 1rem;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <h1>The Kansas City Call</h1>
+  <div class="tagline">Archive — Nite Articles</div>
+</div>
+
+<div class="search-bar">
+  <label>Search</label>
+  <input type="text" id="searchInput" placeholder="Search articles…" autocomplete="off">
+  <div class="search-count" id="searchCount"></div>
+</div>
+<div class="search-bar" style="border-top: 1px solid var(--muted);">
+  <label>DB&nbsp;ID</label>
+  <input type="text" id="dbIdInput" placeholder="Jump to db_id…" autocomplete="off" inputmode="numeric">
+  <div class="search-count" id="dbIdStatus"></div>
+</div>
+
+<div class="card" id="card">
+  <div class="meta" id="meta"></div>
+  <div class="article-body" id="articleBody"></div>
+</div>
+
+<div class="nav-strip">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">
+    <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5V3z"/></svg>
+    Previous
+  </button>
+  <div class="counter" id="counter"></div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">
+    Next
+    <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5V3z"/></svg>
+  </button>
+</div>
+
+<div class="footer-rule"></div>
+<div class="kbd-hint">← → arrow keys to navigate &nbsp;·&nbsp; type to search</div>
+
+<script>
+// ── QXP entity cleanup ────────────────────────────────────────────────────────
+function cleanEntities(html) {
+  return html
+    .replace(/&hTab;/g,      '&nbsp;&nbsp;&nbsp;&nbsp;')
+    .replace(/&punctSpace;/g, '&thinsp;')
+    .replace(/&hairsp;/g,    '&thinsp;')
+    .replace(/&nbHyphen;/g,  '&#8209;')
+    .replace(/&nbSpace;/g,   '&nbsp;');
+}
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let all      = [];
+let filtered = [];
+let index    = 0;
+
+// ── Render ────────────────────────────────────────────────────────────────────
+function render() {
+  const card = document.getElementById('card');
+  card.classList.add('fade');
+
+  setTimeout(() => {
+    if (filtered.length === 0) {
+      document.getElementById('meta').innerHTML = '';
+      document.getElementById('articleBody').innerHTML =
+        '<div class="no-results">No articles match your search.</div>';
+      document.getElementById('counter').textContent = '0 results';
+      document.getElementById('prevBtn').disabled = true;
+      document.getElementById('nextBtn').disabled = true;
+      card.classList.remove('fade');
+      return;
+    }
+
+    const a = filtered[index];
+
+    // Meta strip
+    const serial  = a.serial  ? `<span>Serial&nbsp;<strong>${a.serial}</strong></span>` : '';
+    const dbId    = `<span>DB&nbsp;ID&nbsp;<strong>${a.db_id}</strong></span>`;
+    const fmt     = `<span class="badge">${a.source_format}</span>`;
+    const srcFile = a.source_file
+      ? `<span title="${a.source_file}">${a.source_file.split(/[\\/]/).pop()}</span>`
+      : '';
+    document.getElementById('meta').innerHTML =
+      [fmt, dbId, serial, srcFile].filter(Boolean).join('');
+
+    // Article body — use text_html, cleaned of QXP entities
+    document.getElementById('articleBody').innerHTML = cleanEntities(a.text_html);
+
+    // Counter
+    document.getElementById('counter').textContent =
+      `${index + 1} of ${filtered.length}`;
+
+    // Button states
+    document.getElementById('prevBtn').disabled = index === 0;
+    document.getElementById('nextBtn').disabled = index === filtered.length - 1;
+
+    card.classList.remove('fade');
+  }, 150);
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function navigate(dir) {
+  const next = index + dir;
+  if (next >= 0 && next < filtered.length) {
+    index = next;
+    render();
+  }
+}
+
+// ── Search ────────────────────────────────────────────────────────────────────
+function applySearch(query) {
+  const q = query.trim().toLowerCase();
+  if (!q) {
+    filtered = all.slice();
+  } else {
+    filtered = all.filter(a =>
+      (a.text_plain || '').toLowerCase().includes(q) ||
+      (a.layout_name || '').toLowerCase().includes(q)
+    );
+  }
+  index = 0;
+  document.getElementById('searchCount').textContent =
+    q ? `${filtered.length} match${filtered.length !== 1 ? 'es' : ''}` : `${all.length} articles`;
+  render();
+}
+
+// ── Keyboard ──────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowLeft')  navigate(-1);
+  if (e.key === 'ArrowRight') navigate(1);
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  applySearch(e.target.value);
+});
+
+document.getElementById('dbIdInput').addEventListener('input', e => {
+  applyDbId(e.target.value);
+});
+
+// ── DB ID jump ────────────────────────────────────────────────────────────────
+function applyDbId(query) {
+  const q = query.trim();
+  const statusEl = document.getElementById('dbIdStatus');
+  if (!q) {
+    statusEl.textContent = '';
+    // restore full filtered set from text search
+    applySearch(document.getElementById('searchInput').value);
+    return;
+  }
+  const match = all.find(a => String(a.db_id) === q);
+  if (match) {
+    // temporarily override filtered to the single result
+    filtered = [match];
+    index = 0;
+    statusEl.textContent = 'found';
+    statusEl.style.color = 'var(--accent)';
+    document.getElementById('searchCount').textContent =
+      `${all.length} articles`;
+    render();
+  } else {
+    statusEl.textContent = 'not found';
+    statusEl.style.color = 'var(--muted)';
+  }
+}
+
+// ── Load data ─────────────────────────────────────────────────────────────────
+fetch('nitearticles.json')
+  .then(r => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  })
+  .then(data => {
+    all      = data;
+    filtered = data.slice();
+    document.getElementById('searchCount').textContent =
+      `${all.length} articles`;
+    render();
+  })
+  .catch(err => {
+    document.getElementById('articleBody').innerHTML =
+      `<div class="no-results">
+        Could not load nitearticles.json.<br>
+        <small style="font-size:0.8rem;opacity:0.7">${err.message}</small><br><br>
+        <small>Place this HTML file in the same folder as nitearticles.json,<br>
+        then open via a local server (e.g. <code>python -m http.server</code>).</small>
+      </div>`;
+  });
+</script>
+</body>
+</html>
