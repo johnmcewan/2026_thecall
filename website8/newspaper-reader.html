@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Article Reader | Monday Nite Footballers</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style>
+    :root {
+      --paper:      #f7f4ee;
+      --paper-dark: #ede9df;
+      --ink:        #1b1d0e;
+      --ink-mid:    #564239;
+      --ink-light:  #8a7268;
+      --rule:       #2a2520;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-news:    'Newsreader', Georgia, serif;
+    }
+
+    #reader-page {
+      min-height: 100vh;
+      background-color: var(--surface-dim, #dbdcc4);
+      padding: 2.5rem 1rem 5rem;
+    }
+
+    .reader-topbar {
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .reader-breadcrumb {
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-mid);
+    }
+
+    .reader-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--on-surface, #1b1d0e);
+      background: var(--surface-container-low, #f5f5dc);
+      border: none;
+      padding: 0.45rem 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+    .reader-back-btn:hover { background: var(--surface-container, #efefd7); }
+
+    .newspaper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--paper);
+      box-shadow: 0 12px 32px rgba(27,29,14,0.10), 0 2px 8px rgba(27,29,14,0.08);
+      padding: clamp(1.8rem, 6vw, 4rem) clamp(1.8rem, 7vw, 5rem);
+      position: relative;
+    }
+    .newspaper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBmqGPm18Syt8rmDNuAPFi_6qVSNglvdviEOxg7VtIEAaANm34u9wbq7M6d-ASLX1l9tjbHfEw_Ln8ZCy_1OUcjdQ0cBSxHj8XBJvrmUFlCXOQsRHcWQNsaZZSmwSRWDUYJre-O4Z7KEv362ZV_l90rRwzsrWjzwUJlaTGSutS71QheLFE5IkxgChHtRaCSAxs98LtAHBYza6Hfhpfcivt-HND9Lvlk_Yf6qg2EnxyoO1aNzdpA3NqNPcwtWyW9Zb290yy_8gupVzc);
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .newspaper > * { position: relative; z-index: 1; }
+
+    .paper-stripe {
+      height: 4px;
+      background: linear-gradient(
+        to right,
+        var(--primary,#762e00) 0% 25%,
+        var(--secondary,#785a00) 25% 50%,
+        var(--tertiary,#004388) 50% 75%,
+        var(--error,#ba1a1a) 75% 100%
+      );
+      margin-bottom: 1.4rem;
+    }
+
+    .masthead {
+      text-align: center;
+      border-top: 3px double var(--rule);
+      border-bottom: 3px double var(--rule);
+      padding: 0.45rem 0;
+      margin-bottom: 0.2rem;
+    }
+    .masthead-name {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 3vw, 1.75rem);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .dateline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+      padding: 3px 0 4px;
+      margin-bottom: 1.6rem;
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .section-label {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      border-top: 1px solid var(--ink-mid);
+      border-bottom: 1px solid var(--ink-mid);
+      padding: 3px 0;
+      margin-bottom: 0.9rem;
+    }
+
+    .article-headline {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.5rem, 4.5vw, 2.8rem);
+      line-height: 1.08;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--ink);
+    }
+
+    .byline     { text-align: center; font-family: var(--font-body); font-size: 0.78rem; color: var(--ink-mid); margin-bottom: 0.2rem; letter-spacing: 0.04em; }
+    .byline-sub { text-align: center; font-family: var(--font-body); font-size: 0.72rem; color: var(--ink-light); font-style: italic; margin-bottom: 0.8rem; }
+
+    .head-rule { border: none; border-top: 2px solid var(--rule); border-bottom: 1px solid var(--rule); height: 4px; margin-bottom: 1.5rem; }
+
+    .article-body {
+      font-family: var(--font-news);
+      font-size: clamp(0.875rem, 1.9vw, 0.98rem);
+      line-height: 1.85;
+      color: var(--ink);
+      text-align: justify;
+      hyphens: auto;
+    }
+    .article-body p { margin-bottom: 0.9em; }
+    .article-body p.drop-cap::first-letter {
+      font-family: var(--font-display);
+      font-size: 3.8rem;
+      font-weight: 900;
+      float: left;
+      line-height: 0.82;
+      margin: 0.1em 0.35em 0 0;
+      color: var(--primary, #762e00);
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--primary, #762e00);
+      margin: 0.7em 0 0.7em 0.8em;
+      padding-left: 0.9em;
+      font-style: italic;
+      color: var(--ink-mid);
+    }
+
+    .callout-box {
+      border-top: 2px solid var(--rule);
+      border-bottom: 2px solid var(--rule);
+      padding: 0.65rem 0.9rem;
+      margin: 1.1rem 0;
+      font-style: italic;
+      font-size: 0.9rem;
+      background: var(--paper-dark);
+      font-family: var(--font-news);
+    }
+    .callout-box strong { font-style: normal; font-weight: 700; }
+
+    .section-divider { text-align: center; color: var(--ink-light); font-size: 0.7rem; letter-spacing: 0.4em; margin: 1rem 0; font-family: var(--font-body); }
+    .continuation-notice { font-size: 0.72rem; color: var(--ink-light); font-style: italic; text-align: right; margin-top: 1.2rem; font-family: var(--font-body); }
+
+    .raw-frame { padding: 0.8rem; margin-bottom: 1rem; background: var(--paper-dark); }
+    .raw-frame-label { font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.4rem; font-family: var(--font-body); }
+
+    .page-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    .page-nav button {
+      background: var(--surface-container-low, #f5f5dc);
+      border: none;
+      color: var(--on-surface, #1b1d0e);
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 1.2rem;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .page-nav button:hover { background: var(--surface-container, #efefd7); }
+    .page-nav button.active { background: var(--primary, #762e00); color: white; }
+
+    .reader-state {
+      max-width: 800px;
+      margin: 5rem auto;
+      text-align: center;
+      font-family: var(--font-body);
+      color: var(--ink-mid);
+    }
+    .reader-state .state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.35;
+    }
+    .reader-state p { font-style: italic; font-size: 0.95rem; }
+
+    @media (max-width: 500px) {
+      .dateline { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Top Navigation -->
+<header class="mnf-nav" style="border-top-color:#001b3e; border-bottom-color: #ffdf9a;">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a class="mnf-nav__link" href="index.html">Home</a>
+      <a class="mnf-nav__link mnf-nav__link--active" href="articles.html">Archive</a>
+      <a class="mnf-nav__link" href="people.html">Personnel</a>
+      <a class="mnf-nav__link" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+      <button class="mnf-nav__search-btn">Search</button>
+    </div>
+  </nav>
+</header>
+
+<div id="reader-page">
+
+  <div class="reader-topbar">
+    <span class="reader-breadcrumb">
+      Archive &nbsp;›&nbsp; <span id="article-filename">Article</span>
+    </span>
+    <a href="articles.html" class="reader-back-btn">
+      <span class="material-symbols-outlined" style="font-size:14px; vertical-align:middle;">arrow_back</span>
+      Back to Archive
+    </a>
+  </div>
+
+  <div id="state-loading" class="reader-state">
+    <span class="state-icon material-symbols-outlined">hourglass_top</span>
+    <p>Loading article from the archive…</p>
+  </div>
+
+  <div id="state-error" class="reader-state" style="display:none;">
+    <span class="state-icon material-symbols-outlined">error_outline</span>
+    <p id="error-text">Could not load article.</p>
+  </div>
+
+  <div id="newspaper" style="display:none;"></div>
+  <div class="page-nav" id="page-nav"></div>
+
+</div>
+
+<footer class="mnf-footer">
+  <div class="mnf-footer__inner">
+    <p class="mnf-footer__copy">© 1974 Monday Nite Broadcast Collective. Curated by The Living Archive.</p>
+    <nav class="mnf-footer__links">
+      <a class="mnf-footer__link" href="#">Terms of Research</a>
+      <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+      <a class="mnf-footer__link" href="#">Press Kit</a>
+      <a class="mnf-footer__link" href="#">Contact Editor</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── Patterns for classifying the first few <p> blocks ── */
+const BYLINE_RE   = /^by\s+[A-Z]/i;
+const CREDIT_RE   = /^(NNPA|AP|Staff|Special|Editor|Reporter|Correspondent)/i;
+const SECTION_RE  = /^(chatter|conversation|commentary|sports|news|opinion|editorial|column|monday\s+nite|predictions)/i;
+const TRIVIA_RE   = /^trivia\s+question/i;
+const ANSWER_RE   = /^answer\s+to/i;
+const NUMBERED_RE = /^\d+\)\s+/;
+const QUOTE_RE    = /^[\u201C\u2018"]/;
+
+function isShort(s) { return s.length < 100; }
+
+/* ── Parse the <p>...</p> text into an array of strings ── */
+function parseParagraphs(text) {
+  if (!text) return [];
+  const out = [];
+  const re = /<p>([\s\S]*?)<\/p>/gi;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    const t = m[1].trim();
+    if (t) out.push(t);
+  }
+  return out;
+}
+
+/* ── Classify first few paragraphs into headline / byline / body ── */
+function classifyArticle(paragraphs) {
+  const result = { sectionLabel: null, headline: null, bylines: [], bodyStart: 0 };
+  for (let i = 0; i < Math.min(8, paragraphs.length); i++) {
+    const p = paragraphs[i];
+    if (!p) { result.bodyStart = i + 1; continue; }
+
+    if (SECTION_RE.test(p) && isShort(p) && !result.sectionLabel) {
+      result.sectionLabel = p; result.bodyStart = i + 1;
+    } else if (BYLINE_RE.test(p) && isShort(p)) {
+      result.bylines.push(p); result.bodyStart = i + 1;
+    } else if (CREDIT_RE.test(p) && isShort(p)) {
+      result.bylines.push(p); result.bodyStart = i + 1;
+    } else if (!result.headline && isShort(p) && i < 4) {
+      result.headline = p; result.bodyStart = i + 1;
+    } else {
+      result.bodyStart = i; break;
+    }
+  }
+  return result;
+}
+
+/* ── Render body paragraphs with drop-cap, callouts, quotes ── */
+function renderParas(paras) {
+  let html = '';
+  let firstPara = true;
+  for (const raw of paras) {
+    const text = (raw || '').trim();
+    if (!text) continue;
+
+    // Trivia callout box
+    if (TRIVIA_RE.test(text) || ANSWER_RE.test(text)) {
+      const colon = text.indexOf(':');
+      const label = colon > -1 ? text.slice(0, colon) : text;
+      const body  = colon > -1 ? text.slice(colon + 1).trim() : '';
+      html += `<div class="callout-box"><strong>${esc(label)}:</strong>${body ? ' ' + esc(body) : ''}</div>`;
+      continue;
+    }
+    // Section divider before numbered items
+    if (NUMBERED_RE.test(text) && !firstPara) {
+      html += `<div class="section-divider">&#x2015;&nbsp;&nbsp;&#x2015;&nbsp;&nbsp;&#x2015;</div>`;
+    }
+    // Pull quotes
+    if (QUOTE_RE.test(text) && text.length > 80) {
+      html += `<blockquote>${esc(text)}</blockquote>`;
+      continue;
+    }
+    const cls = firstPara ? 'drop-cap' : '';
+    firstPara = false;
+    html += `<p${cls ? ' class="' + cls + '"' : ''}>${esc(text)}</p>`;
+  }
+  return html;
+}
+
+/* ── Build the newspaper layout from a flat article record ── */
+function renderArticle(article) {
+  const paragraphs = parseParagraphs(article.text);
+  if (!paragraphs.length) {
+    return '<p style="font-style:italic;text-align:center;padding:2rem;opacity:.5">This article has no readable text.</p>';
+  }
+
+  const { sectionLabel, headline, bylines, bodyStart } = classifyArticle(paragraphs);
+  const bodyParas = paragraphs.slice(bodyStart);
+
+  const yearStr     = article.year ? String(article.year) : '';
+  const sourceLabel = article.source === 'filelist' ? 'Archive Scan' : 'ProQuest Transcript';
+
+  let html = `<div class="newspaper">`;
+  html += `<div class="paper-stripe"></div>`;
+  html += `<div class="masthead"><div class="masthead-name">The Kansas City Call</div></div>`;
+  html += `<div class="dateline"><span>${esc(yearStr)}</span><span>Kansas City</span><span>${esc(sourceLabel)}</span></div>`;
+
+  if (sectionLabel) html += `<div class="section-label">${esc(sectionLabel)}</div>`;
+  if (headline)     html += `<h1 class="article-headline">${esc(headline)}</h1>`;
+  if (bylines[0])   html += `<div class="byline">${esc(bylines[0])}</div>`;
+  for (let i = 1; i < bylines.length; i++) html += `<div class="byline-sub">${esc(bylines[i])}</div>`;
+
+  html += `<hr class="head-rule">`;
+  html += `<div class="article-body">${renderParas(bodyParas)}</div>`;
+  html += `</div>`; // .newspaper
+  return html;
+}
+
+/* ── App wiring ── */
+function showState(which) {
+  $('state-loading').style.display = which === 'loading' ? '' : 'none';
+  $('state-error').style.display   = which === 'error'   ? '' : 'none';
+  $('newspaper').style.display     = which === 'ready'   ? '' : 'none';
+}
+
+function showError(msg) { $('error-text').textContent = msg; showState('error'); }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { showError('No article ID specified. Return to the Archive and select an article.'); return; }
+
+  showState('loading');
+
+  fetch('data/articles_nite.json')
+    .then(r => { if (!r.ok) throw new Error('Could not fetch articles_nite.json'); return r.json(); })
+    .then(data => {
+      const articles = Array.isArray(data) ? data : Object.values(data);
+      const article  = articles.find(a => String(a.id_articles_nite) === String(id));
+      if (!article) { showError(`Article #${id} was not found in the archive.`); return; }
+
+      // Breadcrumb label: use first <p> content or generic fallback
+      const paras = parseParagraphs(article.text);
+      const label = (paras[0] || 'Article').slice(0, 60) + (paras[0] && paras[0].length > 60 ? '…' : '');
+      $('article-filename').textContent = label;
+      document.title = label + ' | Monday Nite Footballers';
+
+      // Render
+      $('newspaper').innerHTML = renderArticle(article);
+      showState('ready');
+    })
+    .catch(err => showError('Failed to load the archive: ' + err.message));
+});
+</script>
+</body>
+</html>

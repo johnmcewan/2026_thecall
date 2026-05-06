@@ -1,0 +1,936 @@
+entity_type,entity_value,count
+LOC,Kansas City,35
+LOC,Arrowhead,18
+LOC,New York,13
+LOC,Washington,10
+LOC,Denver,8
+LOC,Kansas,7
+LOC,Missouri,6
+LOC,Mo,6
+LOC,Oakland,6
+LOC,Tennessee,6
+LOC,Allen,5
+LOC,Burlington,5
+LOC,Columbia,5
+LOC,Iowa,5
+LOC,K.C,5
+LOC,West,5
+LOC,Bootheel,4
+LOC,Cleveland,4
+LOC,Raytown,4
+LOC,Melody Lanes,3
+LOC,New England,3
+LOC,Ohio,3
+LOC,Osawatomie,3
+LOC,Prospect,3
+LOC,Tampa Bay,3
+LOC,Troost,3
+LOC,United States,3
+LOC,Arizona,2
+LOC,Baltimore,2
+LOC,Black Hole,2
+LOC,Buffalo,2
+LOC,Canton,2
+LOC,City,2
+LOC,Ebenezer,2
+LOC,Georgia,2
+LOC,Indianapolis,2
+LOC,Kas,2
+LOC,King Louie East,2
+LOC,Macon,2
+LOC,Main,2
+LOC,Marriott,2
+LOC,New Orleans,2
+LOC,Pittsburgh,2
+LOC,San Diego,2
+LOC,Seattle,2
+LOC,St. James,2
+LOC,Station,2
+LOC,104Th,1
+LOC,18Th Street,1
+LOC,31St,1
+LOC,39Th,1
+LOC,45Th,1
+LOC,63Rd,1
+LOC,69Th And Prospect,1
+LOC,Ararat Temple,1
+LOC,Arrowhead United Methodist Church,1
+LOC,Atlanta,1
+LOC,Bay,1
+LOC,Blue,1
+LOC,Blue River Road,1
+LOC,Blue Springs,1
+LOC,California,1
+LOC,Capitol,1
+LOC,Carolina,1
+LOC,Central City,1
+LOC,Clarence,1
+LOC,County,1
+LOC,Crown Center,1
+LOC,Deep South,1
+LOC,Downtown Marriott,1
+LOC,East Side,1
+LOC,Ebenezer Ame Church,1
+LOC,Ed West,1
+LOC,England,1
+LOC,Excelsior Springs,1
+LOC,Fantasy Land,1
+LOC,Fifth Avenue,1
+LOC,Fifty First,1
+LOC,Florida,1
+LOC,Gem Theatre,1
+LOC,Grace Point Church,1
+LOC,Grandview,1
+LOC,Haiti,1
+LOC,Hayti,1
+LOC,Houston,1
+LOC,Independence,1
+LOC,Indonesia,1
+LOC,Jefferson City,1
+LOC,Joplin,1
+LOC,Joseph,1
+LOC,Juke House,1
+LOC,Kansas 50,1
+LOC,Kansas City Mo,1
+LOC,Kosovo,1
+LOC,"Laplata, Still",1
+LOC,Las Vegas,1
+LOC,Lee,1
+LOC,Linwood,1
+LOC,Lloyd Green Field,1
+LOC,Macon County,1
+LOC,Martha,1
+LOC,Mason Memorial,1
+LOC,Memory Lanes,1
+LOC,Miami,1
+LOC,Minnesota,1
+LOC,Mount Pleasant,1
+LOC,Mount Vernon,1
+LOC,Muddville,1
+LOC,Municipal Stadium,1
+LOC,New York City,1
+LOC,Niles Home,1
+LOC,Olive,1
+LOC,Oregon,1
+LOC,Osawatamie,1
+LOC,Paradise,1
+LOC,Peachtree Buffet,1
+LOC,Peyton’S Place,1
+LOC,Pleasant Hill,1
+LOC,Portland,1
+LOC,Premier,1
+LOC,Ray,1
+LOC,Red Sea,1
+LOC,Rodgers Health Center,1
+LOC,S Summit,1
+LOC,Sheraton Hotel,1
+LOC,Springfield,1
+LOC,St. Joseph,1
+LOC,St. Louis,1
+LOC,Stephen Baptist,1
+LOC,Superdome,1
+LOC,Tampa,1
+LOC,Texas,1
+LOC,Veterans Administration Hospital,1
+LOC,Vis,1
+LOC,Yugoslavia,1
+MISC,Super Bowl,21
+MISC,Nfl,18
+MISC,African American,8
+MISC,Afc,4
+MISC,Afc West,4
+MISC,All-Pro,4
+MISC,Christmas Song,4
+MISC,Hall Of Fame,4
+MISC,African,3
+MISC,African Americans,3
+MISC,Catholic,3
+MISC,Christmas,3
+MISC,English,3
+MISC,Iter,3
+MISC,Republicans,3
+MISC,Alzheimer,2
+MISC,Bible,2
+MISC,Golden Rule,2
+MISC,Kansas Citians,2
+MISC,Nfc,2
+MISC,Nfl Hall Of Fame,2
+MISC,Pro Bowl,2
+MISC,Scandal,2
+MISC,Super Bowl 42,2
+MISC,Thanksgiving,2
+MISC,West,2
+MISC,3-S Tonic,1
+MISC,A Christmas Carol,1
+MISC,Afc West Division,1
+MISC,Ain,1
+MISC,All-America,1
+MISC,All Pro,1
+MISC,American,1
+MISC,American Football League,1
+MISC,Arm,1
+MISC,Big Ball,1
+MISC,Big Boys,1
+MISC,Black History Month,1
+MISC,Boston Massacre,1
+MISC,Brewster’S Place,1
+MISC,Cameroon-Born,1
+MISC,Caucasian,1
+MISC,Chiefs,1
+MISC,Christian,1
+MISC,Christianity,1
+MISC,City,1
+MISC,Coming,1
+MISC,Conference,1
+MISC,Division,1
+MISC,Dreamgirls,1
+MISC,Eagles,1
+MISC,Fantasy Island,1
+MISC,Fifty Shades Of Grey,1
+MISC,Football,1
+MISC,Football Hall Of Fame,1
+MISC,Four,1
+MISC,Giant,1
+MISC,Greatest Show On Turf,1
+MISC,Greek,1
+MISC,Greek-Influ,1
+MISC,Had A Baby,1
+MISC,Hammer,1
+MISC,Hanksgiving,1
+MISC,Harley Davidson Soft Tail Heritage Motorcycle,1
+MISC,Hubbard,1
+MISC,Indians,1
+MISC,Inner City Blues,1
+MISC,Iphone,1
+MISC,Irene,1
+MISC,Ite Footballers,1
+MISC,Jamaica-Born,1
+MISC,Jeff,1
+MISC,Katrina,1
+MISC,Let,1
+MISC,Ley,1
+MISC,Like,1
+MISC,Lonely Teardrops,1
+MISC,Macbeth,1
+MISC,Midgets,1
+MISC,Midsummer Night,1
+MISC,Midwest Coast Defense,1
+MISC,Monday Nit,1
+MISC,Mumps,1
+MISC,Mvp,1
+MISC,National Football League,1
+MISC,New Yorkers,1
+MISC,Nfc South Division,1
+MISC,Nfl Super Bowl,1
+MISC,Night,1
+MISC,Niters,1
+MISC,Othello,1
+MISC,Philist,1
+MISC,Phoenix,1
+MISC,Pride Journalism,1
+MISC,Pro-Bowler,1
+MISC,Raider,1
+MISC,Ray,1
+MISC,Richard Iii,1
+MISC,S Day,1
+MISC,S Dream,1
+MISC,Social Security,1
+MISC,Super Bowl 43,1
+MISC,Super Bowl 44,1
+MISC,Super Bowl One,1
+MISC,Super Bowls,1
+MISC,Superbowl,1
+MISC,Tennessean,1
+MISC,That,1
+MISC,Three S,1
+MISC,Toy And Food Drive For All,1
+MISC,Unchanging Things,1
+MISC,Unforgettable,1
+MISC,Valentine,1
+MISC,Western Division,1
+MISC,World,1
+MISC,You,1
+ORG,Chiefs,609
+ORG,Denver,36
+ORG,Colts,25
+ORG,Oakland,23
+ORG,Saints,23
+ORG,Lincoln,22
+ORG,Raiders,18
+ORG,Kansas City Chiefs,15
+ORG,San Diego,15
+ORG,Call,14
+ORG,San Francisco,14
+ORG,Tampa Bay,13
+ORG,Browns,12
+ORG,Ers,11
+ORG,Monday Niters,11
+ORG,Patriots,11
+ORG,Chargers,10
+ORG,Monday,10
+ORG,Pittsburgh,10
+ORG,Broncos,9
+ORG,Carolina,9
+ORG,Eagles,9
+ORG,Atlanta,7
+ORG,Green Bay,7
+ORG,Lincoln University,7
+ORG,Redskins,7
+ORG,School District,7
+ORG,Buffalo,6
+ORG,Cleveland,6
+ORG,Monday N,6
+ORG,Detroit,5
+ORG,Giants,5
+ORG,Jets,5
+ORG,Kansas City,5
+ORG,New England Patriots,4
+ORG,New Orleans Saints,4
+ORG,Arizona,3
+ORG,Baltimore Ravens,3
+ORG,City,3
+ORG,Indianapolis Colts,3
+ORG,Ivanhoe Club,3
+ORG,Minnesota,3
+ORG,New England,3
+ORG,New Orleans,3
+ORG,Oakland Raiders,3
+ORG,Seattle,3
+ORG,Swope Health Services,3
+ORG,Washington,3
+ORG,49Rs,2
+ORG,Baltimore,2
+ORG,Behavioral Health,2
+ORG,Denver Broncos,2
+ORG,Espn,2
+ORG,Falcons,2
+ORG,Groove,2
+ORG,Hot 103,2
+ORG,Indianapolis,2
+ORG,Ivanhoe,2
+ORG,Jackson County,2
+ORG,K.C,2
+ORG,Kctv,2
+ORG,Lincoln High School,2
+ORG,Miami,2
+ORG,Missouri University,2
+ORG,Monday Nit,2
+ORG,Monday Nite Footballers Group,2
+ORG,Naacp,2
+ORG,Navy,2
+ORG,Pittsburg State,2
+ORG,San Diego Chargers,2
+ORG,Sports,2
+ORG,St. James,2
+ORG,St. Louis Rams,2
+ORG,Steelers,2
+ORG,Tennessee,2
+ORG,Tennessee Titans,2
+ORG,11 Mcgee,1
+ORG,6902 Board Of Directors,1
+ORG,6902 Club,1
+ORG,6902 School,1
+ORG,A Team,1
+ORG,Aints,1
+ORG,Air Force,1
+ORG,Anes,1
+ORG,At And T,1
+ORG,B Boys,1
+ORG,Bba Cleaver,1
+ORG,Bendix,1
+ORG,Best Buy,1
+ORG,"Birdland, 20-Mens Club",1
+ORG,Board,1
+ORG,Brady Bunch,1
+ORG,Buccaneers,1
+ORG,Buffalo-Chiefs,1
+ORG,Buffalo Bills,1
+ORG,Buffalo Soldiers,1
+ORG,C.A. Franklin,1
+ORG,Candy Stripers,1
+ORG,Cardinals,1
+ORG,Carter Broadcast Group,1
+ORG,Cbs,1
+ORG,Charges,1
+ORG,Cheaps,1
+ORG,Chefs,1
+ORG,Chiefs Haters,1
+ORG,Christian School,1
+ORG,Cincinnati Bengals,1
+ORG,Citizens,1
+ORG,Citizens’ Complaints Of The Police Department,1
+ORG,City Union Mission,1
+ORG,Cnn,1
+ORG,Cnn Of Kansas City,1
+ORG,Colgate,1
+ORG,Complaints,1
+ORG,Congressional Black Caucus,1
+ORG,Corvette,1
+ORG,Dallas,1
+ORG,Dallas Cowboys,1
+ORG,Denver-Chiefs,1
+ORG,Desegregation Task Force,1
+ORG,Detroit Lions,1
+ORG,District,1
+ORG,Dominoes,1
+ORG,Ebony,1
+ORG,Ever,1
+ORG,Flamingoes,1
+ORG,Frank,1
+ORG,Freedom School,1
+ORG,Full Employment Council,1
+ORG,"Gates, Niecies",1
+ORG,Generation Rap,1
+ORG,Go-Along,1
+ORG,Go-Along Club,1
+ORG,Go Along Club,1
+ORG,Grandview,1
+ORG,Grandview Middle,1
+ORG,Greenwood,1
+ORG,Hbc,1
+ORG,Healthcare Foundation,1
+ORG,Houston Texans,1
+ORG,Howard,1
+ORG,Hunts,1
+ORG,Indy,1
+ORG,Ines,1
+ORG,Ist,1
+ORG,Istead,1
+ORG,Itation Catholic,1
+ORG,Iter,1
+ORG,Jackson,1
+ORG,Jackson County Combat,1
+ORG,Jacksonville,1
+ORG,James,1
+ORG,K.C. Bowl,1
+ORG,Kansas City-Oakland,1
+ORG,Kansas City Public Schools,1
+ORG,Kansas City Raiders,1
+ORG,Kansas City School District,1
+ORG,Kids R Us,1
+ORG,L.U,1
+ORG,Legislative Black Caucus,1
+ORG,Lincoln High,1
+ORG,Lincoln University Marching Band,1
+ORG,Louis,1
+ORG,Louis Rams,1
+ORG,Louisiana State,1
+ORG,Lowly Chiefs,1
+ORG,Mental Health,1
+ORG,Metropolitan Spiritual,1
+ORG,Michigan State University,1
+ORG,Midnighters,1
+ORG,Minnesota Vikings,1
+ORG,Missouri National Guard,1
+ORG,Missouri School District,1
+ORG,Missouri Tiger,1
+ORG,Monarch,1
+ORG,Monday Nite,1
+ORG,Monday Nite Footballers,1
+ORG,Monday Niters Football,1
+ORG,Moonglows,1
+ORG,Motown,1
+ORG,New,1
+ORG,New York Giants,1
+ORG,Northwestern Mutual Insurance Company,1
+ORG,Oakland Chiefs,1
+ORG,Palestine Senior Citizens Center,1
+ORG,"Peachtree, M And M Bakery",1
+ORG,Penn Valley,1
+ORG,Philadelphia,1
+ORG,Philly,1
+ORG,Pittsburg,1
+ORG,Police Department,1
+ORG,Ponies,1
+ORG,Ravens,1
+ORG,Raytown Middle School Blue Jays,1
+ORG,Rhythm Lanes,1
+ORG,Rockets,1
+ORG,Room,1
+ORG,S Place,1
+ORG,Sakin,1
+ORG,Sam Francisco,1
+ORG,San Francisco Forty Niners,1
+ORG,School,1
+ORG,Seahawks,1
+ORG,Shell,1
+ORG,Silver And Black,1
+ORG,Soul Stirrers,1
+ORG,Southeast Middle,1
+ORG,Steeler,1
+ORG,Sumner Elementary,1
+ORG,Switzer,1
+ORG,Syracuse,1
+ORG,Tampa Bay Buccaneers,1
+ORG,Temporary Executive Services,1
+ORG,Temptations,1
+ORG,Texans,1
+ORG,Those Chiefs,1
+ORG,Thus,1
+ORG,Town High,1
+ORG,Twin City,1
+ORG,Umkc Dental School,1
+ORG,University Of Chicago,1
+ORG,University Of Illinois,1
+ORG,Usc,1
+ORG,Vick,1
+ORG,Vick-Tory,1
+ORG,Wayside Waifs,1
+ORG,Wendell Phillips,1
+ORG,Western Electric,1
+ORG,Western Electric Plant,1
+ORG,Woodland,1
+ORG,Xavier,1
+ORG,Young Bloods,1
+PER,Ike,64
+PER,Carl Clark,42
+PER,Paul Booker,41
+PER,Charles Allen,40
+PER,Ed West,39
+PER,Ike Gardner,36
+PER,Booker,34
+PER,Nunnelly,34
+PER,Lloyd Greenfield,31
+PER,Ollie,31
+PER,Carl,29
+PER,Lloyd,29
+PER,Ollie Hubbard,28
+PER,Charles,26
+PER,Jim Nunnelly,24
+PER,Paul,23
+PER,Allen,18
+PER,Bubba Cleaver,18
+PER,Matt Cassel,18
+PER,Doc,16
+PER,Cleaver,15
+PER,Obama,14
+PER,Romeo,13
+PER,Jamaal Charles,11
+PER,Banks,10
+PER,Mila Banks,10
+PER,Wesson,10
+PER,Cassel,9
+PER,Jim,9
+PER,Bunny Rabbit,7
+PER,Granddad,7
+PER,Haley,7
+PER,Hubbard,7
+PER,Manning,7
+PER,Shakespeare,7
+PER,Goliath,6
+PER,Hali,6
+PER,Herm,6
+PER,Larry Johnson,6
+PER,Luck,6
+PER,Bowe,5
+PER,Clark,5
+PER,David,5
+PER,Dwayne Bowe,5
+PER,God,5
+PER,Herm Edwards,5
+PER,Rev,5
+PER,Rudolph,5
+PER,Sandra,5
+PER,Terry Strother,5
+PER,Tony G,5
+PER,West,5
+PER,Andre,4
+PER,Bri,4
+PER,Carl Peterson,4
+PER,Eric,4
+PER,Erica,4
+PER,Flip Wilson,4
+PER,Gardner,4
+PER,George Benson,4
+PER,Grand Dad,4
+PER,Jim “Grand Dad,4
+PER,John Legend,4
+PER,Johnson,4
+PER,Kerry Washington,4
+PER,Marvin Gaye,4
+PER,Mila,4
+PER,Tom Brady,4
+PER,Amanda,3
+PER,Beverly,3
+PER,Derrick Johnson,3
+PER,Eli,3
+PER,Eric L,3
+PER,Eric L. Wesson,3
+PER,Flip,3
+PER,Greenfield,3
+PER,Guy,3
+PER,Jamal Charles,3
+PER,Jeremiah Cameron,3
+PER,Jim “Granddad,3
+PER,Jones,3
+PER,Josh Freeman,3
+PER,Monday Niters,3
+PER,Myla Banks,3
+PER,Ollie Gates,3
+PER,Otis Taylor,3
+PER,Ray Lewis,3
+PER,Robert,3
+PER,Roberta Flack,3
+PER,S Dad,3
+PER,Smith,3
+PER,Tamba Hali,3
+PER,Todd Haley,3
+PER,Alicia Keys,2
+PER,Alzheimer,2
+PER,Andre Jackmon,2
+PER,Berry,2
+PER,Beyonce,2
+PER,Brady,2
+PER,Brandon Lloyd,2
+PER,Brian Waters,2
+PER,Bubba,2
+PER,Buck Buchanan,2
+PER,Carl Connor,2
+PER,Celeste,2
+PER,Cole,2
+PER,Congressman Cleaver,2
+PER,Damon,2
+PER,Donna Stewart,2
+PER,Doug Williams,2
+PER,Emanuel Cleaver,2
+PER,Eric Wesson,2
+PER,Eric Winston,2
+PER,Floyd Little,2
+PER,George,2
+PER,Houston,2
+PER,Hubbards,2
+PER,Isaiah,2
+PER,Jeffersons,2
+PER,Jerry Rice,2
+PER,Jim Randall,2
+PER,Jimmy Ray Hubbard,2
+PER,Joe Webster,2
+PER,Kaepernick,2
+PER,Kerry,2
+PER,King Cole,2
+PER,Kurt Warner,2
+PER,Larry,2
+PER,Lura,2
+PER,Mccluster,2
+PER,Mcnabb,2
+PER,Niters,2
+PER,Peyton,2
+PER,Ray Charles,2
+PER,Romeo Crennel,2
+PER,Ron Walton,2
+PER,Santa,2
+PER,Stewart Watson,2
+PER,Sue,2
+PER,Thigpen,2
+PER,Tomlin,2
+PER,Tracy Allen,2
+PER,Walt Youngblood,2
+PER,Willie Humphrey,2
+PER,Winston,2
+PER,7Paul Booker,1
+PER,A. Holmes,1
+PER,Aaron Alexis,1
+PER,Aaron Rodgers,1
+PER,Adlai Stevenson,1
+PER,Alex,1
+PER,Alex Smith,1
+PER,All,1
+PER,Alvin Brooks,1
+PER,Amanda And Erica,1
+PER,Andre Jackson,1
+PER,Andrea Buford,1
+PER,Andrew Luck,1
+PER,Andy Reid,1
+PER,Annie,1
+PER,Anut Brittle Matt Cassel,1
+PER,Apostle Paul,1
+PER,Arionne Williams,1
+PER,Ashley,1
+PER,Awol Alex,1
+PER,Ba Cleaver,1
+PER,Barack,1
+PER,Barack Obama,1
+PER,Benedict Justice,1
+PER,Beyonce Beyonce,1
+PER,Big Hater,1
+PER,Big Hub,1
+PER,Biker,1
+PER,Bo Jackson,1
+PER,Bob Wheeler,1
+PER,Brady Quinn,1
+PER,Brady To Toomer,1
+PER,Brandon,1
+PER,Breana Jordan,1
+PER,Called Suh,1
+PER,Cameron,1
+PER,Cantankerous Ike Gardner,1
+PER,Carl “Classy,1
+PER,Carl “Righteous Bro-Ther,1
+PER,Carl Iii,1
+PER,Carlynn,1
+PER,Carolyn,1
+PER,Carson Palmer,1
+PER,Cb Cadenhead,1
+PER,Cbubba Cleaver,1
+PER,Char,1
+PER,Charlene Boswell,1
+PER,Charles Fort,1
+PER,Charles Kynard,1
+PER,Chef,1
+PER,Chester Anderson,1
+PER,Chocolate Drop,1
+PER,Christian,1
+PER,Christian Nunnelly,1
+PER,Chuck Wimes,1
+PER,Clancy,1
+PER,Clancy Parker,1
+PER,Clark Hunt,1
+PER,Clyde,1
+PER,Clyde Mcqueen,1
+PER,Congressman Emanuel,1
+PER,Connor,1
+PER,Crennel,1
+PER,Crennell,1
+PER,Croyle,1
+PER,Dad,1
+PER,Danielle,1
+PER,Danielle Morris,1
+PER,Dante Hall,1
+PER,Derrick Thomas,1
+PER,Dexter,1
+PER,Dick,1
+PER,Dick Vermeil,1
+PER,Doc Allen,1
+PER,Donna Summers,1
+PER,Donnie Hathaway,1
+PER,Dyan Deveraux,1
+PER,E.J,1
+PER,Earl Abel,1
+PER,Earl Pitts,1
+PER,Ebenezer Gardner,1
+PER,Ebenezer Scrooge,1
+PER,Ed  “Dozing,1
+PER,Ed “Still Mentoring,1
+PER,Ed “The Gee,1
+PER,Edwards,1
+PER,Eli Manning,1
+PER,Elize,1
+PER,Emanuel “Bubba,1
+PER,Emma Turner,1
+PER,Emmitt Smith,1
+PER,Emmitt Thomas,1
+PER,Eric “Erica,1
+PER,Eric “Erica’S Dad,1
+PER,Eric “Last Second,1
+PER,Eric Fisher,1
+PER,Erica Nunnelly,1
+PER,Erma Monroe,1
+PER,Ersons,1
+PER,Etta James,1
+PER,Everett O’Neal,1
+PER,Fannie Meeks,1
+PER,Fats Domino,1
+PER,Fitzgerald,1
+PER,Flaccoike Gardner,1
+PER,Fontella Bass,1
+PER,Fred Broski,1
+PER,G.L. Blankenship,1
+PER,Gant,1
+PER,Gen Greenfield,1
+PER,Geneva Price,1
+PER,George Brooks,1
+PER,George Jefferson,1
+PER,George Washington,1
+PER,Georgia Buchanan,1
+PER,Georgy Burger,1
+PER,Gerald Pegg,1
+PER,Geraldine,1
+PER,God Almighty,1
+PER,Gore-Bush,1
+PER,Günther,1
+PER,Günther Cunningham,1
+PER,Gurnie Gunther,1
+PER,Hadley Reimal,1
+PER,Hank Ballard,1
+PER,Hank Stram,1
+PER,Hater,1
+PER,Headed And Competent”  West,1
+PER,Henderson Bell,1
+PER,Herman Gant,1
+PER,Hillary Clinton,1
+PER,Howard Gipson,1
+PER,Huff,1
+PER,Huston,1
+PER,I-Phone,1
+PER,Ikd,1
+PER,Ike “Mad Man,1
+PER,Ike “Oldest Grench Alive,1
+PER,Ike “Papaw,1
+PER,Ikeing,1
+PER,Isaiah Banks,1
+PER,Jackie Mackrel,1
+PER,Jackie Wilson,1
+PER,Jamie Foxx,1
+PER,Janet Jackson,1
+PER,Janice,1
+PER,Jay Z,1
+PER,Jazel Nunnelly,1
+PER,Jim Brown,1
+PER,Jim Harbaugh,1
+PER,Joanne Herndon,1
+PER,Joe Kapp,1
+PER,John Agnos,1
+PER,John Covington,1
+PER,John Williams,1
+PER,Johnny Cash,1
+PER,Johnny Mathis,1
+PER,Johnny Taylor,1
+PER,Johnson And Johnsoned West,1
+PER,Jon,1
+PER,Juanita Dixon,1
+PER,Justin Huston,1
+PER,Karrington,1
+PER,Kerry-Washington,1
+PER,Kim,1
+PER,King,1
+PER,Kosha Johnson,1
+PER,L.T,1
+PER,Lametria Pegg,1
+PER,Len Dawson,1
+PER,Leon Arnold,1
+PER,Leona,1
+PER,Leonard Butler,1
+PER,Lincoln University,1
+PER,Lisa Page,1
+PER,Lisa Washington,1
+PER,Little Willie John,1
+PER,Llie Hubbard,1
+PER,Lloyd “A Gentlemen,1
+PER,Logan,1
+PER,Lou Rawls,1
+PER,Loyal Lloyd,1
+PER,Luke Ponder,1
+PER,Lula Reed,1
+PER,Madame C. J. Walker,1
+PER,Margo Quiriconi,1
+PER,Marques Harris,1
+PER,Marshall Robinson,1
+PER,Marvin,1
+PER,Mary Helen Parker,1
+PER,Mary J. Blige,1
+PER,Mary Patton,1
+PER,Matt,1
+PER,Matt Leinart,1
+PER,Mcelroy,1
+PER,Mike,1
+PER,Mike Mcneil,1
+PER,Mila Lewis Banks,1
+PER,Miss Leona,1
+PER,Monday Nit,1
+PER,Monday Nitersjohnny Cash,1
+PER,Montell Washington,1
+PER,Montoya Lucas,1
+PER,Mr. Mary Lynn,1
+PER,Mrs,1
+PER,Much Manning,1
+PER,N Dam U Kong,1
+PER,Nat,1
+PER,Nat ‘King,1
+PER,Nat “King”Cole,1
+PER,Nat King Cole,1
+PER,Ndamudong Suh,1
+PER,Ndamukong Suh,1
+PER,Neal Herrford,1
+PER,Neil Smith,1
+PER,Norman Lear,1
+PER,Ollie “Barbara Walters,1
+PER,Ollie “Breaking New,1
+PER,Ollie “Cnn,1
+PER,Ollie “Dr. Death,1
+PER,Ollie “Elephant Memory,1
+PER,Ollie “Meet The Press,1
+PER,Or Man,1
+PER,Pa-Ul Booker,1
+PER,Parker,1
+PER,Patricia Wright,1
+PER,Patti Labelle,1
+PER,Paul “6902,1
+PER,Paul “The Apostle,1
+PER,Paul “The Converted Apostle,1
+PER,Paul Knight,1
+PER,Peanut,1
+PER,Peanut Brittle,1
+PER,Perfect Peyton,1
+PER,Peter Yelorda,1
+PER,Peterson,1
+PER,Pitiful Paul,1
+PER,Poe,1
+PER,Poor,1
+PER,Pper,1
+PER,President,1
+PER,Pryor,1
+PER,Puddy Pot,1
+PER,Pumpkin,1
+PER,Quiet One,1
+PER,Ralph Brown,1
+PER,Ray,1
+PER,Ray Rice,1
+PER,Raytown,1
+PER,Reggie Wayne,1
+PER,Renee Gardner,1
+PER,Rex Purefoy,1
+PER,Rice,1
+PER,Rich Mccauley,1
+PER,Rick Davis,1
+PER,Robert Griffin Iii,1
+PER,Romo,1
+PER,Ron Winfrey,1
+PER,Roosevelt,1
+PER,Roy Walker,1
+PER,Russell,1
+PER,Ruth Brown,1
+PER,S Gentleman,1
+PER,Sam Cooke,1
+PER,Sander Martin,1
+PER,Sanders Martin,1
+PER,Santa Claus,1
+PER,Sarah Rector,1
+PER,Scrooge,1
+PER,Sean Payton,1
+PER,Sean Smith,1
+PER,Shanahan,1
+PER,Shelley,1
+PER,Shelly,1
+PER,Singletary Factor,1
+PER,Smith-To-Davis,1
+PER,Sonny Thompson,1
+PER,Suh,1
+PER,Sweet Pea,1
+PER,Tee,1
+PER,Terrell Davis,1
+PER,Terrell Pryor,1
+PER,That Booker,1
+PER,The,1
+PER,Tia,1
+PER,Tina Turner,1
+PER,Todd,1
+PER,Tom Brown,1
+PER,Tony,1
+PER,Tony Dungy,1
+PER,Tracy Porter,1
+PER,Trent Green,1
+PER,Tyler Thigpen,1
+PER,Tyrant,1
+PER,Uncle Cantank,1
+PER,Vermeil,1
+PER,Vick,1
+PER,Vicki Frazier,1
+PER,Warnereric Wesson,1
+PER,Warren Dunn,1
+PER,Waters,1
+PER,Way Ike,1
+PER,Weis,1
+PER,Will Shields,1
+PER,William Shakespeare,1
+PER,Willie Lanier,1
+PER,Willie Roaf,1

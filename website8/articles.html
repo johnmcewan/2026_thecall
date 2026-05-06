@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Archives Navigator | Monday Nite Footballers</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Top Navigation -->
+<header class="mnf-nav" style="border-top-color: #fdc425; border-bottom-color: #002a55;">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a class="mnf-nav__link" href="index.html">Home</a>
+      <a class="mnf-nav__link mnf-nav__link--active" href="articles.html">Archives</a>
+      <a class="mnf-nav__link" href="people.html">People</a>
+      <a class="mnf-nav__link" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+      <!-- <button class="mnf-nav__icon-btn material-symbols-outlined p-2 hover:bg-white/10 rounded-sm transition-colors">search</button> -->
+    </div>
+  </nav>
+</header>
+
+<!-- Side Navigation -->
+<!-- <aside class="mnf-sidenav">
+  <div class="mnf-sidenav__brand">
+    <div class="w-12 h-12 bg-primary rounded-sm mb-4 flex items-center justify-center text-white font-headline italic font-bold">MNF</div>
+    <h2 class="mnf-sidenav__title">MNF Archive</h2>
+    <p class="mnf-sidenav__subtitle">1970-1979 Folio</p>
+  </div>
+  <nav class="flex flex-col gap-1">
+    <a class="mnf-sidenav__link" href="#">
+      <span class="material-symbols-outlined">home</span> Home
+    </a>
+    <a class="mnf-sidenav__link mnf-sidenav__link--active" href="#">
+      <span class="material-symbols-outlined">library_books</span> Archive
+    </a>
+    <a class="mnf-sidenav__link" href="#">
+      <span class="material-symbols-outlined">groups</span> Personnel
+    </a>
+    <a class="mnf-sidenav__link" href="#">
+      <span class="material-symbols-outlined">map</span> Geography
+    </a>
+    <a class="mnf-sidenav__link" href="#">
+      <span class="material-symbols-outlined">history</span> Process
+    </a>
+  </nav>
+</aside>
+ -->
+<main class="lg:ml-64 min-h-screen p-0 max-w-7xl mx-auto flex flex-col">
+  <div class="p-8 pb-0">
+
+    <!-- Page Header -->
+    <header class="mb-12 relative">
+      <div class="rainbow-stripe mb-6">
+        <div class="stripe-1"></div>
+        <div class="stripe-2"></div>
+        <div class="stripe-3"></div>
+        <div class="stripe-4"></div>
+      </div>
+      <h1 class="text-6xl font-headline font-extrabold text-primary ink-bleed tracking-tight mb-2">The Digital Archives</h1>
+      <p class="font-body text-lg text-on-surface-variant max-w-2xl italic">
+        Navigating the digital records of newspapers of the past. Select a year to filter by word or year.
+      </p>
+    </header>
+
+    <!-- Search & Date Filter -->
+    <section class="bg-surface-container p-8 mb-16 relative shadow-sm">
+      <div class="grain-overlay absolute inset-0"></div>
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end relative z-10">
+
+        <!-- Keyword Entry -->
+        <div class="md:col-span-4">
+          <label class="block label-caps text-secondary mb-2">Search Keywords</label>
+          <div class="relative">
+            <input
+              id="searchInput"
+              class="w-full bg-transparent border-0 border-b-2 border-outline focus:border-primary focus:ring-0 px-0 py-2 font-headline text-xl italic transition-all placeholder:text-outline-variant"
+              placeholder="e.g. 'Groove Station', 'Matt Cassel'"
+              type="text"/>
+            <span class="absolute right-0 bottom-2 material-symbols-outlined text-outline">search</span>
+          </div>
+        </div>
+
+        <!-- Date Range Selector -->
+        <div class="md:col-span-8">
+          <label class="block label-caps text-secondary mb-4">Filter by Year</label>
+          <div class="flex flex-wrap gap-2 items-center">
+            <div id="yearButtons" class="flex flex-wrap gap-2">
+              <!-- populated by JS -->
+            </div>
+            <button id="filterBtn" class="ml-auto px-6 py-2 bg-primary text-white font-label font-bold uppercase text-xs tracking-widest rounded-sm hover:translate-y-[-1px] active:translate-y-[1px] transition-all">Search Archives</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Result count -->
+    <div class="flex items-baseline gap-3 mb-8">
+      <span id="resultCount" class="font-headline text-4xl font-black text-primary">—</span>
+      <span class="label-caps text-on-surface-variant">results</span>
+      <span id="activeQuery" class="font-body italic text-on-surface-variant text-sm ml-2"></span>
+    </div>
+
+    <!-- Archive Results Grid -->
+    <section id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 items-start mb-12">
+      <!-- Populated by JS -->
+    </section>
+
+    <!-- Load More -->
+    <div id="loadMoreWrap" class="flex flex-col items-center gap-3 mb-24 hidden">
+      <p id="showingCount" class="font-body text-sm text-on-surface-variant italic"></p>
+      <button id="loadMoreBtn"
+        class="px-8 py-3 bg-primary text-white font-label font-bold uppercase text-xs tracking-widest rounded-sm hover:translate-y-[-1px] active:translate-y-[1px] transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">expand_more</span> Load More
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer / Pagination -->
+  <footer class="mt-auto w-full py-12 bg-[#004388] border-t-4 border-secondary-container flex flex-col md:flex-row justify-between items-center px-8 font-body text-sm">
+    <div class="flex flex-col items-center md:items-start gap-2 mb-8 md:mb-0">
+      <p class="mnf-footer__copy">Institute for Digital Research in the Humanities</p>
+      <div class="flex gap-6">
+        <a class="mnf-footer__link" href="#">Terms of Research</a>
+        <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+        <a class="mnf-footer__link" href="#">Press Kit</a>
+        <a class="mnf-footer__link" href="#">Contact Editor</a>
+      </div>
+    </div>
+    <div class="flex gap-4">
+      <button class="px-4 py-2 border border-[#fbfbe2]/30 text-[#fbfbe2] font-bold font-headline transition-all hover:bg-white/10">Previous Folio</button>
+      <button class="px-4 py-2 bg-secondary-container text-on-secondary-container font-bold font-headline transition-all hover:opacity-90">Next Folio</button>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Floating Filter FAB (Mobile Only) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+  <span class="material-symbols-outlined">filter_list</span>
+</button>
+
+<script>
+  // ── State ────────────────────────────────────────────────────────────
+  let allArticles      = [];
+  let filteredResults  = [];
+  let currentKeywords  = [];
+  let activeYear       = null;  // null = all years
+  let visibleCount     = 0;
+  const INITIAL_COUNT  = 6;
+  const LOAD_MORE_COUNT = 3;
+
+  // ── Load data ────────────────────────────────────────────────────────
+  fetch('data/articles_nite.json')
+    .then(r => r.json())
+    .then(data => {
+      allArticles = Array.isArray(data) ? data : Object.values(data);
+      buildYearButtons();
+      runSearch();   // show all on load
+    })
+    .catch(() => {
+      document.getElementById('resultsGrid').innerHTML =
+        `<p class="col-span-3 text-error font-body italic">Could not load articles_nite.json. Make sure the file is in the data/ directory.</p>`;
+      document.getElementById('resultCount').textContent = '0';
+    });
+
+  // ── Strip <p> tags to get plain text from the text field ────────────
+  function stripTags(html) {
+    if (!html) return '';
+    return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+  // ── Extract all plain text from an article ──────────────────────────
+  function getFullText(article) {
+    return stripTags(article.text || '');
+  }
+
+  // ── Extract headline (first <p> block's content) ────────────────────
+  function getHeadline(article) {
+    if (!article.text) return 'Untitled';
+    const match = article.text.match(/<p>(.*?)<\/p>/);
+    return match ? match[1].trim() : stripTags(article.text).slice(0, 100) || 'Untitled';
+  }
+
+  // ── Extract snippet around first keyword match ──────────────────────
+  function getSnippet(fullText, keywords) {
+    if (!fullText) return '';
+    if (!keywords.length) return fullText.slice(0, 200) + (fullText.length > 200 ? '…' : '');
+    const kw = keywords[0];
+    const idx = fullText.toLowerCase().indexOf(kw.toLowerCase());
+    if (idx === -1) return fullText.slice(0, 200) + (fullText.length > 200 ? '…' : '');
+    const start = Math.max(0, idx - 80);
+    const end   = Math.min(fullText.length, idx + 160);
+    return (start > 0 ? '…' : '') + fullText.slice(start, end) + (end < fullText.length ? '…' : '');
+  }
+
+  // ── Highlight keywords in a string (safe, no innerHTML injection) ───
+  function highlight(text, keywords) {
+    if (!keywords.length) return escHtml(text);
+    const pattern = keywords.map(k => escHtml(k).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    return escHtml(text).replace(
+      new RegExp(`(${pattern})`, 'gi'),
+      '<mark class="bg-secondary-container text-on-secondary-container px-0.5 rounded-sm not-italic">$1</mark>'
+    );
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Build year filter buttons ───────────────────────────────────────
+  function buildYearButtons() {
+    const years = [...new Set(
+      allArticles.map(a => a.year).filter(y => y != null)
+    )].sort((a, b) => a - b);
+
+    const container = document.getElementById('yearButtons');
+
+    // "All" pill
+    const allBtn = makeYearBtn('All', null);
+    allBtn.classList.add('border-primary', 'bg-primary-container', 'text-white');
+    container.appendChild(allBtn);
+
+    years.forEach(y => container.appendChild(makeYearBtn(y, y)));
+  }
+
+  function makeYearBtn(label, year) {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.dataset.year = year ?? '';
+    btn.className = 'px-4 py-2 bg-surface-container-highest border-b-4 border-secondary text-on-surface font-bold font-headline hover:bg-secondary-fixed transition-colors';
+    btn.addEventListener('click', () => {
+      activeYear = year;
+      // Update active styling
+      document.querySelectorAll('#yearButtons button').forEach(b => {
+        b.classList.remove('border-primary','bg-primary-container','text-white');
+        b.classList.add('border-secondary','bg-surface-container-highest','text-on-surface');
+      });
+      btn.classList.add('border-primary','bg-primary-container','text-white');
+      btn.classList.remove('border-secondary','bg-surface-container-highest','text-on-surface');
+      runSearch();
+    });
+    return btn;
+  }
+
+  // ── Source badge styling ─────────────────────────────────────────────
+  function sourceBadge(source) {
+    if (source === 'filelist') {
+      return { label: 'Archive Scan', cls: 'bg-secondary-container text-on-secondary-container' };
+    }
+    return { label: 'ProQuest', cls: 'bg-tertiary-container text-on-tertiary-container' };
+  }
+
+  // ── Main search (resets visible count) ───────────────────────────────
+  function runSearch() {
+    const raw      = document.getElementById('searchInput').value.trim();
+    currentKeywords = raw ? raw.split(/\s+/).filter(Boolean) : [];
+
+    // Filter by year
+    let results = activeYear != null
+      ? allArticles.filter(a => a.year === activeYear)
+      : allArticles;
+
+    // Filter by keywords (all must appear in the full text)
+    if (currentKeywords.length) {
+      results = results.filter(a => {
+        const body = getFullText(a).toLowerCase();
+        return currentKeywords.every(k => body.includes(k.toLowerCase()));
+      });
+    }
+
+    filteredResults = results;
+    visibleCount    = Math.min(INITIAL_COUNT, filteredResults.length);
+
+    // Update count & query label
+    document.getElementById('resultCount').textContent = filteredResults.length;
+    document.getElementById('activeQuery').textContent =
+      currentKeywords.length ? `for "${raw}"${activeYear != null ? ` in ${activeYear}` : ''}` :
+      activeYear != null ? `in ${activeYear}` : '';
+
+    renderCards();
+  }
+
+  // ── Render visible slice of cards ───────────────────────────────────
+  function renderCards() {
+    const grid = document.getElementById('resultsGrid');
+    const wrap = document.getElementById('loadMoreWrap');
+
+    if (!filteredResults.length) {
+      grid.innerHTML = `<p class="col-span-3 font-body italic text-on-surface-variant py-8">No articles matched your search. Try broader keywords.</p>`;
+      wrap.classList.add('hidden');
+      return;
+    }
+
+    const rotations = ['', 'rotate-1', '-rotate-1', 'rotate-0'];
+    const bgCycles  = ['bg-surface-container-low', 'bg-surface-container-highest', 'bg-surface-container'];
+    const visible   = filteredResults.slice(0, visibleCount);
+
+    grid.innerHTML = visible.map((article, i) => {
+      const headline = getHeadline(article);
+      const fullText = getFullText(article);
+      const snippet  = getSnippet(fullText, currentKeywords);
+      const yearStr  = article.year != null ? String(article.year) : '';
+      const badge    = sourceBadge(article.source);
+      const rot      = rotations[i % rotations.length];
+      const bg       = bgCycles[i % bgCycles.length];
+
+      return `
+        <article class="group relative ${bg} p-6 transition-all ${rot} hover:rotate-0 hover:translate-y-[-4px]">
+          <div class="grain-overlay absolute inset-0"></div>
+          <div class="flex flex-col gap-2 relative z-10">
+            <div class="flex justify-between items-start gap-2">
+              <span class="px-2 py-1 ${badge.cls} font-label text-[10px] font-bold uppercase tracking-widest shrink-0">${escHtml(badge.label)}</span>
+              <span class="text-outline font-label text-[10px] uppercase font-semibold text-right">#${article.id_articles_nite}</span>
+            </div>
+            <h3 class="font-headline text-xl font-bold text-on-surface leading-tight mt-2 group-hover:text-primary transition-colors">
+              ${highlight(headline, currentKeywords)}
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant mt-2 leading-relaxed">
+              ${highlight(snippet, currentKeywords)}
+            </p>
+            <div class="mt-6 pt-4 border-t border-outline-variant/20 flex justify-between items-center">
+              <span class="font-headline font-bold text-primary italic">${escHtml(yearStr)}</span>
+              <a href="newspaper-reader.html?id=${article.id_articles_nite}" class="flex items-center gap-1 text-primary font-label text-[10px] font-bold uppercase tracking-tighter hover:underline underline-offset-4">
+                View Article <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+
+    // Update Load More area
+    const remaining = filteredResults.length - visibleCount;
+    if (remaining > 0) {
+      document.getElementById('showingCount').textContent =
+        `Showing ${visibleCount} of ${filteredResults.length} results`;
+      wrap.classList.remove('hidden');
+    } else {
+      wrap.classList.add('hidden');
+    }
+  }
+
+  // ── Load More handler ───────────────────────────────────────────────
+  function showMore() {
+    visibleCount = Math.min(visibleCount + LOAD_MORE_COUNT, filteredResults.length);
+    renderCards();
+    // Scroll the newly added cards into view
+    const grid  = document.getElementById('resultsGrid');
+    const cards = grid.querySelectorAll('article');
+    if (cards.length > LOAD_MORE_COUNT) {
+      cards[cards.length - LOAD_MORE_COUNT].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  // ── Wire up events ──────────────────────────────────────────────────
+  document.getElementById('filterBtn').addEventListener('click', runSearch);
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') runSearch();
+  });
+  document.getElementById('loadMoreBtn').addEventListener('click', showMore);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Monday Nite Footballers | The Call Newspaper</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+<!-- Top Navigation -->
+<header class="mnf-nav">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a class="mnf-nav__link mnf-nav__link--active" href="#">Home</a>
+      <a class="mnf-nav__link" href="articles.html">Archives</a>
+      <a class="mnf-nav__link" href="people.html">People</a>
+      <a class="mnf-nav__link" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+<!--       <button class="mnf-nav__icon-btn material-symbols-outlined">search</button>
+      <button class="mnf-nav__search-btn">Search</button> -->
+    </div>
+  </nav>
+</header>
+
+<main class="max-w-7xl mx-auto px-8 py-20 space-y-32">
+
+  <!-- Hero Section -->
+  <section class="relative">
+    <div class="max-w-4xl">
+      <h1 class="font-headline text-7xl md:text-9xl font-extrabold text-primary leading-[0.9] tracking-tighter ink-bleed mb-8">
+        <span>The Kansas City Call Archives:</span> Monday Nite Footballers
+      </h1>
+      <div class="rainbow-stripe mb-12 max-w-xl">
+        <div class="stripe-1"></div>
+        <div class="stripe-2"></div>
+        <div class="stripe-3"></div>
+        <div class="stripe-4"></div>
+      </div>
+      <p class="font-headline text-2xl italic text-on-surface-variant max-w-2xl leading-relaxed">
+        An exploration of life in Kansas City.
+      </p>
+    </div>
+
+    <!-- Asymmetric Clipping Card Overlay -->
+    <div class="hidden lg:block absolute -right-12 top-0 w-1/3">
+      <div class="bg-surface-container p-4 shadow-xl clipping-card">
+        <img
+          alt="Vintage football ticket stub"
+          class="w-full grayscale contrast-125 mb-4"
+          src="images/1000015986_v2.jpg"/>
+        <span class="label-caps text-outline">Archives</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Procession of History -->
+  <section class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+    <div class="md:col-span-7 bg-surface-container-low p-2">
+      <div class="relative overflow-hidden group">
+        <img
+          alt="Kansas City Call Newsroom"
+          class="w-full grayscale contrast-75 brightness-90 group-hover:grayscale-0 transition-all duration-700"
+          src="images/MondayNiteFootballers_1971.png"/>
+        <div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+      </div>
+      <div class="mt-4 flex justify-between items-baseline">
+        <span class="font-headline font-bold text-primary italic text-xl">The Monday Nite Footballers</span>
+        <span class="label-caps text-on-surface-variant">Circa 1971</span>
+      </div>
+    </div>
+    <div class="md:col-span-5 md:pl-12 pb-8">
+      <h2 class="font-headline text-4xl font-bold text-on-surface mb-6">Recovering the Voice of a City</h2>
+      <div class="space-y-6 text-on-surface-variant leading-relaxed font-body">
+        <p>
+          The Monday Nite Footballers were more than a social club; they were a microcosm of Kansas City's shifting social landscape.
+          Founded in the wake of the urban renewal projects of the late 60s, this group created a third space that transcended the simple fandom of the gridiron.
+        </p>
+        <p>
+          Through newspaper articles from the <i>Kansas City Call</i>, we are telling the story of community and camaraderie in Kansas City.
+        </p>
+        <div class="pt-4">
+          <a class="inline-block text-primary font-bold border-b-2 border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="about.html">
+            Read the Methodology
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1970–1979 Folio Data Sheet -->
+  <section class="space-y-16">
+    <div class="flex flex-col md:flex-row justify-between items-end border-b border-outline-variant/15 pb-8">
+      <div class="max-w-xl">
+        <h3 class="font-headline text-5xl font-black text-primary mb-4 tracking-tight">The 1970-1979 Folio</h3>
+        <p class="label-caps text-on-surface-variant">A curated selection of primary sources and statistical research</p>
+      </div>
+      <button class="mt-8 md:mt-0 label-caps px-8 py-4 bg-surface-container-highest hover:bg-surface-variant transition-colors">
+        Enter The Vault
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+      <!-- Research Card 1 -->
+      <div class="bg-surface-container p-8 space-y-6 flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+        <div>
+          <div class="w-12 h-1 bg-secondary mb-6"></div>
+          <h4 class="font-headline text-2xl font-bold text-on-surface leading-tight">The Sunday Afternoon Broadcast Ritual</h4>
+          <p class="text-sm text-on-surface-variant leading-relaxed italic">
+            Analyzing the migration of social behavior from local pubs to private living rooms in the late 70s.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+          <span>Archive Ref: 402-B</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </div>
+
+      <!-- Research Card 2 (Featured / Offset) -->
+      <div class="bg-primary-container text-on-primary p-8 space-y-6 flex flex-col justify-between shadow-2xl md:-mt-8 md:mb-8">
+        <div>
+          <div class="rainbow-stripe mb-6 h-1 w-20">
+            <div class="stripe-2"></div>
+            <div class="stripe-3"></div>
+            <div class="stripe-4"></div>
+          </div>
+          <h4 class="font-headline text-3xl font-bold leading-tight">Geography of Fandom: The 18th &amp; Vine Connection</h4>
+          <p class="text-sm opacity-90 leading-relaxed font-body">
+            A mapping of jazz-era legacies surviving through sport-related social organizations.
+          </p>
+        </div>
+        <button class="w-full py-3 bg-white text-primary font-bold uppercase text-xs tracking-widest hover:bg-secondary-fixed transition-colors">
+          Download Map Data
+        </button>
+      </div>
+
+      <!-- Research Card 3 -->
+      <div class="bg-surface-container p-8 space-y-6 flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+        <div>
+          <div class="w-12 h-1 bg-tertiary mb-6"></div>
+          <h4 class="font-headline text-2xl font-bold text-on-surface leading-tight">The Personnel Archive: Portraits of the Founders</h4>
+          <p class="text-sm text-on-surface-variant leading-relaxed italic">
+            Restored polaroids and personal accounts from the surviving members of the 1974 collective.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest">
+          <span>Archive Ref: 119-Z</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final Narrative Statement -->
+  <section class="max-w-3xl mx-auto text-center py-20">
+    <span class="material-symbols-outlined text-5xl text-secondary opacity-30 mb-8">history_edu</span>
+    <blockquote class="font-headline text-4xl font-light italic text-on-surface-variant leading-snug">
+      "We are not merely looking back at a game, but at the tapestry of a city that found its voice in the huddle and its heart in the stands."
+    </blockquote>
+    <div class="mt-8 label-caps text-outline tracking-[0.3em]">The Living Archive Collective, 1974-2024</div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="mnf-footer">
+  <div class="mnf-footer__inner">
+    <p class="mnf-footer__copy">Institute for Digital Research in the Humanities.</p>
+    <nav class="mnf-footer__links">
+      <a class="mnf-footer__link" href="#">Terms of Research</a>
+      <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+      <a class="mnf-footer__link" href="#">Press Kit</a>
+      <a class="mnf-footer__link" href="#">Contact Editor</a>
+    </nav>
+  </div>
+  <div class="broadcast-stripe"></div>
+</footer>
+
+</body>
+</html>

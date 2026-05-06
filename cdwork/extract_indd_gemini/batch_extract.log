@@ -616,3 +616,21 @@
 2026-04-03 12:21:59,021  WARNING   FAIL: AP - Kansas African American.indd - Output file missing
 2026-04-03 12:21:59,071  WARNING   FAIL: Howard Gilbert.indd - Output file missing
 2026-04-03 12:21:59,081  INFO      Process complete.
+2026-04-27 19:38:38,862  INFO      Loading file list from cache: D:\development\2026_python\2026_thecall\cdwork\extract_indd_gemini\file_list_cache.txt
+2026-04-27 19:38:40,004  INFO      Total Files: 72988 | Remaining to Process: 12
+2026-04-27 19:38:40,004  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-27 19:38:40,069  INFO      Total: 72988 | To Process: 12
+2026-04-27 19:41:42,722  INFO      No cache found. Scanning E:\Callproject\5_2026_indd\working (this may take a few minutes)...
+2026-04-27 19:41:42,738  INFO      Scan complete. Saving 2 paths to cache.
+2026-04-27 19:41:42,811  INFO      Total Files: 2 | Remaining to Process: 2
+2026-04-27 19:41:42,818  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-27 19:41:42,873  INFO      Total: 2 | To Process: 2
+2026-04-27 19:41:49,664  INFO      Launched new instance: InDesign.Application.2026
+2026-04-27 19:42:23,575  INFO      Process complete.
+2026-04-27 21:49:32,732  INFO      No cache found. Scanning E:\Callproject\5_2026_indd\working (this may take a few minutes)...
+2026-04-27 21:49:32,736  INFO      Scan complete. Saving 1 paths to cache.
+2026-04-27 21:49:32,853  INFO      Total Files: 1 | Remaining to Process: 1
+2026-04-27 21:49:32,853  INFO      Starting InDesign Batch Extraction (Page-Based Mode)
+2026-04-27 21:49:32,931  INFO      Total: 1 | To Process: 1
+2026-04-27 21:49:41,973  INFO      Launched new instance: InDesign.Application.2026
+2026-04-27 21:49:51,296  INFO      Process complete.

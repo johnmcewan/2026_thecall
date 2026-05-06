@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Geography | Monday Nite Footballers</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  
+  <!-- Design System -->
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <style>
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .leaflet-popup-content {
+      font-family: inherit;
+      margin: 0;
+      padding: 0;
+    }
+
+    .location-popup {
+      min-width: 250px;
+    }
+
+    .location-popup h5 {
+      font-weight: bold;
+      margin: 8px 0 4px 0;
+      color: #001b3e;
+      font-size: 16px;
+    }
+
+    .location-popup p {
+      margin: 4px 0;
+      font-size: 13px;
+      color: #424242;
+      line-height: 1.4;
+    }
+
+    .location-popup .category {
+      font-size: 11px;
+      color: #757575;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .location-popup .mention-count {
+      font-size: 12px;
+      color: #999;
+      font-style: italic;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #eee;
+    }
+
+    .map-controls {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .map-control-btn {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
+      font-size: 20px;
+    }
+
+    .map-control-btn:hover {
+      background: #f5f5f5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .loading-indicator {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 50;
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #001b3e;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+
+<!-- Top Navigation -->
+<header class="mnf-nav" style="border-top-color:#001b3e; border-bottom-color: #ffdf9a;">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a clsass="mnf-nav__link" href="index.html">Home</a>
+      <a class="mnf-nav__link" href="articles.html">Archives</a>
+      <a class="mnf-nav__link" href="people.html">People</a>
+      <a class="mnf-nav__link mnf-nav__link--active" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+      <!-- <button class="mnf-nav__search-btn">Search</button> -->
+      <button class="md:hidden mnf-nav__icon-btn material-symbols-outlined">menu</button>
+    </div>
+  </nav>
+</header>
+
+<div class="flex min-h-screen">
+
+  <!-- Side Navigation -->
+<!--   <aside class="mnf-sidenav">
+    <div class="mnf-sidenav__brand">
+      <div class="mnf-sidenav__logo-mark">
+        <img class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCSOppa9AQ4NOpHyb3Zfufo6F9Q_vSUCHV2vE0flRNUo02WhPW3_-qgSPVkMTs3fX4EbpyGbW8Yo43tnb6HhgWTd2YnX7u1pH2JPqFMONgy8ZUhLpju-zkIm4TudBZjrEJ-YRZ_wONeCvmWYgCll_GoY7Q538agQ6wpWFcDeIP0Lg856nGwd8d3owid1E7aWSI0kLlMyCEjrAvIZ8YpRqpzoM1shwgs0HqPSu3_H9FSPuol7DZue2KzmDZbj8sa0hJ8H51UICi1pk"
+          alt="Vintage football helmet insignia"/>
+      </div>
+      <h2 class="mnf-sidenav__title">MNF Archive</h2>
+      <p class="mnf-sidenav__subtitle">1970-1979 Folio</p>
+    </div>
+    <nav class="flex flex-col gap-1 pr-4">
+      <a class="mnf-sidenav__link" href="#">
+        <span class="material-symbols-outlined text-xl">home</span>
+        <span>Home</span>
+      </a>
+      <a class="mnf-sidenav__link" href="#">
+        <span class="material-symbols-outlined text-xl">library_books</span>
+        <span>Archive</span>
+      </a>
+      <a class="mnf-sidenav__link" href="#">
+        <span class="material-symbols-outlined text-xl">groups</span>
+        <span>Personnel</span>
+      </a>
+      <a class="mnf-sidenav__link mnf-sidenav__link--active" href="#">
+        <span class="material-symbols-outlined text-xl">map</span>
+        <span>Geography</span>
+      </a>
+      <a class="mnf-sidenav__link" href="#">
+        <span class="material-symbols-outlined text-xl">history</span>
+        <span>Process</span>
+      </a>
+    </nav>
+  </aside> -->
+
+  <!-- Main Content Canvas -->
+  <main class="flex-1 lg:ml-64 bg-surface p-4 md:p-8">
+    <div class="max-w-7xl mx-auto space-y-8">
+
+      <!-- Page Header -->
+      <section class="space-y-4">
+        <div class="broadcast-stripe w-32"></div>
+        <h1 class="font-headline text-5xl md:text-7xl text-primary ink-bleed font-bold tracking-tighter">Geography of the Monday Niters</h1>
+        <p class="font-body text-on-surface-variant max-w-2xl text-lg leading-relaxed">
+          A survey of the locations mentioned in the Monday Nite articles in the Kansas City Call.
+        </p>
+      </section>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- Ranked Mention List (Left Margin) -->
+        <aside class="w-full lg:w-52 shrink-0">
+          <div class="bg-surface-container-low p-4 shadow-[4px_4px_0_0_#efefd7] border-l-4 border-l-secondary h-[600px] flex flex-col">
+            <h3 class="font-headline text-lg font-bold text-on-surface mb-1">Most Mentioned</h3>
+            <p class="text-xs text-on-surface-variant mb-3 font-body">Click to locate on map</p>
+            <ul class="space-y-0 overflow-y-auto flex-1 pr-1" id="mentionRankList">
+              <li class="text-on-surface-variant text-sm">Loading...</li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Interactive Map Canvas -->
+        <div class="flex-grow relative h-[600px] bg-surface-container shadow-inner overflow-hidden rounded-sm">
+
+          <!-- Vintage map image overlay -->
+          <div class="map-overlay opacity-20 bg-[#d4c8a8]"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfihOMdDqdICD0SOD02vymX8kvfilcsE_vqPIIcTWfajsAuNu9QTH82Yer4H6FJaxpsWEEXJ3hFX-THf4nDoMt5CFSJXD2uw29pb_bXWnHQKJDJvT7kwLySjb_7Um7ajuVLwqb1JqEIA4Lv9XxwcrzwF3uH9_0pV7I9MforQY4ov-D7oDG3h_8vow9iU9E9bdq-laYD0xSl_BWIBZ1GwHQbjKyxOre0z3N2dvjwQCznaGpe6j77h9bLrgdKsJqniDjvrLcA6IXRUk'); background-size: cover; background-position: center; filter: sepia(0.6) contrast(1.1);">
+          </div>
+          
+          <!-- Leaflet Map -->
+          <div id="map"></div>
+
+          <!-- Loading Indicator -->
+          <div id="loadingIndicator" class="loading-indicator">
+            <div class="loading-spinner"></div>
+            <p class="text-on-surface">Loading locations...</p>
+          </div>
+
+          <!-- Map Controls -->
+          <div class="map-controls">
+            <button class="map-control-btn" id="zoomInBtn" title="Zoom In">+</button>
+            <button class="map-control-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+            <button class="map-control-btn" id="centerBtn" title="Center on 18th & Vine">🎯</button>
+          </div>
+        </div>
+
+        <!-- Points of Interest Sidebar -->
+        <aside class="w-full lg:w-80 space-y-6">
+          <div class="bg-surface-container-low p-6 shadow-[4px_4px_0_0_#efefd7] border-l-4 border-l-primary">
+            <h3 class="font-headline text-2xl font-bold text-on-surface mb-6">Points of Interest</h3>
+            <div class="space-y-8">
+              <div>
+                <h4 class="label-caps text-primary font-bold mb-3 border-b border-outline-variant pb-1">Statistics</h4>
+                <div class="space-y-2">
+                  <div>
+                    <p class="text-xs font-body text-on-surface-variant">Total Locations Mapped</p>
+                    <p class="font-headline text-2xl font-bold text-primary" id="totalLocations">—</p>
+                  </div>
+                  <div>
+                    <p class="text-xs font-body text-on-surface-variant">Central Hub</p>
+                    <p class="font-headline text-sm font-bold text-on-surface">18th & Vine District</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="label-caps text-secondary font-bold mb-3 border-b border-outline-variant pb-1">Gathering Spots</h4>
+                <ul class="space-y-4" id="gatheringSpots">
+                  <li class="group cursor-pointer">
+                    <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">Loading...</p>
+                    <p class="text-sm font-body text-on-surface-variant">From map data</p>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="label-caps text-tertiary font-bold mb-3 border-b border-outline-variant pb-1">Tactical Grounds</h4>
+                <ul class="space-y-4" id="tacticalGrounds">
+                  <li class="group cursor-pointer">
+                    <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">Loading...</p>
+                    <p class="text-sm font-body text-on-surface-variant">From map data</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Clip Card -->
+          <div class="bg-surface-container-highest p-4 transform rotate-2 shadow-lg">
+            <span class="material-symbols-outlined text-primary mb-2">info</span>
+            <p class="font-headline italic text-on-surface leading-snug">
+              "The city is a grid of stories, each touchdown leaving a permanent mark on the geography of our neighborhoods."
+            </p>
+            <p class="label-caps mt-2 opacity-60">— Dispatch Vol. 4, 1975</p>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Footer Stats Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12">
+        <div class="bg-surface-container p-6 relative overflow-hidden">
+          <div class="absolute -right-4 -bottom-4 opacity-10">
+            <span class="material-symbols-outlined text-9xl">location_on</span>
+          </div>
+          <h5 class="label-caps text-on-surface-variant mb-1">Total Mapped</h5>
+          <div class="font-headline text-4xl font-black text-primary" id="statsTotal">—</div>
+        </div>
+        <div class="bg-surface-container p-6 border-t-4 border-t-secondary">
+          <h5 class="label-caps text-on-surface-variant mb-1">Primary District</h5>
+          <div class="font-headline text-4xl font-black text-secondary">18th & Vine</div>
+        </div>
+        <div class="bg-surface-container-high p-6 transform -translate-y-2 shadow-xl">
+          <h5 class="label-caps text-on-surface-variant mb-1">Archive Status</h5>
+          <div class="font-headline text-4xl font-black text-on-surface">Live</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="mnf-footer">
+  <div class="mnf-footer__inner">
+    <div class="flex flex-col items-center md:items-start gap-4">
+      <div class="broadcast-stripe w-24"></div>
+      <p class="mnf-footer__copy text-center md:text-left max-w-md">Institute for Digital Research in the Humanities.
+      </p>
+    </div>
+    <nav class="mnf-footer__links mt-8 md:mt-0">
+      <a class="mnf-footer__link" href="#">Terms of Research</a>
+      <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+      <a class="mnf-footer__link" href="#">Press Kit</a>
+      <a class="mnf-footer__link" href="#">Contact Editor</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+<!-- Papa Parse for CSV parsing -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+<script>
+  // Configuration
+  const MAP_CONFIG = {
+    centerLat: 39.0997,
+    centerLng: -94.5650,
+    initialZoom: 13,
+    markerColors: {
+      'KC Media Institution': '#e63946',
+      'KC School': '#457b9d',
+      'KC Neighborhood': '#f1faee',
+      'OK University': '#a8dadc',
+      'KS University': '#f1faee',
+      'MO City': '#f4a261',
+      'KC Institution': '#e76f51',
+      'KC Sports Venue': '#d62828',
+      'KS City': '#f4a261',
+      'International Region': '#9b59b6',
+      'KC Historic Venue': '#f39c12',
+      'OK City': '#e74c3c',
+      'CA City': '#3498db',
+      'KC Street': '#95a5a6',
+      'KC Civic Organization': '#2ecc71',
+      'KC Business': '#e67e22',
+      'KC Historic Nightclub': '#c0392b',
+      'OH Landmark': '#8e44ad',
+      'National Capital': '#34495e',
+      'KC Historic Building': '#16a085',
+      'KC Historic Community Ctr': '#d35400',
+      'KC Historic Music Venue': '#c0392b',
+      'KC Historic Theater': '#9b59b6',
+      'TN University': '#8e44ad',
+      'TX City': '#e74c3c',
+      'NY City': '#3498db',
+      'PA City': '#95a5a6',
+      'IA University': '#2ecc71',
+      'International Country': '#9b59b6',
+      'MO University': '#3498db',
+      'MO Town': '#f39c12',
+      'MO County': '#e67e22',
+      'TN Street': '#c0392b',
+      'NJ City': '#95a5a6',
+      'CA Region': '#3498db',
+      'KC Bar/Meeting Venue': '#e63946',
+      'KC Museum/Venue': '#f39c12',
+      'KC Golf/Sports': '#2ecc71',
+      'KC Historic Bar': '#c0392b',
+      'KC Government': '#34495e',
+      'KC Address': '#95a5a6',
+      'KC Historic Hospital': '#e74c3c',
+      'KC Historic Park': '#2ecc71',
+      'KC Retail/Neighborhood': '#3498db',
+      'TX University': '#8e44ad',
+      'GA Church': '#c0392b',
+      'KC Street/Intersection': '#95a5a6',
+      'KC Memorial': '#2ecc71'
+    }
+  };
+
+  let map;
+  let markers = [];
+  let locationData = [];
+
+  // Initialize map
+  function initMap() {
+    map = L.map('map').setView([MAP_CONFIG.centerLat, MAP_CONFIG.centerLng], MAP_CONFIG.initialZoom);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
+
+    // Load CSV data
+    loadCSVData();
+
+    // Set up controls
+    setupControls();
+  }
+
+  // Load and parse CSV data
+  function loadCSVData() {
+    // Using Papa Parse to parse CSV
+    fetch('data/MNF_Locations.csv')
+      .then(response => response.text())
+      .then(csvText => {
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: function(results) {
+            locationData = results.data;
+            addMarkersToMap();
+            updateSidebar();
+            hideLoadingIndicator();
+          },
+          error: function(error) {
+            console.error('Error parsing CSV:', error);
+            hideLoadingIndicator();
+            showErrorMessage('Failed to load location data');
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching CSV:', error);
+        hideLoadingIndicator();
+        showErrorMessage('Failed to fetch CSV file');
+      });
+  }
+
+  // Add markers to map
+  function addMarkersToMap() {
+    // Pre-compute mention count range for scaling
+    const counts = locationData.map(l => parseInt(l['Mention Count']) || 1);
+    const maxCount = Math.max(...counts) || 1;
+    const minSize = 14, maxSize = 46;
+
+    locationData.forEach((location, index) => {
+      // Skip header row or invalid entries
+      if (!location.Latitude || !location.Longitude || !location['Location Name']) {
+        return;
+      }
+
+      const lat = parseFloat(location.Latitude);
+      const lng = parseFloat(location.Longitude);
+      const category = location.Category || 'Unknown';
+      const color = MAP_CONFIG.markerColors[category] || '#95a5a6';
+
+      if (isNaN(lat) || isNaN(lng)) {
+        return;
+      }
+
+      // Scale circle size by mention count
+      const mentionCount = parseInt(location['Mention Count']) || 1;
+      const size = Math.round(minSize + ((mentionCount - 1) / (maxCount - 1 || 1)) * (maxSize - minSize));
+      const fontSize = Math.max(9, Math.round(size * 0.38));
+
+      // Create custom icon with size proportional to mention count
+      const icon = L.divIcon({
+        html: `<div style="background-color: ${color}; width: ${size}px; height: ${size}px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [size, size],
+        className: ''
+      });
+
+      // Create popup content
+      const popupContent = `
+        <div class="location-popup">
+          <span class="category">${category}</span>
+          <h5>${location['Location Name']}</h5>
+          <p><strong>Address:</strong> ${location['Full Address / Description']}</p>
+          <p class="mention-count">📌 Mentioned ${location['Mention Count'] || '?'} times</p>
+        </div>
+      `;
+
+      // Create marker
+      const marker = L.marker([lat, lng], { icon: icon })
+        .bindPopup(popupContent)
+        .addTo(map);
+
+      markers.push({
+        marker: marker,
+        location: location,
+        category: category
+      });
+    });
+  }
+
+  // Convert hex to RGB (utility function)
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  // Update sidebar with dynamic content
+  function updateSidebar() {
+    const totalLocations = locationData.length;
+    document.getElementById('totalLocations').textContent = totalLocations;
+    document.getElementById('statsTotal').textContent = totalLocations + ' Locations';
+
+    // Get gathering spots (nightclubs, bars, etc.)
+    const gatheringSpots = locationData.filter(loc => 
+      loc.Category && (
+        loc.Category.includes('Nightclub') || 
+        loc.Category.includes('Bar') ||
+        loc.Category.includes('Venue') ||
+        loc.Category === 'KC Business'
+      )
+    ).slice(0, 4);
+
+    // Get tactical grounds (stadiums, sports venues, etc.)
+    const tacticalGrounds = locationData.filter(loc => 
+      loc.Category && (
+        loc.Category.includes('Sports') ||
+        loc.Category.includes('Venue') ||
+        loc.Category === 'KC Institution'
+      )
+    ).slice(0, 4);
+
+    // Update gathering spots
+    const gatheringSpotsHTML = gatheringSpots.length > 0 
+      ? gatheringSpots.map(spot => `
+        <li class="group cursor-pointer" onclick="focusLocation(${spot.Latitude}, ${spot.Longitude})">
+          <p class="font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">${spot['Location Name']}</p>
+          <p class="text-sm font-body text-on-surface-variant">${spot.Category}</p>
+        </li>
+      `).join('')
+      : '<li class="text-on-surface-variant">No gathering spots found</li>';
+
+    document.getElementById('gatheringSpots').innerHTML = gatheringSpotsHTML;
+
+    // Update tactical grounds
+    const tacticalGroundsHTML = tacticalGrounds.length > 0
+      ? tacticalGrounds.map(ground => `
+        <li class="group cursor-pointer" onclick="focusLocation(${ground.Latitude}, ${ground.Longitude})">
+          <p class="font-headline font-bold text-on-surface group-hover:text-tertiary transition-colors">${ground['Location Name']}</p>
+          <p class="text-sm font-body text-on-surface-variant">${ground.Category}</p>
+        </li>
+      `).join('')
+      : '<li class="text-on-surface-variant">No tactical grounds found</li>';
+
+    // Update ranked mention list (sorted by mention count desc)
+    const ranked = locationData
+      .filter(loc => loc['Location Name'] && loc.Latitude && loc.Longitude)
+      .map(loc => ({ ...loc, _count: parseInt(loc['Mention Count']) || 0 }))
+      .sort((a, b) => b._count - a._count);
+
+    const maxMentions = ranked.length ? ranked[0]._count : 1;
+
+    const mentionRankHTML = ranked.map((loc, i) => {
+      const barWidth = maxMentions > 0 ? Math.round((loc._count / maxMentions) * 100) : 0;
+      return `
+        <li class="group cursor-pointer py-1.5 border-b border-outline-variant last:border-0"
+            onclick="focusLocation(${loc.Latitude}, ${loc.Longitude})">
+          <div class="flex items-baseline justify-between gap-1 mb-0.5">
+            <p class="font-headline font-bold text-xs text-on-surface group-hover:text-secondary transition-colors leading-tight">${loc['Location Name']}</p>
+            <span class="text-xs font-body text-on-surface-variant shrink-0">${loc._count}</span>
+          </div>
+          <div class="h-1 bg-outline-variant rounded-full overflow-hidden">
+            <div class="h-full bg-secondary rounded-full transition-all" style="width: ${barWidth}%"></div>
+          </div>
+        </li>
+      `;
+    }).join('');
+
+    document.getElementById('tacticalGrounds').innerHTML = tacticalGroundsHTML;
+
+    document.getElementById('mentionRankList').innerHTML = mentionRankHTML || '<li class="text-on-surface-variant text-sm">No data</li>';
+  }
+
+  // Focus on a specific location
+  function focusLocation(lat, lng) {
+    map.flyTo([lat, lng], 15, { duration: 1 });
+  }
+
+  // Set up custom controls
+  function setupControls() {
+    document.getElementById('zoomInBtn').addEventListener('click', () => {
+      map.zoomIn();
+    });
+
+    document.getElementById('zoomOutBtn').addEventListener('click', () => {
+      map.zoomOut();
+    });
+
+    document.getElementById('centerBtn').addEventListener('click', () => {
+      map.flyTo([MAP_CONFIG.centerLat, MAP_CONFIG.centerLng], MAP_CONFIG.initialZoom, { duration: 1 });
+    });
+  }
+
+  // Hide loading indicator
+  function hideLoadingIndicator() {
+    const indicator = document.getElementById('loadingIndicator');
+    if (indicator) {
+      indicator.style.display = 'none';
+    }
+  }
+
+  // Show error message
+  function showErrorMessage(message) {
+    const indicator = document.getElementById('loadingIndicator');
+    if (indicator) {
+      indicator.innerHTML = `<p class="text-error">${message}</p>`;
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', initMap);
+</script>
+
+</body>
+</html>

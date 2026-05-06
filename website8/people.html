@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Personnel Profiles | Monday Nite Footballers</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="mnf.css"/>
+  <script src="mnf-config.js"></script>
+  <script id="tailwind-config">tailwind.config = window._mnfConfig</script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-surface font-body text-on-surface">
+
+<header class="mnf-nav">
+  <nav class="mnf-nav__inner">
+    <div class="mnf-nav__logo">Monday Nite Footballers</div>
+    <div class="mnf-nav__links">
+      <a class="mnf-nav__link" href="index.html">Home</a>
+      <a class="mnf-nav__link" href="articles.html">Archives</a>
+      <a class="mnf-nav__link mnf-nav__link--active" href="people.html">People</a>
+      <a class="mnf-nav__link" href="map.html">Geography</a>
+      <a class="mnf-nav__link" href="about.html">Process</a>
+    </div>
+    <div class="mnf-nav__actions">
+      <button class="mnf-nav__icon-btn flex items-center gap-2 font-headline font-bold">
+        <span class="material-symbols-outlined">search</span>
+        <span>Search</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="max-w-7xl mx-auto px-8 pt-20 pb-32">
+  <div class="flex flex-col md:flex-row gap-12">
+
+    <aside class="w-full md:w-1/3 flex flex-col gap-8">
+      <div class="space-y-2">
+        <h1 class="font-headline text-5xl font-extrabold text-primary ink-bleed tracking-tight leading-none">Personnel<br/>Folio</h1>
+        <p class="label-caps text-outline">Vol. 74-A • Master Ledger</p>
+      </div>
+
+      <div id="personnel-list" class="flex flex-col gap-4 max-h-[70vh] overflow-y-auto pr-2">
+        <p class="text-sm italic opacity-50">Loading ledger...</p>
+      </div>
+    </aside>
+
+    <section id="profile-display" class="flex-1 flex flex-col gap-12 mt-12 md:mt-0">
+       </section>
+
+  </div>
+</main>
+
+<footer class="mnf-footer">
+  <div class="mnf-footer__inner">
+    <p class="mnf-footer__copy">Institute for Digital Research in the Humanities</p>
+    <nav class="mnf-footer__links">
+      <a class="mnf-footer__link" href="#">Terms of Research</a>
+      <a class="mnf-footer__link" href="#">Broadcast Rights</a>
+      <a class="mnf-footer__link" href="#">Press Kit</a>
+      <a class="mnf-footer__link" href="#">Contact Editor</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  /**
+   * Simple CSV Parser that handles quoted values and newlines
+   */
+  function parseCSV(text) {
+    const rows = [];
+    let currentRow = [];
+    let currentCell = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const nextChar = text[i + 1];
+
+      if (char === '"' && inQuotes && nextChar === '"') {
+        currentCell += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        currentRow.push(currentCell.trim());
+        currentCell = '';
+      } else if ((char === '\r' || char === '\n') && !inQuotes) {
+        if (currentCell || currentRow.length > 0) {
+          currentRow.push(currentCell.trim());
+          rows.push(currentRow);
+        }
+        currentRow = [];
+        currentCell = '';
+        if (char === '\r' && nextChar === '\n') i++;
+      } else {
+        currentCell += char;
+      }
+    }
+    if (currentCell || currentRow.length > 0) {
+      currentRow.push(currentCell.trim());
+      rows.push(currentRow);
+    }
+    return rows;
+  }
+
+  /**
+   * Cleans source citations like from strings
+   */
+  function cleanText(text) {
+    // The regex /\/g finds the literal ""
+    return text ? text.replace(/"/g, '').trim() : '';
+  }
+
+
+  let personnelData = [];
+
+  async function init() {
+    try {
+      const response = await fetch('data/MNF_Entity_Sheet_Populated.csv');
+      const csvText = await response.text();
+      const rawRows = parseCSV(csvText);
+
+      // Header mapping
+      const headers = rawRows[0].map(h => cleanText(h));
+      personnelData = rawRows.slice(1).map(row => {
+        const obj = {};
+        headers.forEach((header, i) => {
+          obj[header] = cleanText(row[i]);
+        });
+        return obj;
+      }).filter(p => p.Name); // Filter out empty rows
+
+      renderList();
+      if (personnelData.length > 0) {
+        renderProfile(personnelData[0]);
+      }
+    } catch (err) {
+      console.error("Error loading CSV:", err);
+      document.getElementById('personnel-list').innerHTML = '<p class="text-error">Error loading personnel data.</p>';
+    }
+  }
+
+  function renderList(activeName = null) {
+    const listContainer = document.getElementById('personnel-list');
+    listContainer.innerHTML = '';
+
+    personnelData.forEach(person => {
+      const isActive = activeName ? person.Name === activeName : person === personnelData[0];
+      const card = document.createElement('div');
+      
+      // Styling based on active state from design.md
+      card.className = isActive 
+        ? "bg-surface-container-highest p-6 rounded-xl shadow-[8px_8px_0_0_#efefd7] border-l-8 border-secondary flex items-center gap-4 cursor-pointer"
+        : "bg-surface-container-low p-6 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer group flex items-center gap-4";
+
+      card.innerHTML = `
+        <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-dim">
+          <img class="w-full h-full object-cover grayscale ${isActive ? '' : 'opacity-60'}" 
+               src="https://ui-avatars.com/api/?name=${encodeURIComponent(person.Name)}&background=dbdcc3&color=1b1d0e" 
+               alt="${person.Name}"/>
+        </div>
+        <div>
+          <h3 class="font-headline text-lg font-bold text-on-surface ${isActive ? '' : 'text-on-surface/80 group-hover:text-on-surface'}">${person.Name}</h3>
+          <p class="label-caps text-[10px] text-outline truncate w-40">${person.Career || 'Member'}</p>
+        </div>
+      `;
+
+      card.onclick = () => {
+        renderList(person.Name);
+        renderProfile(person);
+      };
+      listContainer.appendChild(card);
+    });
+  }
+
+  function renderProfile(person) {
+    const display = document.getElementById('profile-display');
+    const background = [person['Interesting A'], person['Interesting B'], person['Interesting C']]
+      .filter(t => t)
+      .join(' ');
+
+    display.innerHTML = `
+      <div class="bg-surface-container-lowest p-12 rounded-xl shadow-[24px_24px_0_0_#efefd7] relative overflow-hidden transform rotate-1">
+        <div class="absolute top-0 left-0 right-0 rainbow-stripe" style="height:8px;">
+          <div class="stripe-1"></div>
+          <div class="stripe-2"></div>
+          <div class="stripe-3"></div>
+          <div class="stripe-4"></div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 pt-4">
+          <div class="w-full lg:w-2/5 flex flex-col gap-6">
+            <div class="aspect-[4/5] bg-surface-dim rounded-xl overflow-hidden border-8 border-surface-container shadow-inner">
+               <img class="w-full h-full object-cover grayscale mix-blend-multiply opacity-90"
+                src="https://ui-avatars.com/api/?name=${encodeURIComponent(person.Name)}&size=512&background=dbdcc3&color=1b1d0e"
+                alt="${person.Name}"/>
+            </div>
+            <button class="bg-primary-container text-on-primary py-4 px-8 rounded-sm font-label font-bold flex items-center justify-center gap-3 hover:opacity-90 transition-opacity active:scale-95">
+              <span class="material-symbols-outlined">download</span>
+              Download Profile PDF
+            </button>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-8">
+            <div class="space-y-2">
+              <span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-xs font-bold font-label tracking-tighter uppercase rounded-none">
+                ${person.Career || 'Member'}
+              </span>
+              <h2 class="font-headline text-5xl font-black text-on-surface tracking-tighter ink-bleed">${person.Name}</h2>
+              ${person['Family / Wife'] ? `
+                <p class="font-body text-md italic text-outline leading-relaxed border-l-4 border-outline-variant pl-4">
+                  Family: ${person['Family / Wife']}
+                </p>
+              ` : ''}
+            </div>
+            <div class="space-y-6">
+              <div class="space-y-2">
+                <h4 class="label-caps text-secondary">Personnel Background</h4>
+                <p class="font-body text-on-surface leading-relaxed opacity-90">
+                  ${background || 'No biographical data available in the master ledger.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        <div class="flex items-end gap-4 border-b-2 border-outline-variant pb-2">
+          <h3 class="font-headline text-3xl font-bold text-primary italic">Associated Clippings</h3>
+          <span class="label-caps text-outline mb-1">Documentary Evidence • KC Call Archive</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 opacity-60">
+            <div class="border-2 border-dashed border-outline-variant p-8 rounded-xl flex items-center justify-center text-outline italic text-sm">
+              Archival images pending for ${person.Name.split(' ')[0]}...
+            </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Run on load
+  init();
+</script>
+
+</body>
+</html>
